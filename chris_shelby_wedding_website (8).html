@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    /* Sophisticated neutral + champagne palette */
+    --charcoal: #1f1f1f;
+    --charcoal-soft: #2a2a2a;
+    --ivory: #f7f5f2;
+    --stone: #e6e2dc;
+    --taupe: #b8b2a9;
+    --champagne: #d6c3a3;
+    --champagne-deep: #bfa06f;
+    --text-dark: #222222;
+    --text-mid: #555555;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--ivory); color: var(--text-dark); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(31,31,31,0.95);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; gap: 2rem;
+    padding: 0.75rem 1rem;
+  }
+  nav a {
+    color: var(--stone); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--champagne); }
+
+  /* SECTIONS */
+  section { padding: 4rem 1.5rem; max-width: 860px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--sand-dark); }
+
+  h1.hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 5.8rem);
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  h1.hero-name em { font-style: italic; color: var(--foam); }
+  .hero-amp {
+    display: block; font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--champagne); margin: 0.1rem 0; font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 500; color: var(--charcoal);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .section-title em { font-style: italic; }
+  .section-rule {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--champagne), var(--taupe));
+    margin: 0 0 1.8rem;
+  }
+  p, li { font-size: 15.5px; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+  strong { font-weight: 500; color: var(--text-dark); }
+
+  /* HERO */
+  #hero {
+    /* stronger vignette + slight bottom fade for readability */
+    background: radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.45) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
+                url('aU5A4823LR.jpg');
+    background-size: cover;
+    background-position: 50% 80%; /* keep feet + sign visible */
+    min-height: 560px;
+    height: clamp(520px, 70vh, 720px);
+    padding: 1.25rem 1.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-content {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 70px;
+    z-index: 2;
+  }
+  .wave-decor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--charcoal) 100%);
+  }
+  .wave-decor svg { display: none; }
+  .hero-date {
+    font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--champagne); margin: 1.25rem 0 0.5rem;
+    font-weight: 600;
+  }
+  .hero-venue {
+    color: rgba(255,244,228,0.88); font-size: 14px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .palm-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 1rem; pointer-events: none;
+  }
+  .palm-row svg { width: 60px; opacity: 0.6; }
+  .palm-row .right svg { transform: scaleX(-1); }
+
+  /* COUNTDOWN */
+  .countdown-bar {
+    display: flex; justify-content: center; gap: 1.5rem;
+    background: var(--charcoal); padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  .cd-unit { display: flex; flex-direction: column; align-items: center; }
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 3rem;
+    font-weight: 600; color: white; line-height: 1;
+  }
+  .cd-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--taupe); opacity: 0.7; margin-top: 4px;
+  }
+  .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
+
+  /* STORY */
+  .story-pull {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.25rem; color: var(--ocean); border-left: 3px solid var(--palm-light);
+    padding: 0.5rem 0 0.5rem 1.2rem; margin: 1.5rem 0;
+    line-height: 1.6;
+  }
+
+  /* SCHEDULE */
+  .timeline { list-style: none; position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--ocean-light), var(--palm-light));
+    border-radius: 2px;
+  }
+  .timeline li {
+    position: relative; margin-bottom: 1.5rem;
+  }
+  .timeline li::before {
+    content: ''; position: absolute; left: -1.6rem; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--ocean); border: 2px solid var(--foam);
+    box-shadow: 0 0 0 2px var(--ocean-light);
+  }
+  .tl-time { font-size: 12px; letter-spacing: 0.1em; color: var(--champagne-deep); font-weight: 500; text-transform: uppercase; margin-bottom: 2px; }
+  .tl-event { font-weight: 500; color: var(--text-dark); font-size: 15px; }
+  .tl-note { font-size: 13.5px; color: var(--text-mid); font-weight: 300; }
+
+  /* TRAVEL */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .info-card {
+    background: white; border-radius: 12px; padding: 1.25rem;
+    border: 1px solid var(--stone);
+  }
+  .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .card-title { font-weight: 500; font-size: 14px; color: var(--charcoal); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
+
+  /* RSVP */
+  .rsvp-wrap {
+    background: linear-gradient(135deg, var(--ocean-deep), var(--ocean));
+    border-radius: 16px; padding: 2.5rem; text-align: center;
+  }
+  .rsvp-wrap .section-title { color: white; }
+  .rsvp-wrap p { color: rgba(212,241,249,0.85); margin-bottom: 1.5rem; }
+  .rsvp-form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
+  .rsvp-form input, .rsvp-form select {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.12);
+    color: white; font-family: 'Jost', sans-serif; font-size: 15px;
+    outline: none;
+  }
+  .rsvp-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .rsvp-btn {
+    padding: 0.85rem; border-radius: 8px;
+    background: var(--gold); color: var(--ocean-deep);
+    border: none; font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
+  }
+  .rsvp-btn:hover { opacity: 0.88; }
+  .rsvp-confirm { color: var(--palm-light); font-size: 14px; margin-top: 0.5rem; display: none; }
+
+  /* REGISTRY */
+  .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .reg-card {
+    background: white; border-radius: 12px; padding: 1.5rem 1rem;
+    text-align: center; border: 1px solid var(--sand-dark);
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .reg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,110,138,0.12); }
+  .reg-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .reg-name { font-weight: 500; font-size: 14px; color: var(--ocean-deep); margin-bottom: 0.25rem; }
+  .reg-desc { font-size: 13px; color: var(--text-mid); font-weight: 300; }
+
+  /* GALLERY placeholder */
+  /* PHOTO REEL */
+.photo-reel {
+  overflow: hidden;
+  background: #000;
+  padding: 0.75rem;
+}
+.reel-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: scrollReel 45s linear infinite;
+}
+.reel-track img {
+  height: 480px;
+  width: auto;
+  border-radius: 14px;
+  object-fit: cover;
+}
+@keyframes scrollReel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .gallery-tile {
+    aspect-ratio: 1; border-radius: 10px; overflow: hidden;
+  }
+  .gallery-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    cursor: pointer; transition: transform 0.2s ease;
+  }
+  .gallery-tile:hover img { transform: scale(1.03); }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative;
+    width: min(92vw, 1100px);
+    height: min(88vh, 760px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .lightbox-btn, .lightbox-close {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.14);
+    color: white;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .lightbox-btn:hover, .lightbox-close:hover {
+    background: rgba(255,255,255,0.22);
+    transform: scale(1.04);
+  }
+  .lightbox-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    font-size: 1.4rem;
+  }
+  .lightbox-btn:hover { transform: translateY(-50%) scale(1.04); }
+  .lightbox-prev { left: -0.75rem; }
+  .lightbox-next { right: -0.75rem; }
+  .lightbox-close {
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 540px) {
+    .lightbox { padding: 1rem; }
+    .lightbox-inner { width: 100%; height: auto; }
+    .lightbox-btn { width: 42px; height: 42px; }
+    .lightbox-prev { left: 0.25rem; }
+    .lightbox-next { right: 0.25rem; }
+    .lightbox-close { top: 0.25rem; right: 0.25rem; }
+  }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 1.25rem; }
+  .faq-q {
+    font-weight: 500; color: var(--text-dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 1rem; background: white; border-radius: 8px;
+    border: 1px solid var(--stone); font-size: 15px;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--foam); }
+  .faq-chevron { transition: transform 0.25s; color: var(--ocean); font-size: 12px; }
+  .faq-a {
+    display: none; padding: 0.75rem 1rem 0; font-size: 14.5px; color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); color: var(--stone); text-align: center;
+    padding: 2rem 1rem; font-size: 13px; letter-spacing: 0.06em;
+    font-weight: 300;
+  }
+  footer .footer-names {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+    font-style: italic; color: white; margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 540px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .cd-num { font-size: 1.8rem; }
+    nav { gap: 1rem; flex-wrap: wrap; }
+  }
+</style>
+
+<nav>
+  <a href="#story">Our Story</a>
+  <a href="#schedule">Schedule</a>
+  
+  <a href="#travel">Travel</a>
+  <a href="#registry">Registry</a>
+  <a href="#gallery">Photos</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<div id="hero">
+  <div class="palm-row">
+    <div class="left">
+      <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 95 Q28 60 20 40" stroke="#52b788" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M20 40 Q5 25 0 10 Q12 18 20 40" fill="#2d6a4f" opacity="0.8"/>
+        <path d="M20 40 Q15 20 25 5 Q25 22 20 40" fill="#52b788" opacity="0.7"/>
+        <path d="M20 40 Q30 22 45 15 Q32 25 20 40" fill="#2d6a4f" opacity="0.8"/>
+        <path d="M20 40 Q35 30 55 32 Q38 32 20 40" fill="#52b788" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="right">
+      <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 95 Q28 60 20 40" stroke="#52b788" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M20 40 Q5 25 0 10 Q12 18 20 40" fill="#2d6a4f" opacity="0.8"/>
+        <path d="M20 40 Q15 20 25 5 Q25 22 20 40" fill="#52b788" opacity="0.7"/>
+        <path d="M20 40 Q30 22 45 15 Q32 25 20 40" fill="#2d6a4f" opacity="0.8"/>
+        <path d="M20 40 Q35 30 55 32 Q38 32 20 40" fill="#52b788" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-content">
+  <h1 class="hero-name">
+    Chris
+    <span class="hero-amp">&</span>
+    <em>Shelby</em>
+  </h1>
+  <div class="hero-date">Saturday, October 24, 2026 · At Sunset</div>
+  <div class="hero-venue">Orlando, FL</div>
+</div>
+  <div class="wave-decor">
+    <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+      <path d="M0 30 Q150 0 300 30 Q450 60 600 30 Q750 0 900 30 Q1050 60 1200 30 L1200 60 L0 60 Z" fill="#f5ede0"/>
+    </svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Minutes</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seconds</span></div>
+</div>
+
+<!-- PHOTO REEL -->
+<div class="photo-reel">
+  <div class="reel-track">
+    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" />
+  </div>
+</div>
+
+<section id="story">
+  <div class="section-title"><em>Story</em></div>
+  <div class="section-rule"></div>
+  <p><strong>Two nerds walked into a room, and spent the next 2 years circling the globe to be together.</strong></p>
+
+  <div class="section-title" style="margin-top:2rem;"><em>Tidbits</em></div>
+  <div class="section-rule"></div>
+
+  <p><strong>How did you first meet?</strong></p>
+  <p>In a former ITEC Conference room, with moist Jimmy Johns wafting through the air - Shelby and Chris had a chance meeting. Only Chris was smart enough to notice that they were actually meeting. With a strong geographical hurdle (Chris lived in Long Beach, CA and Shelby lived in Orlando, FL) Chris starts to lay the ground work.</p>
+
+  <p><strong>Wait, with that distance - how did it all come together?</strong></p>
+  <p>Chris made the first move, and thank goodness - Shelby is clueless!</p>
+
+  <p><em>From Shelby's POV:</em></p>
+  <p>Shelby was balancing her phone between her shoulder and ear, standing over the work copier, on the phone with Britainne Pedersen.</p>
+  <p>"Dani just asked me if you are single”<br>
+  “Oh yeah? What did you say?"<br>
+  “What I always say, single but not very emotionally available and swamped at work.”<br>
+  “Attagirl.”</p>
+  <p>A few days later, Chris texted and was tragically left on read, which could have been a real tragedy.</p>
+
+  <p><strong>What was your most memorable date?</strong></p>
+  <p>The nature of long distance is that many of our dates were actually quite the caper. The 3rd date, where Chris casually pointed to his name in the credit scroll for The Era's Tour movie is quite memorable.</p>
+
+  <p><strong>What's your favorite activity together?</strong></p>
+  <p>Shelby: I love<br>
+  Chris:</p>
+
+  <p><strong>Where are you going for your honeymoon?</strong></p>
+  <p>France! Chris was an exchange student there</p>
+
+  <p><strong>What's the most memorable trip you have taken together?</strong></p>
+  <p>For our 5th date, Chris tagged along on trip to Japan. Its still not completely clear if that was for work, or a grand romantic boondoggle by Chris Wessels.</p>
+
+  <p><strong>What's the best meal you have eaten together?</strong></p>
+  <p>We have been very lucky one comes to mind: The Club 33 dinner to celebrate Shelby's 33rd comes to mind. Incredible family and friends at the most insane bucket list item of all.</p>
+
+  <p><strong>The most spontaneous thing we’ve done</strong></p>
+  <p>Chris proposed!</p>
+
+  <p><strong>We are regulars at</strong></p>
+  <p>Casa Bonita, in Denver Colorado. The sopapillas hate to see us coming.</p>
+
+  <p><strong>What's this we are hearing about you moving to the UK?</strong></p>
+  <p>For work, it's likely that we will temporarily relocate to the UK - but it's many years away, and even then not too long!</p>
+</section>
+
+<section id="schedule">
+  <div class="section-title">Weekend Events</div>
+  <div class="section-rule"></div>
+  <ul class="timeline">
+    <li>
+      <div class="tl-time">Friday, October 23, 2026 · Evening</div>
+      <div class="tl-event">Welcome Dinner</div>
+      <div class="tl-note">For out-of-town guests</div>
+    </li>
+    <li>
+      <div class="tl-time">Saturday, October 24, 2026 · Evening</div>
+      <div class="tl-event">Ceremony & Reception</div>
+      <div class="tl-note">The Main Event!</div>
+    </li>
+    <li>
+      <div class="tl-time">Sunday, October 25, 2026 · Late Morning</div>
+      <div class="tl-event">Send-off Party</div>
+      <div class="tl-note">A reimagined send-off party you won’t want to miss</div>
+    </li>
+  </ul>
+</section>
+
+
+
+<section id="travel">
+  <div class="section-title">Getting There</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem;">Our wedding will take place in Orlando, FL. Here's everything you need to plan your trip.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="card-icon">✈️</div>
+      <div class="card-title">Flying In</div>
+      <p>Orlando International Airport (MCO) is the nearest major airport.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🏨</div>
+      <div class="card-title">Where to Stay</div>
+      <p>We’ve secured a discounted room block at Universal’s Cabana Bay Beach Resort. Guests are encouraged to stay—transportation to the venue will be provided. Availability is limited, so please book ASAP.</p>
+    </div>
+    </div>
+</section>
+
+<section id="attire">
+  <div class="section-title">What to Wear</div>
+  <div class="section-rule"></div>
+  <p style="text-align:center;">Coming soon! But if you've ever partied with Chris and Shelby, you know it will be fabulous.</p>
+</section>
+
+<section id="registry">
+  <div class="section-title">Registry</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem; text-align:center;">Coming soon! Links will be posted June 1st.</p>
+  <div style="display:flex; justify-content:center;">
+    <a href="#" class="rsvp-btn" onclick="return false;">Check Back Soon</a>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-title">Photos</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem;">A few of our favorite adventures together.</p>
+  <div class="gallery-grid">
+    <div class="gallery-tile"><img src="20240204_153816.jpg" alt="Chris and Shelby travel photo 1" onclick="openLightbox(0)" /></div>
+    <div class="gallery-tile"><img src="20240204_223627.jpg" alt="Chris and Shelby travel photo 2" onclick="openLightbox(1)" /></div>
+    <div class="gallery-tile"><img src="20240505_202744.jpg" alt="Chris and Shelby travel photo 3" onclick="openLightbox(2)" /></div>
+    <div class="gallery-tile"><img src="20240901_160945.jpg" alt="Chris and Shelby travel photo 4" onclick="openLightbox(3)" /></div>
+    <div class="gallery-tile"><img src="20240903_214119.jpg" alt="Chris and Shelby travel photo 5" onclick="openLightbox(4)" /></div>
+    <div class="gallery-tile"><img src="20240908_174838.jpg" alt="Chris and Shelby travel photo 6" onclick="openLightbox(5)" /></div>
+    <div class="gallery-tile"><img src="20241101_193346.jpg" alt="Chris and Shelby travel photo 7" onclick="openLightbox(6)" /></div>
+    <div class="gallery-tile"><img src="20241226_155804.jpg" alt="Chris and Shelby travel photo 8" onclick="openLightbox(7)" /></div>
+    <div class="gallery-tile"><img src="20250215_171647.jpg" alt="Chris and Shelby travel photo 9" onclick="openLightbox(8)" /></div>
+    <div class="gallery-tile"><img src="20250220_150105.jpg" alt="Chris and Shelby travel photo 10" onclick="openLightbox(9)" /></div>
+    <div class="gallery-tile"><img src="20250221_193435.jpg" alt="Chris and Shelby travel photo 11" onclick="openLightbox(10)" /></div>
+    <div class="gallery-tile"><img src="20250528_164606.jpg" alt="Chris and Shelby travel photo 12" onclick="openLightbox(11)" /></div>
+    <div class="gallery-tile"><img src="20250604_113647.jpg" alt="Chris and Shelby travel photo 13" onclick="openLightbox(12)" /></div>
+    <div class="gallery-tile"><img src="20250817_010135.jpg" alt="Chris and Shelby travel photo 14" onclick="openLightbox(13)" /></div>
+    <div class="gallery-tile"><img src="20251126_163640.jpg" alt="Chris and Shelby travel photo 15" onclick="openLightbox(14)" /></div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close photos">✕</button>
+      <button class="lightbox-btn lightbox-prev" onclick="changeLightbox(-1, event)" aria-label="Previous photo">❮</button>
+      <img id="lightbox-image" src="" alt="Expanded gallery photo" />
+      <button class="lightbox-btn lightbox-next" onclick="changeLightbox(1, event)" aria-label="Next photo">❯</button>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-title"><em>Questions?</em></div>
+  <div class="section-rule"></div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">What's the weather like in late October in Orlando? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">October is a beautiful time in Orlando — warm and sunny with temperatures around 80°F (27°C), low humidity compared to summer, and minimal rain. Perfect tropical wedding weather!</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">Chris & Shelby</div>
+  <div>October 24, 2026 · Orlando, Florida</div>
+  <div style="margin-top:0.5rem; opacity:0.5;">Made with love ♡</div>
+</footer>
+
+<script>
+  const galleryImages = [
+    '20240204_153816.jpg',
+    '20240204_223627.jpg',
+    '20240505_202744.jpg',
+    '20240901_160945.jpg',
+    '20240903_214119.jpg',
+    '20240908_174838.jpg',
+    '20241101_193346.jpg',
+    '20241226_155804.jpg',
+    '20250215_171647.jpg',
+    '20250220_150105.jpg',
+    '20250221_193435.jpg',
+    '20250528_164606.jpg',
+    '20250604_113647.jpg',
+    '20250817_010135.jpg',
+    '20251126_163640.jpg'
+  ];
+  let currentLightboxIndex = 0;
+
+  function countdown() {
+    const wedding = new Date('2026-10-24T19:15:00-04:00');
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '🎉';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  countdown();
+  setInterval(countdown, 1000);
+
+  function toggleFAQ(el) {
+    const answer = el.nextElementSibling;
+    const chevron = el.querySelector('.faq-chevron');
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    chevron.style.transform = isOpen ? 'rotate(0)' : 'rotate(180deg)';
+  }
+
+  function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value.trim();
+    const attend = document.getElementById('rsvp-attend').value;
+    const confirm = document.getElementById('rsvp-confirm');
+    if (!name || !attend) {
+      confirm.style.display = 'block';
+      confirm.style.color = '#ffd700';
+      confirm.textContent = 'Please fill in your name and attendance selection.';
+      return;
+    }
+    confirm.style.display = 'block';
+    confirm.style.color = '#52b788';
+    if (attend === 'yes') {
+      confirm.textContent = '🌺 Wonderful! We can\'t wait to celebrate with you, ' + name + '!';
+    } else {
+      confirm.textContent = '💙 We\'ll miss you, ' + name + '. Thank you for letting us know!';
+    }
+    document.getElementById('rsvp-name').value = '';
+    document.getElementById('rsvp-attend').value = '';
+    document.getElementById('rsvp-guests').value = '';
+    document.getElementById('rsvp-dietary').value = '';
+  }
+
+  function openLightbox(index) {
+    currentLightboxIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = galleryImages[currentLightboxIndex];
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function changeLightbox(direction, event) {
+    event.stopPropagation();
+    currentLightboxIndex = (currentLightboxIndex + direction + galleryImages.length) % galleryImages.length;
+    document.getElementById('lightbox-image').src = galleryImages[currentLightboxIndex];
+  }
+
+  function closeLightbox(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close')) {
+      return;
+    }
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function (event) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('open')) return;
+    if (event.key === 'ArrowLeft') changeLightbox(-1, event);
+    if (event.key === 'ArrowRight') changeLightbox(1, event);
+    if (event.key === 'Escape') closeLightbox({ currentTarget: lightbox, target: lightbox });
+  });
+</script>
+</html>
