@@ -143,18 +143,13 @@
     color: var(--text-dark);
   }
   .story-img-wrap {
-    width: 20%;
-    max-width: 220px;
-    min-width: 140px;
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+    text-align: center;
   }
-  .story-img-wrap.left {
-    float: left;
-    margin: 0.4rem 1.4rem 1rem 0;
-  }
-  .story-img-wrap.right {
-    float: right;
-    margin: 0.4rem 0 1rem 1.4rem;
-  }
+  
+  
   .story-img {
     width: 100%;
     display: block;
@@ -367,12 +362,8 @@
   }
 
   @media (max-width: 640px) {
-    .story-img-wrap,
-    .story-img-wrap.left,
-    .story-img-wrap.right {
-      float: none;
-      max-width: none;
-      width: 70%;
+    .story-img-wrap {
+      width: 80%;
       margin: 1rem auto;
     }
     .story-img {
@@ -596,7 +587,7 @@
   </ul>
 
   <p style="margin-top:1rem;">This is actually Shelby and Chris's first photo together, many years before the first meeting:</p>
-  <div class="story-img-wrap left">
+  <div class="story-img-wrap">
     <img src="2018Theas.jpg" alt="2018 Thea Awards" class="story-img" />
     <div class="story-caption">2018 Thea Awards</div>
   </div>
@@ -641,7 +632,7 @@
   <ul class="story-list">
     <li>
       First date
-      <div class="story-img-wrap right"><img src="SAK.jpg" alt="SAK Comedy Club" class="story-img" /></div>
+      <div class="story-img-wrap"><img src="SAK.jpg" alt="SAK Comedy Club" class="story-img" /></div>
     </li>
     <li>3rd date — Chris pointing out his name in the Eras Tour credits</li>
     <li>5th date — overlapping trips to Japan <em>[Insert Japan photo]</em></li>
@@ -650,7 +641,7 @@
 
   <p style="margin-top:1.5rem;"><strong>The most spontaneous thing we’ve done</strong></p>
   <p>Chris proposed — before we lived in the same state — in a haunted house, followed by a surprise party with friends and family from around the world.</p>
-  <div class="story-img-wrap right">
+  <div class="story-img-wrap">
     <img src="Proposal.jpg" alt="Proposal" class="story-img" />
   </div>
 
