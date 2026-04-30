@@ -37,7 +37,7 @@
 
   /* SECTIONS */
   section { padding: 4rem 1.5rem; max-width: 860px; margin: 0 auto; }
-  section + section { border-top: 1px solid var(--sand-dark); }
+  section + section { border-top: 1px solid var(--stone); }
 
   h1.hero-name {
     font-family: 'Cormorant Garamond', serif;
@@ -48,7 +48,7 @@
     line-height: 1.1;
     letter-spacing: 0.02em;
   }
-  h1.hero-name em { font-style: italic; color: var(--foam); }
+  h1.hero-name em { font-style: italic; color: rgba(255,244,228,0.96); }
   .hero-amp {
     display: block; font-size: clamp(1.8rem, 4vw, 3rem);
     color: var(--champagne); margin: 0.1rem 0; font-family: 'Cormorant Garamond', serif;
@@ -137,18 +137,50 @@
   .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
 
   /* STORY */
-  .story-pull {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 1.25rem; color: var(--ocean); border-left: 3px solid var(--palm-light);
-    padding: 0.5rem 0 0.5rem 1.2rem; margin: 1.5rem 0;
+  .story-subtitle {
+    font-size: 1.1rem;
     line-height: 1.6;
+    color: var(--text-dark);
+  }
+  .story-img-wrap {
+    max-width: 220px;
+  }
+  .story-img-wrap.left {
+    float: left;
+    margin: 0.4rem 1.4rem 1rem 0;
+  }
+  .story-img-wrap.right {
+    float: right;
+    margin: 0.4rem 0 1rem 1.4rem;
+  }
+  .story-img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+  }
+  .story-caption {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-top: 0.4rem;
+    text-align: center;
+  }
+  .story-divider {
+    margin: 1rem 0;
+    color: var(--taupe);
+    letter-spacing: 0.22em;
+  }
+  .story-list {
+    margin-left: 1rem;
+  }
+  .story-list li {
+    margin-bottom: 0.35rem;
   }
 
   /* SCHEDULE */
   .timeline { list-style: none; position: relative; padding-left: 2rem; }
   .timeline::before {
     content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
-    width: 2px; background: linear-gradient(180deg, var(--ocean-light), var(--palm-light));
+    width: 2px; background: linear-gradient(180deg, var(--champagne), var(--taupe));
     border-radius: 2px;
   }
   .timeline li {
@@ -157,8 +189,8 @@
   .timeline li::before {
     content: ''; position: absolute; left: -1.6rem; top: 6px;
     width: 10px; height: 10px; border-radius: 50%;
-    background: var(--ocean); border: 2px solid var(--foam);
-    box-shadow: 0 0 0 2px var(--ocean-light);
+    background: var(--champagne-deep); border: 2px solid white;
+    box-shadow: 0 0 0 2px rgba(191,160,111,0.18);
   }
   .tl-time { font-size: 12px; letter-spacing: 0.1em; color: var(--champagne-deep); font-weight: 500; text-transform: uppercase; margin-bottom: 2px; }
   .tl-event { font-weight: 500; color: var(--text-dark); font-size: 15px; }
@@ -173,42 +205,44 @@
   .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
   .card-title { font-weight: 500; font-size: 14px; color: var(--charcoal); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
 
-  /* RSVP */
-  .rsvp-wrap {
-    background: linear-gradient(135deg, var(--ocean-deep), var(--ocean));
-    border-radius: 16px; padding: 2.5rem; text-align: center;
-  }
-  .rsvp-wrap .section-title { color: white; }
-  .rsvp-wrap p { color: rgba(212,241,249,0.85); margin-bottom: 1.5rem; }
-  .rsvp-form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
-  .rsvp-form input, .rsvp-form select {
-    width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.12);
-    color: white; font-family: 'Jost', sans-serif; font-size: 15px;
-    outline: none;
-  }
-  .rsvp-form input::placeholder { color: rgba(255,255,255,0.5); }
+  /* REGISTRY */
   .rsvp-btn {
-    padding: 0.85rem; border-radius: 8px;
-    background: var(--gold); color: var(--ocean-deep);
-    border: none; font-family: 'Jost', sans-serif;
-    font-size: 14px; font-weight: 500; letter-spacing: 0.1em;
+    padding: 0.85rem 1.2rem;
+    border-radius: 999px;
+    background: var(--charcoal); color: white;
+    border: none; font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
     text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
+    text-decoration: none;
   }
-  .rsvp-btn:hover { opacity: 0.88; }
-  .rsvp-confirm { color: var(--palm-light); font-size: 14px; margin-top: 0.5rem; display: none; }
+  .rsvp-btn:hover { opacity: 0.9; }
 
   /* REGISTRY */
   .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
   .reg-card {
     background: white; border-radius: 12px; padding: 1.5rem 1rem;
-    text-align: center; border: 1px solid var(--sand-dark);
+    text-align: center; border: 1px solid var(--stone);
     cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
   }
-  .reg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,110,138,0.12); }
-  .reg-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-  .reg-name { font-weight: 500; font-size: 14px; color: var(--ocean-deep); margin-bottom: 0.25rem; }
+  .reg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,110,138,0.12color: var(--charcoal);ize: 2rem; margin-bottom: 0.75rem; }
+  .reg-name { font-weight: 500; font-size: 14px; color: var(--charcoal); margin-bottom: 0.25rem; }
   .reg-desc { font-size: 13px; color: var(--text-mid); font-weight: 300; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 1.25rem; }
+  .faq-q {
+    font-weight: 500; color: var(--text-dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 1rem; background: white; border-radius: 10px;
+    border: 1px solid var(--stone); font-size: 15px;
+    user-select: none;
+  }
+  .faq-q:hover { background: #fcfbf9; }
+  .faq-chevron { transition: transform 0.25s; color: var(--champagne-deep); font-size: 12px; }
+  .faq-a {
+    display: none; padding: 0.9rem 1rem 0; font-size: 14.5px; color: var(--text-mid);
+    font-weight: 300;
+  }
 
   /* GALLERY placeholder */
   /* PHOTO REEL */
@@ -309,6 +343,18 @@
   }
 
   @media (max-width: 640px) {
+    .story-img-wrap,
+    .story-img-wrap.left,
+    .story-img-wrap.right {
+      float: none;
+      max-width: none;
+      width: 70%;
+      margin: 1rem auto;
+    }
+    .story-img {
+      width: 100% !important;
+      max-width: none !important;
+    }
     body { overflow-x: hidden; }
 
     nav {
@@ -512,13 +558,13 @@
 <section id="story">
   <div class="section-title"><em>STORY</em></div>
   <div class="section-rule"></div>
-  <p style="font-size:1.1rem; line-height:1.6; color:var(--text-dark);"><strong>Two nerds walked into a room, and spent the next two years circling the globe to be together.</strong></p>
+  <p class="story-subtitle"><strong>Two nerds walked into a room, and spent the next two years circling the globe to be together.</strong></p>
 
   <p style="margin-top:1.5rem;"><strong>How did you first meet?</strong></p>
   <p><em>Scene:</em> A conference room with moist Jimmy Johns wafting through the air - Shelby and Chris had a chance meeting. Only Chris was smart enough to notice that they were actually meeting.</p>
 
   <p style="margin-top:1rem;">While that was THE first meeting, there were a few missed opportunities:</p>
-  <ul style="margin-left:1rem;">
+  <ul class="story-list">
     <li>When Shelby and Chris lived in Las Vegas, their homes were 15 minutes apart</li>
     <li>Shelby studied Entertainment Engineering at UNLV and occasionally visited FTSI, where Chris worked</li>
     <li>Both worked on Pandora the World of Avatar</li>
@@ -526,9 +572,9 @@
   </ul>
 
   <p style="margin-top:1rem;">This is actually Shelby and Chris's first photo together, many years before the first meeting:</p>
-  <div style="margin:1rem 0; text-align:center;">
-    <img src="2018Theas.jpg" alt="2018 Thea Awards" style="max-width:100%; border-radius:12px;" />
-    <div style="font-size:13px; color:var(--text-mid); margin-top:0.4rem;">2018 Thea Awards</div>
+  <div class="story-img-wrap left">
+    <img src="2018Theas.jpg" alt="2018 Thea Awards" class="story-img" />
+    <div class="story-caption">2018 Thea Awards</div>
   </div>
 
   <p>Now, with a strong geographical hurdle (Chris in Long Beach, CA and Shelby in Orlando, FL), Chris started to lay the groundwork.</p>
@@ -543,10 +589,10 @@
   “What I always say — single but not very emotionally available and swamped at work.”<br>
   “Attagirl.”</p>
 
-  <p style="margin:1rem 0;">———</p>
+  <p class="story-divider">···</p>
   <p>A few days later, Chris texted and was tragically left on read.</p>
 
-  <p style="margin:1rem 0;">———</p>
+  <p class="story-divider">···</p>
   <p>Later, Dani prepared a pitch (embellished for comedic effect):</p>
   <p>“Well, he is tall!”</p>
   <p><em>Shelby (internal): BORING.</em></p>
@@ -558,7 +604,7 @@
   <p>“He is the kind of guy who will book a flight for any adventure.”</p>
   <p><em>Shelby (internal): Now that’s interesting.</em></p>
 
-  <p style="margin:1rem 0;">———</p>
+  <p class="story-divider">···</p>
   <p>Later, I ask Ashley Ahr:</p>
   <p>“Hey, have you heard of this guy Chris Wessels?”</p>
   <p>“Chris Wessels? Yeah... also really tall.”</p>
@@ -568,8 +614,8 @@
 
   <p style="margin-top:1.5rem;"><strong>What was your most memorable date?</strong></p>
   <p>Long distance meant our dates were often full-blown adventures:</p>
-  <ul style="margin-left:1rem;">
-    <li>First date — <em>[Insert SAK Comedy Club photo]</em></li>
+  <ul class="story-list">
+    <li>First date<div class="story-img-wrap right"><img src="SAK.jpg" alt="SAK Comedy Club" class="story-img" /></div></li>
     <li>3rd date — Chris pointing out his name in the Eras Tour credits</li>
     <li>5th date — overlapping trips to Japan <em>[Insert Japan photo]</em></li>
     <li>Club 33 dinner for Shelby’s 33rd <em>[Insert Club 33 photo]</em></li>
@@ -577,8 +623,8 @@
 
   <p style="margin-top:1.5rem;"><strong>The most spontaneous thing we’ve done</strong></p>
   <p>Chris proposed — before we lived in the same state — in a haunted house, followed by a surprise party with friends and family from around the world.</p>
-  <div style="margin:1rem 0; text-align:center;">
-    <img src="Proposal.jpg" alt="Proposal" style="max-width:100%; border-radius:12px;" />
+  <div class="story-img-wrap right">
+    <img src="Proposal.jpg" alt="Proposal" class="story-img" />
   </div>
 
   <p style="margin-top:1.5rem;"><strong>You live in the same state now... right?</strong></p>
