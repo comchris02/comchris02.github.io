@@ -263,6 +263,67 @@
     margin-bottom: 0.5rem;
   }
 
+  /* HOTEL MODAL */
+  .hotel-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.28s ease, background 0.28s ease;
+  }
+  .hotel-modal.open {
+    display: flex;
+    opacity: 1;
+    background: rgba(0,0,0,0.75);
+  }
+  .hotel-modal-inner {
+    background: white;
+    border-radius: 14px;
+    max-width: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    transform: translateY(22px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.32s ease, opacity 0.32s ease;
+  }
+  .hotel-modal.open .hotel-modal-inner {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  .hotel-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hotel-modal-content {
+    padding: 1.5rem;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .hotel-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    .hotel-modal-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* GALLERY placeholder */
   /* PHOTO REEL */
 .photo-reel {
@@ -690,9 +751,36 @@
       <div class="card-icon">🏨</div>
       <div class="card-title">Where to Stay</div>
       <p>We’ve secured a discounted room block at Universal’s Cabana Bay Beach Resort. Guests are encouraged to stay—transportation to the venue will be provided. Availability is limited, so please book ASAP.</p>
+      <div style="margin-top:1rem;">
+        <button class="rsvp-btn" onclick="openHotelModal()">View Details</button>
+      </div>
     </div>
     </div>
 </section>
+
+<div class="hotel-modal" id="hotelModal" onclick="closeHotelModal(event)">
+  <button class="hotel-close" onclick="closeHotelModal(event)">✕</button>
+  <div class="hotel-modal-inner">
+    <img src="cabana-bay.jpg" alt="Cabana Bay Hotel" />
+    <div class="hotel-modal-content">
+      <strong>Consider booking now!</strong><br><br>
+      October 23, 2026 – October 25, 2026 (2 night stay)<br>
+      Additional nights can be added upon booking<br><br>
+
+      <strong>Why we love this hotel:</strong><br>
+      • Transportation to venue will be provided<br>
+      • Family friendly, with flexible “suites” that sleep 6<br>
+      • Limited room block at a discount<br>
+      • Only 1 night refundable deposit needed to book<br><br>
+
+      <strong>ACTION:</strong><br>
+      • Book through this LINK<br>
+      • Or call 1-833-243-4730 // Identify as “Honea-Wessels Family”<br><br>
+
+      More hotel info can be found here
+    </div>
+  </div>
+</div>
 
 <section id="attire">
   <div class="section-title">What to Wear</div>
@@ -857,5 +945,16 @@
     if (event.key === 'ArrowRight') changeLightbox(1, event);
     if (event.key === 'Escape') closeLightbox({ currentTarget: lightbox, target: lightbox });
   });
+
+  function openHotelModal() {
+    document.getElementById('hotelModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeHotelModal(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('hotel-close')) return;
+    document.getElementById('hotelModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
 </html>
