@@ -148,6 +148,26 @@
   .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
 
   /* STORY */
+  .script-block {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  .script-line { margin-bottom: 0.4rem; }
+  .script-line.scene { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; text-align: left; }
+  .script-line.action { color: var(--text-mid); margin-left: 1rem; }
+  .script-line.character { margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.05em; margin-left: 3rem; }
+  .script-line.dialogue { margin-left: 4.5rem; max-width: 80%; }
+  .script-line.aside { margin-left: 4.5rem; font-style: italic; color: var(--text-mid); max-width: 80%; }
+  .script-line.divider { text-align: center; letter-spacing: 0.2em; color: var(--taupe); margin: 0.6rem 0; }
+  
+
+  /* STORY */
   .story-subtitle {
     font-size: 1.1rem;
     line-height: 1.6;
@@ -288,6 +308,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: left center;
     min-height: 360px;
   }
   .hotel-feature-content {
@@ -348,6 +369,12 @@
   width: auto;
   border-radius: 14px;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.reel-track img:hover {
+  transform: scale(1.025);
+  filter: brightness(1.05);
 }
 @keyframes scrollReel {
   0% { transform: translateX(0); }
@@ -368,13 +395,19 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.82);
+    background: rgba(0,0,0,0);
     z-index: 1000;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.28s ease, background 0.28s ease;
   }
-  .lightbox.open { display: flex; }
+  .lightbox.open {
+    display: flex;
+    opacity: 1;
+    background: rgba(0,0,0,0.86);
+  }
   .lightbox-inner {
     position: relative;
     width: min(92vw, 1100px);
@@ -388,6 +421,18 @@
     max-height: 100%;
     border-radius: 14px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    animation: lightboxPop 0.34s cubic-bezier(.18,.89,.32,1.28);
+  }
+  .lightbox-img-swap {
+    animation: lightboxSlide 0.24s ease;
+  }
+  @keyframes lightboxPop {
+    from { opacity: 0; transform: translateY(18px) scale(0.94) rotate(-0.4deg); }
+    to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+  }
+  @keyframes lightboxSlide {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
   .lightbox-btn, .lightbox-close {
     position: absolute;
@@ -596,24 +641,24 @@
 <!-- PHOTO REEL -->
 <div class="photo-reel">
   <div class="reel-track">
-    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" />
-    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" />
+    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(0)" />
+    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(1)" />
+    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(2)" />
+    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(3)" />
+    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(4)" />
+    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(5)" />
+    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(6)" />
+    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(7)" />
+    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(8)" />
+    <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(0)" />
+    <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(1)" />
+    <img class="landscape" src="aU5A4255-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(2)" />
+    <img class="portrait" src="aU5A4012LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(3)" />
+    <img class="landscape" src="aU5A4676LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(4)" />
+    <img class="portrait" src="aU5A4621-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(5)" />
+    <img class="landscape" src="aU5A4823LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(6)" />
+    <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(7)" />
+    <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(8)" />
   </div>
 </div>
 
@@ -644,17 +689,26 @@
   <div class="section-rule"></div>
   <p style="margin-bottom:1.25rem;">Our wedding will take place in Orlando, FL. Here's everything you need to plan your trip.</p>
 
+
+ <div class="air-travel-card">
+    <div class="card-icon">✈️</div>
+    <div class="card-title">Flying In</div>
+    <p>Orlando International Airport (MCO) is the nearest major airport.</p>
+  </div>
+</section>
+
+  
   <div class="hotel-feature">
     <img src="cabana-bay.jpg" alt="Universal's Cabana Bay Beach Resort" />
     <div class="hotel-feature-content">
-      <h3>Universal’s Cabana Bay Beach Resort</h3>
+      <h3>Hotel Block: Universal’s Cabana Bay Beach Resort</h3>
       <p><strong>Consider booking now!</strong></p>
       <p>October 23, 2026 – October 25, 2026<br>2 night stay</p>
-      <p>Additional nights can be added upon booking.</p>
+      <p>Modifications can be made by booking via phone.</p>
 
       <p style="margin-top:1rem;"><strong>Why we love this hotel:</strong></p>
       <ul>
-        <li>Transportation to the venue will be provided</li>
+        <li>Transportation to the wedding venue will be provided</li>
         <li>Family friendly, with flexible “suites” that sleep 6</li>
         <li>Limited room block at a discount</li>
         <li>Only 1 night refundable deposit needed to book</li>
@@ -663,16 +717,10 @@
       <div class="hotel-action">
         <p><strong>Book through this LINK</strong></p>
         <p>Or call 1-833-243-4730 and identify as “Honea-Wessels Family”</p>
-        <p>More hotel info can be found here.</p>
       </div>
     </div>
   </div>
 
-  <div class="air-travel-card">
-    <div class="card-icon">✈️</div>
-    <div class="card-title">Flying In</div>
-    <p>Orlando International Airport (MCO) is the nearest major airport.</p>
-  </div>
 </section>
 
 <section id="story">
@@ -681,17 +729,17 @@
   <p class="story-subtitle"><strong>Two nerds walked into a room, and spent the next two years circling the globe to be together.</strong></p>
 
   <p style="margin-top:1.5rem;"><strong>How did you first meet?</strong></p>
-  <p><em>Scene:</em> A conference room with moist Jimmy Johns wafting through the air - Shelby and Chris had a chance meeting. Only Chris was smart enough to notice that they were actually meeting.</p>
+  <p><em>Scene:</em> A conference room with the scent of moist Jimmy Johns wafting through the air - Shelby and Chris had a chance meeting. Only Chris was smart enough to notice that they were actually meeting.</p>
 
   <p style="margin-top:1rem;">While that was THE first meeting, there were a few missed opportunities:</p>
   <ul class="story-list">
     <li>When Shelby and Chris lived in Las Vegas, their homes were 15 minutes apart</li>
     <li>Shelby studied Entertainment Engineering at UNLV and occasionally visited FTSI, where Chris worked</li>
-    <li>Both worked on Pandora the World of Avatar</li>
+    <li>Both worked on Pandora: The World of Avatar</li>
     <li>When they finally connected on Facebook, they had 36 friends in common</li>
   </ul>
 
-  <p style="margin-top:1rem;">This is actually Shelby and Chris's first photo together, many years before the first meeting:</p>
+  <p style="margin-top:1rem;">This is actually Shelby and Chris' first photo together, many years before the first meeting:</p>
   <div class="story-img-wrap">
     <img src="2018Theas.jpg" alt="2018 Thea Awards" class="story-img" />
     <div class="story-caption">2018 Thea Awards</div>
@@ -703,34 +751,66 @@
   <p>Chris made the first move, and thank goodness — Shelby is clueless!</p>
 
   <p><em>From Shelby's POV:</em></p>
-  <p>I was balancing my phone between my shoulder and ear, standing over the work copier.</p>
-  <p>“Dani (Bellar Palukis) just asked me if you are single”<br>
-  “Oh yeah? What did you say?”<br>
-  “What I always say — single but not very emotionally available and swamped at work.”<br>
-  “Attagirl.”</p>
 
-  <p class="story-divider">···</p>
-  <p>A few days later, Chris texted and was tragically left on read.</p>
+<div class="script-block">
+  <div class="script-line scene">INT. OFFICE — DAY</div>
+  <div class="script-line action">SHELBY balances her phone between her shoulder and ear, standing over the copier, on the phone with BRITAINNE PEDERSEN.</div>
 
-  <p class="story-divider">···</p>
-  <p>Later, Dani prepared a pitch (embellished for comedic effect):</p>
-  <p>“Well, he is tall!”</p>
-  <p><em>Shelby (internal): BORING.</em></p>
-  <p><em>(Reader’s note: Chris is tall)</em></p>
+  <div class="script-line character">BRITAINNE</div>
+  <div class="script-line dialogue">“Dani (Bellar Pilukas) just asked me if you are single”</div>
 
-  <p>“He is also... so nice.”</p>
-  <p><em>Shelby (internal): Tall and nice... yikes.</em></p>
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Oh yeah? What did you say?”</div>
 
-  <p>“He is the kind of guy who will book a flight for any adventure.”</p>
-  <p><em>Shelby (internal): Now that’s interesting.</em></p>
+  <div class="script-line character">BRITAINNE</div>
+  <div class="script-line dialogue">“What I always say, single but not very emotionally available and swamped at work.”</div>
 
-  <p class="story-divider">···</p>
-  <p>Later, I ask Ashley Ahr:</p>
-  <p>“Hey, have you heard of this guy Chris Wessels?”</p>
-  <p>“Chris Wessels? Yeah... also really tall.”</p>
-  <p>“Tall and nice.”</p>
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Attagirl.”</div>
 
-  <p style="margin-top:1rem;">Shelby finally answers the text.</p>
+  <div class="script-line divider">———</div>
+
+  <div class="script-line action">A few days later, Chris texted and was tragically left on read.</div>
+
+  <div class="script-line divider">———</div>
+  <div class="script-line scene">INT. RESTURANT AT SIGGAPH - DAY</div>
+  <div class="script-line action">Later, Dani prepared a pitch (embellished for comedic effect, sorry Dani!)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“Well, he is tall!”</div>
+
+  <div class="script-line aside">(Shelby inside voice: BORING. If tall is the first thing you think.)</div>
+  <div class="script-line aside">(Reader's note: Chris is tall)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“He is also...so nice. He is just the kindest person I know”</div>
+
+  <div class="script-line aside">(Shelby inside voice: Tall and nice...yikes.)</div>
+  <div class="script-line aside">(Reader's note: Chris is the sort of saccharine sweet and kind that warrants superlatives.)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“He is the kind of guy who will book a flight for any adventure, an obscure theater or festival, he will go”</div>
+
+  <div class="script-line aside">(Shelby inside voice: Now thats....thats interesting.)</div>
+
+  <div class="script-line divider">———</div>
+  <div class="script-line scene">INT. ASHLEY'S HOUSE - NIGHT</div>
+  <div class="script-line action">SHELBY sitting on ASHLEY AHR's couch. ASHLEY is SHELBY'S font of wisdom in most things.</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Hey, have you heard of this guy Chris Wessels?”</div>
+
+  <div class="script-line character">ASHLEY</div>
+  <div class="script-line dialogue">“Chris Wessels, yeah. I don't know him well, but he is super nice and always goes out of his way to connect with our friend Sam Catanzaro, which I always thought was a kind thing. Oh, he is also really tall”</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Tall and nice.”</div>
+
+  
+</div>
+  
+
+<p style="margin-top:1rem;">Shelby finally answers the text.</p>
 
   <p style="margin-top:1.5rem;"><strong>What was your most memorable date?</strong></p>
   <p>Long distance meant our dates were often full-blown adventures:</p>
@@ -792,6 +872,7 @@
     <div class="gallery-tile"><img src="004.jpg" alt="Chris and Shelby photo 4" onclick="openLightbox(3)" /></div>
     <div class="gallery-tile"><img src="005.jpg" alt="Chris and Shelby photo 5" onclick="openLightbox(4)" /></div>
     <div class="gallery-tile"><img src="006.jpg" alt="Chris and Shelby photo 6" onclick="openLightbox(5)" /></div>
+    <div class="gallery-tile"><img src="007.jpg" alt="Chris and Shelby photo 7" onclick="openLightbox(6)" /></div>
     <div class="gallery-tile"><img src="008.jpg" alt="Chris and Shelby photo 8" onclick="openLightbox(7)" /></div>
     <div class="gallery-tile"><img src="009.jpg" alt="Chris and Shelby photo 9" onclick="openLightbox(8)" /></div>
     <div class="gallery-tile"><img src="010.jpg" alt="Chris and Shelby photo 10" onclick="openLightbox(9)" /></div>
@@ -837,6 +918,10 @@
   const galleryImages = [
     '001.jpg','002.jpg','003.jpg','004.jpg','005.jpg','006.jpg','007.jpg','008.jpg','009.jpg','010.jpg','011.jpg','012.jpg','013.jpg','014.jpg','015.jpg','016.jpg','017.jpg','018.jpg','019.jpg','020.jpg','021.jpg'
   ];
+  const reelImages = [
+    'aU5A5192LR.jpg','aU5A3961LR.jpg','aU5A4255-2LR.jpg','aU5A4012LR.jpg','aU5A4676LR.jpg','aU5A4621-2LR.jpg','aU5A4823LR.jpg','aU5A4944-2LR.jpg','aU5A4953-2LR.jpg'
+  ];
+  let activeLightboxImages = galleryImages;
   let currentLightboxIndex = 0;
 
   function countdown() {
@@ -890,19 +975,28 @@
     document.getElementById('rsvp-dietary').value = '';
   }
 
-  function openLightbox(index) {
+  function openLightbox(index, imageSet = galleryImages) {
+    activeLightboxImages = imageSet;
     currentLightboxIndex = index;
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
-    lightboxImage.src = galleryImages[currentLightboxIndex];
+    lightboxImage.src = activeLightboxImages[currentLightboxIndex];
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
+  function openReelLightbox(index) {
+    openLightbox(index, reelImages);
+  }
+
   function changeLightbox(direction, event) {
     event.stopPropagation();
-    currentLightboxIndex = (currentLightboxIndex + direction + galleryImages.length) % galleryImages.length;
-    document.getElementById('lightbox-image').src = galleryImages[currentLightboxIndex];
+    currentLightboxIndex = (currentLightboxIndex + direction + activeLightboxImages.length) % activeLightboxImages.length;
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.classList.remove('lightbox-img-swap');
+    void lightboxImage.offsetWidth;
+    lightboxImage.src = activeLightboxImages[currentLightboxIndex];
+    lightboxImage.classList.add('lightbox-img-swap');
   }
 
   function closeLightbox(event) {
