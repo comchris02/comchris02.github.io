@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -18,7 +18,7 @@
     --text-dark: #222222;
     --text-mid: #555555;
   }
-  body { font-family: 'Inter', sans-serif; background: var(--ivory); color: var(--text-dark); }
+  body { font-family: 'Manrope', sans-serif; background: var(--ivory); color: var(--text-dark); }
 
   /* NAV */
   nav {
@@ -40,28 +40,28 @@
   section + section { border-top: 1px solid var(--stone); }
 
   h1.hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.2rem, 8vw, 5.8rem);
-    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.4rem);
+    font-weight: 300;
     color: white;
     text-align: center;
-    line-height: 1.1;
-    letter-spacing: 0.02em;
+    line-height: 1.02;
+    letter-spacing: 0.015em;
   }
-  h1.hero-name em { font-style: italic; color: rgba(255,244,228,0.96); }
+  h1.hero-name em { font-style: normal; color: rgba(255,244,228,0.96); }
   .hero-amp {
-    display: block; font-size: clamp(1.8rem, 4vw, 3rem);
-    color: var(--champagne); margin: 0.1rem 0; font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
+    display: block; font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    color: var(--champagne); margin: 0.25rem 0; font-family: 'Manrope', sans-serif;
+    font-weight: 300;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     font-weight: 500; color: var(--charcoal);
-    letter-spacing: 0.01em;
+    letter-spacing: -0.02em;
     margin-bottom: 0.4rem;
   }
-  .section-title em { font-style: italic; }
+  .section-title em { font-style: normal; }
   .section-rule {
     width: 60px; height: 2px;
     background: linear-gradient(90deg, var(--champagne), var(--taupe));
@@ -103,7 +103,7 @@
   }
   .wave-decor svg { display: none; }
   .hero-date {
-    font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.24em;
+    font-family: 'Manrope', sans-serif; font-size: 12px; letter-spacing: 0.24em;
     text-transform: uppercase; color: var(--champagne); margin: 1.25rem 0 0.5rem;
     font-weight: 600;
   }
@@ -127,8 +127,8 @@
   }
   .cd-unit { display: flex; flex-direction: column; align-items: center; }
   .cd-num {
-    font-family: 'Cormorant Garamond', serif; font-size: 3rem;
-    font-weight: 600; color: white; line-height: 1;
+    font-family: 'Manrope', sans-serif; font-size: 2.8rem;
+    font-weight: 300; color: white; line-height: 1;
   }
   .cd-label {
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -207,7 +207,7 @@
     padding: 0.85rem 1.2rem;
     border-radius: 999px;
     background: var(--charcoal); color: white;
-    border: none; font-family: 'Inter', sans-serif;
+    border: none; font-family: 'Manrope', sans-serif;
     font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
     text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
     text-decoration: none;
@@ -256,9 +256,9 @@
     font-weight: 300;
   }
   footer .footer-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-style: italic;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 300;
     color: white;
     margin-bottom: 0.5rem;
   }
@@ -551,36 +551,16 @@
 </style>
 
 <nav>
-  <a href="#story">Our Story</a>
   <a href="#schedule">Schedule</a>
-  
   <a href="#travel">Travel</a>
+  <a href="#story">Our Story</a>
+  <a href="#attire">What to Wear</a>
   <a href="#registry">Registry</a>
   <a href="#gallery">Photos</a>
   <a href="#faq">FAQ</a>
 </nav>
 
 <div id="hero">
-  <div class="palm-row">
-    <div class="left">
-      <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 95 Q28 60 20 40" stroke="#52b788" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M20 40 Q5 25 0 10 Q12 18 20 40" fill="#2d6a4f" opacity="0.8"/>
-        <path d="M20 40 Q15 20 25 5 Q25 22 20 40" fill="#52b788" opacity="0.7"/>
-        <path d="M20 40 Q30 22 45 15 Q32 25 20 40" fill="#2d6a4f" opacity="0.8"/>
-        <path d="M20 40 Q35 30 55 32 Q38 32 20 40" fill="#52b788" opacity="0.6"/>
-      </svg>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 95 Q28 60 20 40" stroke="#52b788" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M20 40 Q5 25 0 10 Q12 18 20 40" fill="#2d6a4f" opacity="0.8"/>
-        <path d="M20 40 Q15 20 25 5 Q25 22 20 40" fill="#52b788" opacity="0.7"/>
-        <path d="M20 40 Q30 22 45 15 Q32 25 20 40" fill="#2d6a4f" opacity="0.8"/>
-        <path d="M20 40 Q35 30 55 32 Q38 32 20 40" fill="#52b788" opacity="0.6"/>
-      </svg>
-    </div>
-  </div>
   <div class="hero-content">
   <h1 class="hero-name">
     Chris
@@ -630,6 +610,10 @@
     <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" />
   </div>
 </div>
+
+<section id="schedule">$1</section>
+
+<section id="travel">$2</section>
 
 <section id="story">
   <div class="section-title"><em>STORY</em></div>
@@ -713,51 +697,6 @@
   <p>It’s likely we will temporarily relocate for work — but not for a while, and not for long.</p>
 </section>
 
-<section id="schedule">
-  <div class="section-title">Weekend Events</div>
-  <div class="section-rule"></div>
-  <ul class="timeline">
-    <li>
-      <div class="tl-time">Friday, October 23, 2026 · Evening</div>
-      <div class="tl-event">Welcome Dinner</div>
-      <div class="tl-note">For out-of-town guests</div>
-    </li>
-    <li>
-      <div class="tl-time">Saturday, October 24, 2026 · Evening</div>
-      <div class="tl-event">Ceremony & Reception</div>
-      <div class="tl-note">The Main Event!</div>
-    </li>
-    <li>
-      <div class="tl-time">Sunday, October 25, 2026 · Late Morning</div>
-      <div class="tl-event">Send-off Party</div>
-      <div class="tl-note">A reimagined send-off party you won’t want to miss</div>
-    </li>
-  </ul>
-</section>
-
-
-
-<section id="travel">
-  <div class="section-title">Getting There</div>
-  <div class="section-rule"></div>
-  <p style="margin-bottom:1.25rem;">Our wedding will take place in Orlando, FL. Here's everything you need to plan your trip.</p>
-  <div class="card-grid">
-    <div class="info-card">
-      <div class="card-icon">✈️</div>
-      <div class="card-title">Flying In</div>
-      <p>Orlando International Airport (MCO) is the nearest major airport.</p>
-    </div>
-    <div class="info-card">
-      <div class="card-icon">🏨</div>
-      <div class="card-title">Where to Stay</div>
-      <p>We’ve secured a discounted room block at Universal’s Cabana Bay Beach Resort. Guests are encouraged to stay—transportation to the venue will be provided. Availability is limited, so please book ASAP.</p>
-      <div style="margin-top:1rem;">
-        <button class="rsvp-btn" onclick="openHotelModal()">View Details</button>
-      </div>
-    </div>
-    </div>
-</section>
-
 <div class="hotel-modal" id="hotelModal" onclick="closeHotelModal(event)">
   <button class="hotel-close" onclick="closeHotelModal(event)">✕</button>
   <div class="hotel-modal-inner">
@@ -771,7 +710,7 @@
       • Transportation to venue will be provided<br>
       • Family friendly, with flexible “suites” that sleep 6<br>
       • Limited room block at a discount<br>
-      • Only 1 night refundable deposit needed to book<br><br>
+      • Only 1 night (refundable) deposit needed to book<br><br>
 
       <strong>ACTION:</strong><br>
       • Book through this LINK<br>
