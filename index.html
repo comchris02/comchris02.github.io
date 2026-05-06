@@ -1,11 +1,18 @@
-<!DOCTYPE html><html>
-<head><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YDSMFL355"></script><script>
+<!DOCTYPE html>
+<html>
+<head>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YDSMFL355"></script>
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-0YDSMFL355');
-</script><meta charset="UTF-8">
+</script>
+  
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -22,174 +29,607 @@
     --text-dark: #222222;
     --text-mid: #555555;
   }
-  body { font-family: 'Manrope', sans-serif; background: var(--ivory); color: var(--text-dark); }/* NAV */ nav { position: sticky; top: 0; z-index: 100; background: rgba(31,31,31,0.95); backdrop-filter: blur(8px); display: flex; justify-content: center; gap: 2rem; padding: 0.75rem 1rem; } nav a { color: var(--stone); text-decoration: none; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; } nav a:hover { color: var(--champagne); }
+  body { font-family: 'Manrope', sans-serif; background: var(--ivory); color: var(--text-dark); }
 
-/* SECTIONS */ section { padding: 4rem 1.5rem; max-width: 860px; margin: 0 auto; } section + section { border-top: 1px solid var(--stone); }
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(31,31,31,0.95);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; gap: 2rem;
+    padding: 0.75rem 1rem;
+  }
+  nav a {
+    color: var(--stone); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--champagne); }
 
-h1.hero-name { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 7vw, 5.4rem); font-weight: 500; color: white; text-align: center; line-height: 1.02; letter-spacing: 0.01em; } h1.hero-name em { font-style: normal; color: rgba(255,244,228,0.96); } .hero-amp { display: block; font-size: clamp(1.5rem, 3.5vw, 2.5rem); color: #ff6a00; margin: 0.25rem 0; font-family: 'Manrope', sans-serif; font-weight: 300; } .section-title { font-family: 'Outfit', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 600; color: var(--charcoal); letter-spacing: -0.01em; margin-bottom: 0.4rem; } .section-title em { font-style: normal; } .section-rule { width: 60px; height: 2px; background: linear-gradient(90deg, var(--champagne), var(--taupe)); margin: 0 0 1.8rem; } p, li { font-size: 15.5px; line-height: 1.8; color: var(--text-mid); font-weight: 300; } strong { font-weight: 500; color: var(--text-dark); }
+  /* SECTIONS */
+  section { padding: 4rem 1.5rem; max-width: 860px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--stone); }
 
-/* HERO / #hero { / stronger vignette + slight bottom fade for readability / background: radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.45) 100%), linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%), url('aU5A4823LR.jpg'); background-size: cover; background-position: 50% 80%; / keep feet + sign visible */ min-height: 560px; height: clamp(520px, 70vh, 720px); padding: 1.25rem 1.5rem 1.5rem; text-align: center; position: relative; overflow: hidden; } .hero-content { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 70px; z-index: 2; } .wave-decor { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; pointer-events: none; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--charcoal) 100%); } .wave-decor svg { display: none; } .hero-date { font-family: 'Manrope', sans-serif; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--champagne); margin: 1.25rem 0 0.5rem; font-weight: 600; } .hero-venue { color: rgba(255,244,228,0.88); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; } .palm-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; pointer-events: none; } .palm-row svg { width: 60px; opacity: 0.6; } .palm-row .right svg { transform: scaleX(-1); }
+  h1.hero-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.4rem);
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+  }
+  h1.hero-name em { font-style: normal; color: rgba(255,244,228,0.96); }
+  .hero-amp {
+    display: block; font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    color: #ff6a00; margin: 0.25rem 0; font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+  }
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 600; color: var(--charcoal);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .section-title em { font-style: normal; }
+  .section-rule {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--champagne), var(--taupe));
+    margin: 0 0 1.8rem;
+  }
+  p, li { font-size: 15.5px; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+  strong { font-weight: 500; color: var(--text-dark); }
 
-/* COUNTDOWN */ .countdown-bar { display: flex; justify-content: center; gap: 1.5rem; background: var(--charcoal); padding: 1.5rem 1rem; text-align: center; } .cd-unit { display: flex; flex-direction: column; align-items: center; } .cd-num { font-family: 'Manrope', sans-serif; font-size: 2.8rem; font-weight: 300; color: white; line-height: 1; } .cd-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--taupe); opacity: 0.7; margin-top: 4px; } .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
+  /* HERO */
+  #hero {
+    /* stronger vignette + slight bottom fade for readability */
+    background: radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.45) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
+                url('aU5A4823LR.jpg');
+    background-size: cover;
+    background-position: 50% 80%; /* keep feet + sign visible */
+    min-height: 560px;
+    height: clamp(520px, 70vh, 720px);
+    padding: 1.25rem 1.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-content {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 70px;
+    z-index: 2;
+  }
+  .wave-decor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--charcoal) 100%);
+  }
+  .wave-decor svg { display: none; }
+  .hero-date {
+    font-family: 'Manrope', sans-serif; font-size: 12px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--champagne); margin: 1.25rem 0 0.5rem;
+    font-weight: 600;
+  }
+  .hero-venue {
+    color: rgba(255,244,228,0.88); font-size: 14px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .palm-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 1rem; pointer-events: none;
+  }
+  .palm-row svg { width: 60px; opacity: 0.6; }
+  .palm-row .right svg { transform: scaleX(-1); }
 
-/* STORY TEASER */ .story-teaser { background: var(--ivory); padding: 3rem 1.5rem 2.75rem; text-align: center; border-bottom: 1px solid var(--stone); } .story-teaser-text { max-width: 980px; margin: 0 auto; font-family: 'Outfit', sans-serif; font-size: clamp(2.1rem, 5.5vw, 4.8rem); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; color: var(--charcoal); } .story-teaser-text .accent { color: #ff6a00; }
+  /* COUNTDOWN */
+  .countdown-bar {
+    display: flex; justify-content: center; gap: 1.5rem;
+    background: var(--charcoal); padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  .cd-unit { display: flex; flex-direction: column; align-items: center; }
+  .cd-num {
+    font-family: 'Manrope', sans-serif; font-size: 2.8rem;
+    font-weight: 300; color: white; line-height: 1;
+  }
+  .cd-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--taupe); opacity: 0.7; margin-top: 4px;
+  }
+  .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
 
-/* STORY */ .script-block { margin: 1.25rem 0; padding: 1rem 1.25rem; background: white; border: 1px solid var(--stone); border-radius: 12px; font-size: 14px; line-height: 1.6; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; } .script-line { margin-bottom: 0.4rem; } .script-line.scene { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; text-align: left; } .script-line.action { color: var(--text-mid); margin-left: 1rem; } .script-line.character { margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.05em; margin-left: 3rem; } .script-line.dialogue { margin-left: 4.5rem; max-width: 80%; } .script-line.aside { margin-left: 4.5rem; font-style: italic; color: var(--text-mid); max-width: 80%; } .script-line.divider { text-align: center; letter-spacing: 0.2em; color: var(--taupe); margin: 0.6rem 0; }
+  /* STORY TEASER */
+  .story-teaser {
+    background: var(--ivory);
+    padding: 3rem 1.5rem 2.75rem;
+    text-align: center;
+    border-bottom: 1px solid var(--stone);
+  }
+  .story-teaser-text {
+    max-width: 980px;
+    margin: 0 auto;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.1rem, 5.5vw, 4.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .story-teaser-text .accent {
+    color: #ff6a00;
+  }
 
-/* STORY */ .story-subtitle { font-size: 1.1rem; line-height: 1.6; color: var(--text-dark); } .story-img-wrap { width: 100%; max-width: 320px; margin: 1rem auto; text-align: center; }
+  /* STORY */
+  .script-block {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  .script-line { margin-bottom: 0.4rem; }
+  .script-line.scene { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; text-align: left; }
+  .script-line.action { color: var(--text-mid); margin-left: 1rem; }
+  .script-line.character { margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.05em; margin-left: 3rem; }
+  .script-line.dialogue { margin-left: 4.5rem; max-width: 80%; }
+  .script-line.aside { margin-left: 4.5rem; font-style: italic; color: var(--text-mid); max-width: 80%; }
+  .script-line.divider { text-align: center; letter-spacing: 0.2em; color: var(--taupe); margin: 0.6rem 0; }
+  
 
-.story-img { width: 100%; display: block; border-radius: 12px; } .story-caption { font-size: 13px; color: var(--text-mid); margin-top: 0.4rem; text-align: center; } .story-divider { margin: 1rem 0; color: var(--taupe); letter-spacing: 0.22em; } .story-list { margin-left: 1rem; } .story-list li { margin-bottom: 0.35rem; }
+  /* STORY */
+  .story-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+  }
+  .story-img-wrap {
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+    text-align: center;
+  }
+  
+  
+  .story-img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+  }
+  .story-caption {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-top: 0.4rem;
+    text-align: center;
+  }
+  .story-divider {
+    margin: 1rem 0;
+    color: var(--taupe);
+    letter-spacing: 0.22em;
+  }
+  .story-list {
+    margin-left: 1rem;
+  }
+  .story-list li {
+    margin-bottom: 0.35rem;
+  }
 
-/* SCHEDULE */ .timeline { list-style: none; position: relative; padding-left: 2rem; } .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--champagne), var(--taupe)); border-radius: 2px; } .timeline li { position: relative; margin-bottom: 1.5rem; } .timeline li::before { content: ''; position: absolute; left: -1.6rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--champagne-deep); border: 2px solid white; box-shadow: 0 0 0 2px rgba(191,160,111,0.18); } .tl-time { font-size: 12px; letter-spacing: 0.1em; color: var(--champagne-deep); font-weight: 500; text-transform: uppercase; margin-bottom: 2px; } .tl-event { font-weight: 500; color: var(--text-dark); font-size: 15px; } .tl-note { font-size: 13.5px; color: var(--text-mid); font-weight: 300; }
+  /* SCHEDULE */
+  .timeline { list-style: none; position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--champagne), var(--taupe));
+    border-radius: 2px;
+  }
+  .timeline li {
+    position: relative; margin-bottom: 1.5rem;
+  }
+  .timeline li::before {
+    content: ''; position: absolute; left: -1.6rem; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--champagne-deep); border: 2px solid white;
+    box-shadow: 0 0 0 2px rgba(191,160,111,0.18);
+  }
+  .tl-time { font-size: 12px; letter-spacing: 0.1em; color: var(--champagne-deep); font-weight: 500; text-transform: uppercase; margin-bottom: 2px; }
+  .tl-event { font-weight: 500; color: var(--text-dark); font-size: 15px; }
+  .tl-note { font-size: 13.5px; color: var(--text-mid); font-weight: 300; }
 
-/* TRAVEL */ .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; } .info-card { background: white; border-radius: 12px; padding: 1.25rem; border: 1px solid var(--stone); } .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; } .card-title { font-weight: 500; font-size: 14px; color: var(--charcoal); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  /* TRAVEL */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .info-card {
+    background: white; border-radius: 12px; padding: 1.25rem;
+    border: 1px solid var(--stone);
+  }
+  .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .card-title { font-weight: 500; font-size: 14px; color: var(--charcoal); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
 
-/* REGISTRY */ .rsvp-btn { padding: 0.85rem 1.2rem; border-radius: 999px; background: var(--charcoal); color: white; border: none; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; text-decoration: none; } .rsvp-btn:hover { opacity: 0.9; }
+  /* REGISTRY */
+  .rsvp-btn {
+    padding: 0.85rem 1.2rem;
+    border-radius: 999px;
+    background: var(--charcoal); color: white;
+    border: none; font-family: 'Manrope', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
+    text-decoration: none;
+  }
+  .rsvp-btn:hover { opacity: 0.9; }
 
-/* REGISTRY */ .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; } .reg-card { background: white; border-radius: 12px; padding: 1.5rem 1rem; text-align: center; border: 1px solid var(--stone); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; } .reg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,110,138,0.12); } .reg-icon { font-size: 2rem; margin-bottom: 0.75rem; } .reg-name { font-weight: 500; font-size: 14px; color: var(--charcoal); margin-bottom: 0.25rem; } .reg-desc { font-size: 13px; color: var(--text-mid); font-weight: 300; }
+  /* REGISTRY */
+  .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .reg-card {
+    background: white; border-radius: 12px; padding: 1.5rem 1rem;
+    text-align: center; border: 1px solid var(--stone);
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .reg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,110,138,0.12); }
+  .reg-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .reg-name { font-weight: 500; font-size: 14px; color: var(--charcoal); margin-bottom: 0.25rem; }
+  .reg-desc { font-size: 13px; color: var(--text-mid); font-weight: 300; }
 
-/* FAQ */ .faq-item { margin-bottom: 1.25rem; } .faq-q { font-weight: 500; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1rem; background: white; border-radius: 10px; border: 1px solid var(--stone); font-size: 15px; user-select: none; } .faq-q:hover { background: #fcfbf9; } .faq-chevron { transition: transform 0.25s; color: var(--champagne-deep); font-size: 12px; } .faq-a { display: none; padding: 0.9rem 1rem 0; font-size: 14.5px; color: var(--text-mid); font-weight: 300; }
+  /* FAQ */
+  .faq-item { margin-bottom: 1.25rem; }
+  .faq-q {
+    font-weight: 500; color: var(--text-dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 1rem; background: white; border-radius: 10px;
+    border: 1px solid var(--stone); font-size: 15px;
+    user-select: none;
+  }
+  .faq-q:hover { background: #fcfbf9; }
+  .faq-chevron { transition: transform 0.25s; color: var(--champagne-deep); font-size: 12px; }
+  .faq-a {
+    display: none;
+    padding: 0.9rem 1rem 0;
+    font-size: 14.5px;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
 
-/* FOOTER */ footer { background: var(--charcoal); color: var(--stone); text-align: center; padding: 2rem 1rem; font-size: 13px; letter-spacing: 0.06em; font-weight: 300; } footer .footer-names { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 500; color: white; margin-bottom: 0.5rem; }
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--stone);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    font-weight: 300;
+  }
+  footer .footer-names {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
 
-/* HOTEL FEATURE / .hotel-feature { background: white; border: 1px solid var(--stone); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 420px 1fr; align-items: stretch; / make columns equal height / margin: 1.5rem 0; } .hotel-feature img { width: 100%; height: 100%; / match text column height / object-fit: cover; object-position: left center; / keep left side visible */ display: block; } .hotel-feature-content { padding: 1.75rem; } .hotel-feature-content h3 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.75rem; } .hotel-feature-content ul { margin: 0.35rem 0 1rem 1.1rem; } .hotel-feature-content li { margin-bottom: 0.35rem; } .hotel-action { background: var(--ivory); border: 1px solid var(--stone); border-radius: 12px; padding: 1rem; margin-top: 1rem; } .air-travel-card { background: white; border: 1px solid var(--stone); border-radius: 12px; padding: 1.25rem; margin-top: 1rem; }
+  /* HOTEL FEATURE */
+  .hotel-feature {
+    background: white;
+    border: 1px solid var(--stone);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    align-items: stretch; /* make columns equal height */
+    margin: 1.5rem 0;
+  }
+  .hotel-feature img {
+    width: 100%;
+    height: 100%; /* match text column height */
+    object-fit: cover;
+    object-position: left center; /* keep left side visible */
+    display: block;
+  }
+  .hotel-feature-content {
+    padding: 1.75rem;
+  }
+  .hotel-feature-content h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .hotel-feature-content ul {
+    margin: 0.35rem 0 1rem 1.1rem;
+  }
+  .hotel-feature-content li {
+    margin-bottom: 0.35rem;
+  }
+  .hotel-action {
+    background: var(--ivory);
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .air-travel-card {
+    background: white;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
 
-@media (max-width: 700px) { .hotel-feature { grid-template-columns: 1fr; } .hotel-feature img { max-height: 240px; } }
+  @media (max-width: 700px) {
+    .hotel-feature {
+      grid-template-columns: 1fr;
+    }
+    .hotel-feature img {
+      max-height: 240px;
+    }
+  }
 
-/* GALLERY placeholder / / PHOTO REEL */ .photo-reel { overflow: hidden; background: #000; padding: 0.75rem; } .reel-track { display: flex; gap: 0.75rem; width: max-content; animation: scrollReel 45s linear infinite; } .reel-track img { height: 480px; width: auto; border-radius: 14px; object-fit: cover; cursor: pointer; transition: transform 0.25s ease, filter 0.25s ease; } .reel-track img:hover { transform: scale(1.025); filter: brightness(1.05); } @keyframes scrollReel { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; } .gallery-tile { aspect-ratio: 1; border-radius: 10px; overflow: hidden; } .gallery-tile img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s ease; } .gallery-tile:hover img { transform: scale(1.03); }
-
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transition: opacity 0.28s ease, background 0.28s ease; } .lightbox.open { display: flex; opacity: 1; background: rgba(0,0,0,0.86); } .lightbox-inner { position: relative; width: min(92vw, 1100px); height: min(88vh, 760px); display: flex; align-items: center; justify-content: center; } .lightbox img { max-width: 100%; max-height: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.35); animation: lightboxPop 0.34s cubic-bezier(.18,.89,.32,1.28); } .lightbox-img-swap { animation: lightboxSlide 0.24s ease; } @keyframes lightboxPop { from { opacity: 0; transform: translateY(18px) scale(0.94) rotate(-0.4deg); } to { opacity: 1; transform: translateY(0) scale(1) rotate(0); } } @keyframes lightboxSlide { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } } .lightbox-btn, .lightbox-close { position: absolute; border: none; cursor: pointer; background: rgba(255,255,255,0.14); color: white; backdrop-filter: blur(8px); transition: background 0.2s ease, transform 0.2s ease; } .lightbox-btn:hover, .lightbox-close:hover { background: rgba(255,255,255,0.22); transform: scale(1.04); } .lightbox-btn { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 999px; font-size: 1.4rem; } .lightbox-btn:hover { transform: translateY(-50%) scale(1.04); } .lightbox-prev { left: -0.75rem; } .lightbox-next { right: -0.75rem; } .lightbox-close { top: -0.5rem; right: -0.5rem; width: 42px; height: 42px; border-radius: 999px; font-size: 1.2rem; }
-
-@media (max-width: 900px) { section { padding: 3rem 1.25rem; } nav { gap: 1rem; flex-wrap: wrap; } .reel-track img { height: 320px; } }
-
-@media (max-width: 640px) { .story-img-wrap { width: 80%; margin: 1rem auto; } .story-img { width: 100% !important; max-width: none !important; } body { overflow-x: hidden; }
-
-nav {
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  gap: 0.9rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 0.8rem 0.9rem;
+  /* GALLERY placeholder */
+  /* PHOTO REEL */
+.photo-reel {
+  overflow: hidden;
+  background: #000;
+  padding: 0.75rem;
 }
-nav::-webkit-scrollbar { display: none; }
-nav a {
-  flex: 0 0 auto;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-}
-
-section { padding: 2.5rem 1rem; }
-section + section { border-top: 1px solid var(--stone); }
-
-#hero {
-  min-height: 480px;
-  height: 72vh;
-  background-position: 52% 78%;
-  padding: 1rem;
-}
-.hero-content {
-  left: 1rem;
-  right: 1rem;
-  bottom: 48px;
-}
-h1.hero-name {
-  font-size: clamp(2.7rem, 12vw, 4rem);
-  line-height: 0.98;
-}
-.hero-amp { font-size: clamp(1.5rem, 6vw, 2.2rem); }
-.hero-date {
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  margin: 0.8rem 0 0.35rem;
-}
-.hero-venue {
-  font-size: 13px;
-  letter-spacing: 0.12em;
-}
-.wave-decor { height: 84px; }
-
-.countdown-bar {
-  gap: 0.65rem;
-  padding: 1rem 0.5rem;
-}
-.cd-num { font-size: 2.4rem; }
-.cd-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-}
-.cd-sep {
-  font-size: 1.2rem;
-  line-height: 2.2rem;
-}
-
 .reel-track {
-  gap: 0.5rem;
-  animation-duration: 40s;
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: scrollReel 45s linear infinite;
 }
 .reel-track img {
-  height: 190px;
-  border-radius: 10px;
+  height: 480px;
+  width: auto;
+  border-radius: 14px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.reel-track img:hover {
+  transform: scale(1.025);
+  filter: brightness(1.05);
+}
+@keyframes scrollReel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.section-title {
-  font-size: clamp(2.1rem, 9vw, 2.6rem);
-}
-p, li {
-  font-size: 16.5px;
-  line-height: 1.7;
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .gallery-tile {
+    aspect-ratio: 1; border-radius: 10px; overflow: hidden;
+  }
+  .gallery-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    cursor: pointer; transition: transform 0.2s ease;
+  }
+  .gallery-tile:hover img { transform: scale(1.03); }
 
-.timeline { padding-left: 1.6rem; }
-.timeline::before { left: 6px; }
-.timeline li::before {
-  left: -1.25rem;
-  width: 9px;
-  height: 9px;
-}
-.tl-time {
-  font-size: 13px;
-  letter-spacing: 0.08em;
-}
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.28s ease, background 0.28s ease;
+  }
+  .lightbox.open {
+    display: flex;
+    opacity: 1;
+    background: rgba(0,0,0,0.86);
+  }
+  .lightbox-inner {
+    position: relative;
+    width: min(92vw, 1100px);
+    height: min(88vh, 760px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    animation: lightboxPop 0.34s cubic-bezier(.18,.89,.32,1.28);
+  }
+  .lightbox-img-swap {
+    animation: lightboxSlide 0.24s ease;
+  }
+  @keyframes lightboxPop {
+    from { opacity: 0; transform: translateY(18px) scale(0.94) rotate(-0.4deg); }
+    to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+  }
+  @keyframes lightboxSlide {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .lightbox-btn, .lightbox-close {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.14);
+    color: white;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .lightbox-btn:hover, .lightbox-close:hover {
+    background: rgba(255,255,255,0.22);
+    transform: scale(1.04);
+  }
+  .lightbox-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    font-size: 1.4rem;
+  }
+  .lightbox-btn:hover { transform: translateY(-50%) scale(1.04); }
+  .lightbox-prev { left: -0.75rem; }
+  .lightbox-next { right: -0.75rem; }
+  .lightbox-close {
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    font-size: 1.2rem;
+  }
 
-.card-grid { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    section { padding: 3rem 1.25rem; }
+    nav { gap: 1rem; flex-wrap: wrap; }
+    .reel-track img { height: 320px; }
+  }
 
-.gallery-grid {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
-}
+  @media (max-width: 640px) {
+    .story-img-wrap {
+      width: 80%;
+      margin: 1rem auto;
+    }
+    .story-img {
+      width: 100% !important;
+      max-width: none !important;
+    }
+    body { overflow-x: hidden; }
 
-.lightbox { padding: 1rem; }
-.lightbox-inner {
-  width: 100%;
-  height: auto;
-}
-.lightbox-btn {
-  width: 42px;
-  height: 42px;
-}
-.lightbox-prev { left: 0.25rem; }
-.lightbox-next { right: 0.25rem; }
-.lightbox-close {
-  top: 0.25rem;
-  right: 0.25rem;
-}
+    nav {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 0.9rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0.8rem 0.9rem;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      flex: 0 0 auto;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
 
-.story-teaser {
-  padding: 2.2rem 1rem 2rem;
-}
-.story-teaser-text {
-  font-size: clamp(2rem, 10vw, 3.1rem);
-  line-height: 1.05;
-}
+    section { padding: 2.5rem 1rem; }
+    section + section { border-top: 1px solid var(--stone); }
 
-footer .footer-names { font-size: 1.7rem; }
+    #hero {
+      min-height: 480px;
+      height: 72vh;
+      background-position: 52% 78%;
+      padding: 1rem;
+    }
+    .hero-content {
+      left: 1rem;
+      right: 1rem;
+      bottom: 48px;
+    }
+    h1.hero-name {
+      font-size: clamp(2.7rem, 12vw, 4rem);
+      line-height: 0.98;
+    }
+    .hero-amp { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+    .hero-date {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      margin: 0.8rem 0 0.35rem;
+    }
+    .hero-venue {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+    }
+    .wave-decor { height: 84px; }
 
-} </style>
+    .countdown-bar {
+      gap: 0.65rem;
+      padding: 1rem 0.5rem;
+    }
+    .cd-num { font-size: 2.4rem; }
+    .cd-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+    .cd-sep {
+      font-size: 1.2rem;
+      line-height: 2.2rem;
+    }
+
+    .reel-track {
+      gap: 0.5rem;
+      animation-duration: 40s;
+    }
+    .reel-track img {
+      height: 190px;
+      border-radius: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2.1rem, 9vw, 2.6rem);
+    }
+    p, li {
+      font-size: 16.5px;
+      line-height: 1.7;
+    }
+
+    .timeline { padding-left: 1.6rem; }
+    .timeline::before { left: 6px; }
+    .timeline li::before {
+      left: -1.25rem;
+      width: 9px;
+      height: 9px;
+    }
+    .tl-time {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    .card-grid { grid-template-columns: 1fr; }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+
+    .lightbox { padding: 1rem; }
+    .lightbox-inner {
+      width: 100%;
+      height: auto;
+    }
+    .lightbox-btn {
+      width: 42px;
+      height: 42px;
+    }
+    .lightbox-prev { left: 0.25rem; }
+    .lightbox-next { right: 0.25rem; }
+    .lightbox-close {
+      top: 0.25rem;
+      right: 0.25rem;
+    }
+
+    .story-teaser {
+      padding: 2.2rem 1rem 2rem;
+    }
+    .story-teaser-text {
+      font-size: clamp(2rem, 10vw, 3.1rem);
+      line-height: 1.05;
+    }
+
+    footer .footer-names { font-size: 1.7rem; }
+  }
+</style>
 
 <nav>
   <a href="#schedule">Schedule</a>
@@ -199,7 +639,9 @@ footer .footer-names { font-size: 1.7rem; }
   <a href="#registry">Registry</a>
   <a href="#gallery">Photos</a>
   <a href="#faq">FAQ</a>
-</nav><div id="hero">
+</nav>
+
+<div id="hero">
   <div class="hero-content">
   <h1 class="hero-name">
     Chris
@@ -214,7 +656,9 @@ footer .footer-names { font-size: 1.7rem; }
       <path d="M0 30 Q150 0 300 30 Q450 60 600 30 Q750 0 900 30 Q1050 60 1200 30 L1200 60 L0 60 Z" fill="#f5ede0"/>
     </svg>
   </div>
-</div><div class="countdown-bar">
+</div>
+
+<div class="countdown-bar">
   <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
   <span class="cd-sep">:</span>
   <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
@@ -222,9 +666,14 @@ footer .footer-names { font-size: 1.7rem; }
   <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Minutes</span></div>
   <span class="cd-sep">:</span>
   <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seconds</span></div>
-</div><div class="story-teaser">
+</div>
+
+<div class="story-teaser">
   <div class="story-teaser-text">Two nerds walked into a room, and spent the next two years <span class="accent">circling the globe</span> to be together.</div>
-</div><!-- PHOTO REEL --><div class="photo-reel">
+</div>
+
+<!-- PHOTO REEL -->
+<div class="photo-reel">
   <div class="reel-track">
     <img class="landscape" src="aU5A5192LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(0)" />
     <img class="portrait" src="aU5A3961LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(1)" />
@@ -245,7 +694,9 @@ footer .footer-names { font-size: 1.7rem; }
     <img class="landscape" src="aU5A4944-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(7)" />
     <img class="landscape" src="aU5A4953-2LR.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(8)" />
   </div>
-</div><section id="schedule">
+</div>
+
+<section id="schedule">
   <div class="section-title">Weekend Events</div>
   <div class="section-rule"></div>
   <ul class="timeline">
@@ -265,5 +716,342 @@ footer .footer-names { font-size: 1.7rem; }
       <div class="tl-note">A reimagined send-off party you won’t want to miss</div>
     </li>
   </ul>
-</section><section id="travel">
-  <div class="section-ti
+</section>
+
+<section id="travel">
+  <div class="section-title">Travel</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem;">Our wedding will take place in Orlando, FL. Here's everything you need to plan your trip.</p>
+
+  <div class="hotel-feature">
+    <img src="cabana-bay.jpg" alt="Universal's Cabana Bay Beach Resort" />
+    <div class="hotel-feature-content">
+      <h3>Hotel Block: Universal’s Cabana Bay Beach Resort</h3>
+      <p><strong>Consider booking now!</strong></p>
+      <p>October 23, 2026 – October 25, 2026<br>2 night stay</p>
+      <p>Modifications can be made by booking via phone.</p>
+
+      <p style="margin-top:1rem;"><strong>Why we love this hotel:</strong></p>
+      <ul>
+        <li>Transportation to the wedding venue will be provided</li>
+        <li>Family friendly, with flexible “suites” that sleep 6</li>
+        <li>Limited room block at a discount</li>
+        <li>Only 1 night refundable deposit needed to book</li>
+      </ul>
+
+      <div class="hotel-action">
+        <p><strong>Book through this LINK</strong></p>
+        <p>Or call 1-833-243-4730 and identify as “Honea-Wessels Family”</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="air-travel-card">
+    <div class="card-icon">✈️</div>
+    <div class="card-title">Flying In</div>
+    <p>Orlando International Airport (MCO) is the nearest major airport.</p>
+  </div>
+</section>
+
+<section id="story">
+  <div class="section-title"><em>STORY</em></div>
+  <div class="section-rule"></div>
+  <p class="story-subtitle"><strong>Two nerds walked into a room, and spent the next two years circling the globe to be together.</strong></p>
+
+  <p style="margin-top:1.5rem;"><strong>How did you first meet?</strong></p>
+  <p><em>Scene:</em> A conference room with the scent of moist Jimmy Johns wafting through the air - Shelby and Chris had a chance meeting. Only Chris was smart enough to notice that they were actually meeting.</p>
+
+  <p style="margin-top:1rem;">While that was THE first meeting, there were a few missed opportunities:</p>
+  <ul class="story-list">
+    <li>When Shelby and Chris lived in Las Vegas, their homes were 15 minutes apart</li>
+    <li>Shelby studied Entertainment Engineering at UNLV and occasionally visited FTSI, where Chris worked</li>
+    <li>Both worked on Pandora: The World of Avatar</li>
+    <li>When they finally connected on Facebook, they had 36 friends in common</li>
+  </ul>
+
+  <p style="margin-top:1rem;">This is actually Shelby and Chris' first photo together, many years before the first meeting:</p>
+  <div class="story-img-wrap">
+    <img src="2018Theas.jpg" alt="2018 Thea Awards" class="story-img" />
+    <div class="story-caption">2018 Thea Awards</div>
+  </div>
+
+  <p>Now, with a strong geographical hurdle (Chris in Long Beach, CA and Shelby in Orlando, FL), Chris started to lay the groundwork.</p>
+
+  <p style="margin-top:1rem;"><strong>Wait, with that distance — how did it all come together?</strong></p>
+  <p>Chris made the first move, and thank goodness — Shelby is clueless!</p>
+
+  <p><em>From Shelby's POV:</em></p>
+
+<div class="script-block">
+  <div class="script-line scene">INT. OFFICE — DAY</div>
+  <div class="script-line action">SHELBY balances her phone between her shoulder and ear, standing over the copier, on the phone with BRITAINNE.</div>
+
+  <div class="script-line character">BRITAINNE</div>
+  <div class="script-line dialogue">“Dani just asked me if you are single”</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Oh yeah? What did you say?”</div>
+
+  <div class="script-line character">BRITAINNE</div>
+  <div class="script-line dialogue">“Single, but not very emotionally available and swamped at work.”</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Attagirl.”</div>
+
+  <div class="script-line divider">———</div>
+
+  <div class="script-line action">A few days later, Chris texted and was tragically left on read.</div>
+
+  <div class="script-line divider">———</div>
+  <div class="script-line scene">INT. RESTURANT AT SIGGAPH - DAY</div>
+  <div class="script-line action">Later, Dani prepared a pitch (embellished for comedic effect, sorry Dani!)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“Well, he is tall!”</div>
+
+  <div class="script-line aside">(Shelby inside voice: BORING. If tall is the first thing you think.)</div>
+  <div class="script-line aside">(Reader's note: Chris is tall)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“He is also...so nice. He is just the kindest person I know”</div>
+
+  <div class="script-line aside">(Shelby inside voice: Tall and nice...yikes.)</div>
+  <div class="script-line aside">(Reader's note: Chris is the sort of saccharine sweet and kind that warrants superlatives.)</div>
+
+  <div class="script-line character">DANI</div>
+  <div class="script-line dialogue">“He is the kind of guy who will book a flight for any adventure, an obscure theater or festival, he will go”</div>
+
+  <div class="script-line aside">(Shelby inside voice: Now that's....that's interesting.)</div>
+
+  <div class="script-line divider">———</div>
+  <div class="script-line scene">INT. ASHLEY'S HOUSE - NIGHT</div>
+  <div class="script-line action">SHELBY sitting on ASHLEY's couch. ASHLEY is SHELBY'S font of wisdom in most things.</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Hey, have you heard of this guy Chris Wessels?”</div>
+
+  <div class="script-line character">ASHLEY</div>
+  <div class="script-line dialogue">“Chris Wessels, yeah. I don't know him well, but he threw a mustache themed party and invited me, despite just meeting me. He is super nice and always goes out of his way to connect with our mutual friends abroad. Oh, he is also really tall”</div>
+
+  <div class="script-line character">SHELBY</div>
+  <div class="script-line dialogue">“Tall and nice.”</div>
+
+  <div class="script-line divider">———</div>
+
+  <div class="script-line action">Shelby, having only seen one picture of Chris with a fake mustache, texts back.</div>
+
+  <div class="script-line character">SHELBY (TEXT)</div>
+  <div class="script-line dialogue">“sorry just now seeing this”</div>
+
+</div>
+  
+
+<p style="margin-top:1rem;">Shelby finally answers the text.</p>
+
+  <p style="margin-top:1.5rem;"><strong>What was your most memorable date?</strong></p>
+  <p>Long distance meant our dates were often full-blown adventures:</p>
+  <ul class="story-list">
+    <li>
+      1st date - Orlando. SAK Improv Club (Home of Wayne Brady)
+      <div class="story-img-wrap"><img src="SAK.jpg" alt="SAK Comedy Club" class="story-img" /></div>
+    </li>
+    <li>3rd date — Orlando. Chris pointing out his name in the Eras Tour credits
+      <div class="story-img-wrap"><img src="SwiftDate.jpg" alt="Swift Date" class="story-img" /></div>
+    </li>
+    <li>4th date — LA. Chris learning what a true friend Shelby is to her friends
+      <div class="story-img-wrap"><img src="LAKaraoke.jpg" alt="Karaoke Date" class="story-img" /></div>
+    </li>
+    <li>5th date — Japan. Overlapping Trips to see the fall colors
+      <div class="story-img-wrap"><img src="JapanDate.jpg" alt="Japan Date" class="story-img" /></div>
+    </li>
+    <li>We lost count by this point - Club 33 dinner for Shelby’s 33rd
+      <div class="story-img-wrap"><img src="007.jpg" alt="Club 33 Date" class="story-img" /></div>
+    </li>
+  </ul>
+
+  <p style="margin-top:1.5rem;"><strong>The most spontaneous thing we’ve done</strong></p>
+  <p>Chris proposed — before we lived in the same state — in a haunted house, followed by a surprise party with friends and family from around the world.</p>
+  <div class="story-img-wrap">
+    <img src="Proposal.jpg" alt="Proposal" class="story-img" />
+  </div>
+
+  <p style="margin-top:1.5rem;"><strong>You live in the same state now... right?</strong></p>
+  <p>We do! Chris has relocated to Orlando, Florida and we are settling into our new home together.</p>
+
+  <p style="margin-top:1.5rem;"><strong>What’s this about moving internationally?</strong></p>
+  <p>It’s likely we will temporarily relocate for work — but not for a while, and not for long.</p>
+</section>
+
+<section id="attire">
+  <div class="section-title">What to Wear</div>
+  <div class="section-rule"></div>
+  <p style="text-align:center;">Coming soon! But if you've ever partied with Chris and Shelby, you know it will be fabulous.</p>
+</section>
+
+<section id="registry">
+  <div class="section-title">Registry</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem; text-align:center;">Coming soon! Links will be posted June 1st.</p>
+  <div style="display:flex; justify-content:center;">
+    <a href="#" class="rsvp-btn" onclick="return false;">Check Back Soon</a>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-title">Photos</div>
+  <div class="section-rule"></div>
+  <p style="margin-bottom:1.25rem;">A few of our favorite adventures together.</p>
+  <div class="gallery-grid">
+    <div class="gallery-tile"><img src="001.jpg" alt="Chris and Shelby photo 1" onclick="openLightbox(0)" /></div>
+    <div class="gallery-tile"><img src="002.jpg" alt="Chris and Shelby photo 2" onclick="openLightbox(1)" /></div>
+    <div class="gallery-tile"><img src="003.jpg" alt="Chris and Shelby photo 3" onclick="openLightbox(2)" /></div>
+    <div class="gallery-tile"><img src="004.jpg" alt="Chris and Shelby photo 4" onclick="openLightbox(3)" /></div>
+    <div class="gallery-tile"><img src="005.jpg" alt="Chris and Shelby photo 5" onclick="openLightbox(4)" /></div>
+    <div class="gallery-tile"><img src="006.jpg" alt="Chris and Shelby photo 6" onclick="openLightbox(5)" /></div>
+    <div class="gallery-tile"><img src="007.jpg" alt="Chris and Shelby photo 7" onclick="openLightbox(6)" /></div>
+    <div class="gallery-tile"><img src="008.jpg" alt="Chris and Shelby photo 8" onclick="openLightbox(7)" /></div>
+    <div class="gallery-tile"><img src="009.jpg" alt="Chris and Shelby photo 9" onclick="openLightbox(8)" /></div>
+    <div class="gallery-tile"><img src="010.jpg" alt="Chris and Shelby photo 10" onclick="openLightbox(9)" /></div>
+    <div class="gallery-tile"><img src="011.jpg" alt="Chris and Shelby photo 11" onclick="openLightbox(10)" /></div>
+    <div class="gallery-tile"><img src="012.jpg" alt="Chris and Shelby photo 12" onclick="openLightbox(11)" /></div>
+    <div class="gallery-tile"><img src="013.jpg" alt="Chris and Shelby photo 13" onclick="openLightbox(12)" /></div>
+    <div class="gallery-tile"><img src="014.jpg" alt="Chris and Shelby photo 14" onclick="openLightbox(13)" /></div>
+    <div class="gallery-tile"><img src="015.jpg" alt="Chris and Shelby photo 15" onclick="openLightbox(14)" /></div>
+    <div class="gallery-tile"><img src="016.jpg" alt="Chris and Shelby photo 16" onclick="openLightbox(15)" /></div>
+    <div class="gallery-tile"><img src="017.jpg" alt="Chris and Shelby photo 17" onclick="openLightbox(16)" /></div>
+    <div class="gallery-tile"><img src="018.jpg" alt="Chris and Shelby photo 18" onclick="openLightbox(17)" /></div>
+    <div class="gallery-tile"><img src="019.jpg" alt="Chris and Shelby photo 19" onclick="openLightbox(18)" /></div>
+    <div class="gallery-tile"><img src="020.jpg" alt="Chris and Shelby photo 20" onclick="openLightbox(19)" /></div>
+    <div class="gallery-tile"><img src="021.jpg" alt="Chris and Shelby photo 21" onclick="openLightbox(20)" /></div>
+    <div class="gallery-tile"><img src="022.jpg" alt="Chris and Shelby photo 22" onclick="openLightbox(21)" /></div>
+    <div class="gallery-tile"><img src="023.jpg" alt="Chris and Shelby photo 23" onclick="openLightbox(22)" /></div>
+    <div class="gallery-tile"><img src="024.jpg" alt="Chris and Shelby photo 24" onclick="openLightbox(23)" /></div>
+   </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close photos">✕</button>
+      <button class="lightbox-btn lightbox-prev" onclick="changeLightbox(-1, event)" aria-label="Previous photo">❮</button>
+      <img id="lightbox-image" src="" alt="Expanded gallery photo" />
+      <button class="lightbox-btn lightbox-next" onclick="changeLightbox(1, event)" aria-label="Next photo">❯</button>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-title"><em>Questions?</em></div>
+  <div class="section-rule"></div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">What's the weather like in late October in Orlando? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">October is a beautiful time in Orlando — warm and sunny with temperatures around 80°F (27°C), low humidity compared to summer, and minimal rain. Perfect tropical wedding weather!</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">Chris & Shelby</div>
+  <div>October 24, 2026 · Orlando, Florida</div>
+  <div style="margin-top:0.5rem; opacity:0.5;">Made with love ♡</div>
+</footer>
+
+<script>
+  const galleryImages = [
+    '001.jpg','002.jpg','003.jpg','004.jpg','005.jpg','006.jpg','007.jpg','008.jpg','009.jpg','010.jpg','011.jpg','012.jpg','013.jpg','014.jpg','015.jpg','016.jpg','017.jpg','018.jpg','019.jpg','020.jpg','021.jpg','022.jpg','023.jpg','024.jpg'
+  ];
+  const reelImages = [
+    'aU5A5192LR.jpg','aU5A3961LR.jpg','aU5A4255-2LR.jpg','aU5A4012LR.jpg','aU5A4676LR.jpg','aU5A4621-2LR.jpg','aU5A4823LR.jpg','aU5A4944-2LR.jpg','aU5A4953-2LR.jpg'
+  ];
+  let activeLightboxImages = galleryImages;
+  let currentLightboxIndex = 0;
+
+  function countdown() {
+    const wedding = new Date('2026-10-24T19:15:00-04:00');
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '🎉';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  countdown();
+  setInterval(countdown, 1000);
+
+  function toggleFAQ(el) {
+    const answer = el.nextElementSibling;
+    const chevron = el.querySelector('.faq-chevron');
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    chevron.style.transform = isOpen ? 'rotate(0)' : 'rotate(180deg)';
+  }
+
+  function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value.trim();
+    const attend = document.getElementById('rsvp-attend').value;
+    const confirm = document.getElementById('rsvp-confirm');
+    if (!name || !attend) {
+      confirm.style.display = 'block';
+      confirm.style.color = '#ffd700';
+      confirm.textContent = 'Please fill in your name and attendance selection.';
+      return;
+    }
+    confirm.style.display = 'block';
+    confirm.style.color = '#52b788';
+    if (attend === 'yes') {
+      confirm.textContent = '🌺 Wonderful! We can\'t wait to celebrate with you, ' + name + '!';
+    } else {
+      confirm.textContent = '💙 We\'ll miss you, ' + name + '. Thank you for letting us know!';
+    }
+    document.getElementById('rsvp-name').value = '';
+    document.getElementById('rsvp-attend').value = '';
+    document.getElementById('rsvp-guests').value = '';
+    document.getElementById('rsvp-dietary').value = '';
+  }
+
+  function openLightbox(index, imageSet = galleryImages) {
+    activeLightboxImages = imageSet;
+    currentLightboxIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = activeLightboxImages[currentLightboxIndex];
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openReelLightbox(index) {
+    openLightbox(index, reelImages);
+  }
+
+  function changeLightbox(direction, event) {
+    event.stopPropagation();
+    currentLightboxIndex = (currentLightboxIndex + direction + activeLightboxImages.length) % activeLightboxImages.length;
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.classList.remove('lightbox-img-swap');
+    void lightboxImage.offsetWidth;
+    lightboxImage.src = activeLightboxImages[currentLightboxIndex];
+    lightboxImage.classList.add('lightbox-img-swap');
+  }
+
+  function closeLightbox(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close')) {
+      return;
+    }
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function (event) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('open')) return;
+    if (event.key === 'ArrowLeft') changeLightbox(-1, event);
+    if (event.key === 'ArrowRight') changeLightbox(1, event);
+    if (event.key === 'Escape') closeLightbox({ currentTarget: lightbox, target: lightbox });
+  });
+</script>
+</html>
