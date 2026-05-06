@@ -88,11 +88,12 @@
                 linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
                 url('aU5A4823LR.jpg');
     background-size: cover;
-    background-position: 50% 80%; /* keep feet + sign visible */
+    background-repeat: no-repeat;
+    /* focus the visible window on the "sweet spot" of the image */
+    background-position: 50% 72%; /* focus on the middle band of the photo */
     min-height: 560px;
-    height: clamp(520px, 70vh, 720px);
-    /* offset for sticky nav so top of image is visible */
-    margin-top: 60px;
+    /* show more vertical portion of the image */
+    height: clamp(700px, 85vh, 1000px);
     padding: 1.25rem 1.5rem 1.5rem;
     text-align: center;
     position: relative;
@@ -535,8 +536,11 @@
 
     #hero {
       min-height: 480px;
-      height: 72vh;
-      background-position: 52% 78%;
+      height: 82vh;
+      /* mobile crop: remove top ~25%, shift left ~20% and zoom out slightly */
+      background-position: 30% 65%;
+      background-size: cover;
+      background-repeat: no-repeat;
       padding: 1rem;
     }
     .hero-content {
