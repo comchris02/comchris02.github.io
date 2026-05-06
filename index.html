@@ -91,7 +91,8 @@
     background-position: 50% 80%; /* keep feet + sign visible */
     min-height: 560px;
     height: clamp(520px, 70vh, 720px);
-    padding: 1.25rem 1.5rem 1.5rem;
+    /* offset for sticky nav so top of image is always visible */
+    padding: calc(1.25rem + 60px) 1.5rem 1.5rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -674,7 +675,7 @@
 </div>
 
 <div class="story-teaser">
-  <div class="story-teaser-text">Two nerds walked into a room, and spent the next two years <span class="accent">circling the globe</span> to be together.</div>
+  <div class="story-teaser-text">Two nerds had a chance encounter, and spent the next two years <span class="accent">circling the globe</span> to be together.</div>
 </div>
 
 <!-- PHOTO REEL -->
@@ -733,15 +734,14 @@
     <img src="cabana-bay.jpg" alt="Universal's Cabana Bay Beach Resort" />
     <div class="hotel-feature-content">
       <h3>Hotel Block: Universal’s Cabana Bay Beach Resort</h3>
-      <p><strong>COMING VERY SOON</strong></p>
       <p>October 23, 2026 – October 25, 2026<br>2 night stay</p>
       <p>Modifications can be made by booking via phone.</p>
 
       <p style="margin-top:1rem;"><strong>Why we love this hotel:</strong></p>
       <ul>
-        <li>Transportation to the wedding venue will be provided</li>
-        <li>Family friendly, with flexible “suites” that sleep 6</li>
-        <li>Limited room block at a discount</li>
+        <li>Over 50% discount when booking with our event code!</li>
+        <li>Transportation to and from the wedding venue will be provided</li>
+        <li>Family friendly, with "suites" available that sleep up to 6</li>
         <li>Only 1 night refundable deposit needed to book</li>
       </ul>
 
