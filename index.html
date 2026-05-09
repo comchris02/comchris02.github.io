@@ -443,6 +443,13 @@
   cursor: pointer;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
+/* keep all images same height for clean film strip */
+.reel-track img.portrait {
+  height: 480px;
+}
+.reel-track img.landscape {
+  height: 480px;
+}
 .reel-track img:hover {
   transform: scale(1.025);
   filter: brightness(1.05);
@@ -739,6 +746,7 @@
     <img class="landscape" src="MCO-Welcome.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(6)" />
     <img class="landscape" src="MCO-TermC.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(7)" />
     <img class="landscape" src="MCO-Escalator.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(8)" />
+    <img class="landscape" src="MCO-Outside.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(9)" />
     <img class="landscape" src="MCO-Tram.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(0)" />
     <img class="portrait" src="MCO-Screens-Standing.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(1)" />
     <img class="landscape" src="MCO-Fountain.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(2)" />
@@ -748,12 +756,13 @@
     <img class="landscape" src="MCO-Welcome.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(6)" />
     <img class="landscape" src="MCO-TermC.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(7)" />
     <img class="landscape" src="MCO-Escalator.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(8)" />
+    <img class="landscape" src="MCO-Outside.jpg" alt="Chris and Shelby travel photo" onclick="openReelLightbox(9)" />
   </div>
 </div>
 
 <section id="schedule">
   <div class="section-title">Weekend Events</div>
-  <div style="font-family:'Outfit',sans-serif; font-size:clamp(1.4rem,3.5vw,2rem); font-weight:600; color:#ff6a00; margin-bottom:1rem;">More coming soon...</div>
+  <div style="font-family:'Outfit',sans-serif; font-size:clamp(1.4rem,3.5vw,2rem); font-weight:600; color:#ff6a00; margin-bottom:1rem;">More details coming soon...</div>
   <div class="section-rule"></div>
   <ul class="timeline">
     <li>
@@ -1018,7 +1027,7 @@
     '001.jpg','002.jpg','003.jpg','004.jpg','005.jpg','006.jpg','007.jpg','008.jpg','009.jpg','010.jpg','011.jpg','012.jpg','013.jpg','014.jpg','015.jpg','016.jpg','017.jpg','018.jpg','019.jpg','020.jpg','021.jpg','022.jpg','023.jpg','024.jpg'
   ];
   const reelImages = [
-    'aU5A5192LR.jpg','aU5A3961LR.jpg','aU5A4255-2LR.jpg','aU5A4012LR.jpg','aU5A4676LR.jpg','aU5A4621-2LR.jpg','aU5A4823LR.jpg','aU5A4944-2LR.jpg','aU5A4953-2LR.jpg'
+    'aU5A5192LR.jpg','aU5A3961LR.jpg','aU5A4255-2LR.jpg','aU5A4012LR.jpg','aU5A4676LR.jpg','aU5A4621-2LR.jpg','aU5A4823LR.jpg','aU5A4944-2LR.jpg','aU5A4953-2LR.jpg','MCO-Outside.jpg'
   ];
   let activeLightboxImages = galleryImages;
   let currentLightboxIndex = 0;
