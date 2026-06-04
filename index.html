@@ -195,7 +195,18 @@
   .script-line.aside { margin-left: 4.5rem; font-style: italic; color: var(--text-mid); max-width: 80%; }
   .script-line.divider { text-align: center; letter-spacing: 0.2em; color: var(--taupe); margin: 0.6rem 0; }
   
+.sswash-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
+.sswash-gallery img:hover {
+  transform: scale(1.02);
+}
   /* STORY */
   .story-subtitle {
     font-size: 1.1rem;
@@ -326,6 +337,8 @@
   .reg-icon { font-size: 2rem; margin-bottom: 0.75rem; }
   .reg-name { font-weight: 500; font-size: 14px; color: var(--charcoal); margin-bottom: 0.25rem; }
   .reg-desc { font-size: 13px; color: var(--text-mid); font-weight: 300; }
+  
+
 
   /* FAQ */
   .faq-item { margin-bottom: 1.25rem; }
@@ -375,6 +388,26 @@
     align-items: stretch; /* make columns equal height */
     margin: 1.5rem 0;
   }
+  /* S.S. WASHINGTON GALLERY */
+.sswash-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.sswash-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .sswash-gallery {
+    grid-template-columns: 1fr;
+  }
+}
   .hotel-feature img {
     width: 100%;
     height: 100%; /* match text column height */
@@ -960,10 +993,56 @@
 <section id="registry">
   <div class="section-title">Registry</div>
   <div class="section-rule"></div>
-  <p style="margin-bottom:1.25rem; text-align:center;">Coming soon! Links will be posted June 1st.</p>
-  <div style="display:flex; justify-content:center;">
-    <a href="#" class="rsvp-btn" onclick="return false;">Check Back Soon</a>
+
+  <p style="margin-bottom:1.25rem;">
+  Thank you for considering our registry! We have recently moved into our dream home in Orlando, FL, and are enjoying the process of making it truly ours while building our life together.
+</p>
+
+<p style="margin-bottom:1.25rem;">
+  With that in mind, your presence is the greatest gift. But if you'd like to help us with <strong>S.S. Washington</strong> (the nickname for our house), we would be incredibly grateful.
+</p>
+
+<div class="info-card" style="margin:1.5rem 0;">
+  <div class="card-title">Our registry is inspired by the vision for S.S. Washington.</div>
+  <ul style="margin-left:1.25rem;">
+    <li>Located in Orlando, Florida, we hope it will be a place frequented by friends and family.</li>
+    <li>As a true Craftsman-style treasure, some of our wish list items are a little delightfully specific.</li>
+  </ul>
+</div>
+
+<p style="margin-top:1.5rem; text-align:center;">
+  Here are some staged listing photos from <strong>S.S. Washington</strong>. Help us make it our own!
+</p>
+
+<div class="sswash-gallery">
+  <img src="sswash1.jpg" alt="S.S. Washington Listing Photo 1" onclick="openHouseLightbox(0)">
+  <img src="sswash2.jpg" alt="S.S. Washington Listing Photo 2" onclick="openHouseLightbox(1)">
+  <img src="sswash3.jpg" alt="S.S. Washington Listing Photo 3" onclick="openHouseLightbox(2)">
+</div>
+
+
+
+
+<p style="margin-top:1.25rem;margin-bottom:1.25rem;">
+ We have two registries. One is dedicated to the art of gathering around a table, while the other covers everything else needed to help S.S. Washington become our home.
+</p>
+
+<div style="text-align:center;">
+    
+  <div style="margin-bottom:1.5rem;"> <p style="margin-bottom:0.5rem; font-weight:500;">For the Table</p> 
+    <a href="https://www.crateandbarrel.com/gift-registry/shelby-honea-and-chris-wessels/r7476857" class="rsvp-btn" target="_blank" rel="noopener"> CrateAndBarrel.com </a> 
+  </div> 
+  <div> <p style="margin-bottom:0.5rem; font-weight:500;">For the Home</p> 
+    <a href="https://www.myregistry.com/giftlist/shelbyandchrisgethitched" class="rsvp-btn" target="_blank" rel="noopener"> MyRegistry.com </a> 
   </div>
+
+</div>
+  
+<p style="margin-top:1.5rem;">
+  If you're inspired more by the <em>thrill of the hunt</em>, we would also be grateful for anything inspired by the Arts &amp; Crafts movement, woodworking, or vintage Florida.
+</p>
+
+  
 </section>
 
 <section id="gallery">
@@ -1142,6 +1221,16 @@
   function openReelLightbox(index) {
     openLightbox(index, reelImages);
   }
+
+  const houseImages = [
+  'sswash1.jpg',
+  'sswash2.jpg',
+  'sswash3.jpg'
+];
+
+function openHouseLightbox(index) {
+  openLightbox(index, houseImages);
+}
 
   function changeLightbox(direction, event) {
     event.stopPropagation();
