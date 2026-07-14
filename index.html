@@ -730,6 +730,7 @@
   <a href="#schedule">Schedule</a>
   <a href="#travel">Travel</a>
   <a href="#updates">Updates</a>
+  <a href="#attire">Attire</a>
   <a href="#story">Our Story</a>
   <a href="#registry">Registry</a>
   <a href="#gallery">Photos</a>
@@ -865,6 +866,15 @@
   </div>
 </section>
 
+<section id="attire"> <div class="section-title">Attire</div> <div class="section-rule"></div>
+
+<p style="font-size:1.15rem; color:var(--text-dark); font-weight:500; margin-bottom:0.75rem;"> Tropical Funky Formal </p>
+
+<p style="margin-bottom:1.25rem;"> Think bold, colorful, tiki florals, retro glam, and 60s/70s touches. Have fun with it. </p>
+
+<div class="story-img-wrap" style="max-width:520px;"> <img src="AttireWeddingCeremony.jpg" alt="Tropical Funky Formal attire inspiration" class="story-img" onclick="openAttireLightbox()" style="cursor:pointer;" /> </div> </section>
+  
+  
 <section id="story">
   <div class="section-title"><em>STORY</em></div>
   <div class="section-rule"></div>
@@ -1257,5 +1267,11 @@ function openHouseLightbox(index) {
     if (event.key === 'ArrowRight') changeLightbox(1, event);
     if (event.key === 'Escape') closeLightbox({ currentTarget: lightbox, target: lightbox });
   });
+
+  const attireImages = ['AttireWeddingCeremony.jpg'];
+
+function openAttireLightbox() {
+  openLightbox(0, attireImages);
+}
 </script>
 </html>
