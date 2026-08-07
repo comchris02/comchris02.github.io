@@ -314,6 +314,29 @@
     color: var(--text-mid);
   }
 
+  /* RSVP */
+  .rsvp-embed-shell {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+  .rsvp-setup-message {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--stone);
+    border-radius: 16px;
+    color: var(--text-mid);
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .rsvp-frame {
+    display: none;
+    width: 100%;
+    min-height: 460px;
+    border: 0;
+    background: transparent;
+  }
+
   /* REGISTRY */
   .rsvp-btn {
     padding: 0.85rem 1.2rem;
@@ -727,6 +750,7 @@
 </style>
 
 <nav>
+  <a href="#rsvp">RSVP</a>
   <a href="#schedule">Schedule</a>
   <a href="#travel">Travel</a>
   <a href="#updates">Updates</a>
@@ -815,6 +839,24 @@
       <div class="tl-note">A reimagined send-off party you won’t want to miss</div>
     </li>
   </ul>
+</section>
+
+<section id="rsvp">
+  <div class="section-title">RSVP</div>
+  <div class="section-rule"></div>
+  <p>Use the private code included with your invitation to RSVP for each wedding weekend event. You can return with the same code at any time to review or update your responses.</p>
+
+  <div class="rsvp-embed-shell">
+    <div class="rsvp-setup-message" id="rsvpSetupMessage">
+      Online RSVP is being prepared. Please check back soon!
+    </div>
+    <iframe
+      class="rsvp-frame"
+      id="rsvpFrame"
+      title="Wedding weekend RSVP form"
+      referrerpolicy="no-referrer"
+    ></iframe>
+  </div>
 </section>
 
 <section id="travel">
@@ -1124,11 +1166,14 @@
   let activeLightboxImages = galleryImages;
   let currentLightboxIndex = 0;
 
-  // Replace this with your published Google Apps Script Web App URL.
+  // Replace this after deploying the RSVP Apps Script project as a web app.
+  const rsvpAppEndpoint = 'https://script.google.com/macros/s/AKfycbzlUydXrnU8q0AE5KS64VW1juKQs2peU7SEAKwHFGxyNc61gaHVRnLcn0xKmujZ9qZM/exec';
+
+  // Existing mailing-list signup endpoint.
   const emailSignupEndpoint = 'https://script.google.com/macros/s/AKfycbz3cm2aZEKxkH5jPNajTTObkJG2NVE3KGSNMz0CFmszC9goM-v9mgFwRLGdjK3TP2M2KQ/exec';
 
   function countdown() {
-    const wedding = new Date('2026-10-24T19:15:00-04:00');
+    const wedding = new Date('2026-10-24T18:30:00-04:00');
     const now = new Date();
     const diff = wedding - now;
     if (diff <= 0) {
@@ -1146,6 +1191,55 @@
   }
   countdown();
   setInterval(countdown, 1000);
+  initializeRsvpApp();
+
+  function initializeRsvpApp() {
+    const frame = document.getElementById('rsvpFrame');
+    const setupMessage = document.getElementById('rsvpSetupMessage');
+    if (!frame || !setupMessage) return;
+
+    const localHostnames = ['localhost', '127.0.0.1', '[::1]', '::1'];
+    const isLocalRsvpPreview =
+      window.location.protocol === 'file:' ||
+      localHostnames.includes(window.location.hostname);
+
+    if (!isLocalRsvpPreview && rsvpAppEndpoint.includes('PASTE_GOOGLE_APPS_SCRIPT')) {
+      return;
+    }
+
+    let appUrl;
+    try {
+      appUrl = isLocalRsvpPreview
+        ? new URL('./rsvp-app/Index.html', window.location.href)
+        : new URL(rsvpAppEndpoint);
+    } catch (error) {
+      setupMessage.textContent = 'Online RSVP is temporarily unavailable. Please check back soon!';
+      return;
+    }
+
+    const inviteCode = new URLSearchParams(window.location.search).get('invite');
+    if (
+      !isLocalRsvpPreview &&
+      inviteCode &&
+      /^[A-Za-z0-9_-]{20,80}$/.test(inviteCode)
+    ) {
+      appUrl.searchParams.set('code', inviteCode);
+    }
+
+    frame.src = appUrl.toString();
+    frame.style.display = 'block';
+    setupMessage.style.display = 'none';
+  }
+
+  window.addEventListener('message', function (event) {
+    const frame = document.getElementById('rsvpFrame');
+    if (!frame || event.source !== frame.contentWindow) return;
+    if (!event.data || event.data.type !== 'shelby-chris-rsvp-height') return;
+
+    const requestedHeight = Number(event.data.height);
+    if (!Number.isFinite(requestedHeight)) return;
+    frame.style.height = Math.max(460, Math.min(requestedHeight + 8, 4000)) + 'px';
+  });
 
   function toggleFAQ(el) {
     const answer = el.nextElementSibling;
@@ -1196,29 +1290,6 @@
       confirm.style.color = '#ff6a00';
       confirm.textContent = 'Something went wrong. Please try again.';
     });
-  }
-
-  function submitRSVP() {
-    const name = document.getElementById('rsvp-name').value.trim();
-    const attend = document.getElementById('rsvp-attend').value;
-    const confirm = document.getElementById('rsvp-confirm');
-    if (!name || !attend) {
-      confirm.style.display = 'block';
-      confirm.style.color = '#ffd700';
-      confirm.textContent = 'Please fill in your name and attendance selection.';
-      return;
-    }
-    confirm.style.display = 'block';
-    confirm.style.color = '#52b788';
-    if (attend === 'yes') {
-      confirm.textContent = '🌺 Wonderful! We can\'t wait to celebrate with you, ' + name + '!';
-    } else {
-      confirm.textContent = '💙 We\'ll miss you, ' + name + '. Thank you for letting us know!';
-    }
-    document.getElementById('rsvp-name').value = '';
-    document.getElementById('rsvp-attend').value = '';
-    document.getElementById('rsvp-guests').value = '';
-    document.getElementById('rsvp-dietary').value = '';
   }
 
   function openLightbox(index, imageSet = galleryImages) {
