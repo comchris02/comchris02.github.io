@@ -362,7 +362,11 @@ function getInvitation(inviteCode) {
   try {
     const household = findHouseholdByCode_(inviteCode);
     if (!household) {
-      return { ok: false, message: 'We could not find that personal RSVP password. Please check it and try again.' };
+      return {
+        ok: false,
+        launchNotice: true,
+        message: 'RSVP system will go live Saturday August 8th'
+      };
     }
 
     const spreadsheet = getSpreadsheet_();

@@ -28,6 +28,7 @@
       background: transparent;
       color: var(--text-dark);
       font-family: 'Manrope', sans-serif;
+      font-size: 15.5px;
     }
 
     body { padding: 2px; }
@@ -45,7 +46,7 @@
       margin: 0 auto 1.25rem;
       max-width: 620px;
       color: var(--text-mid);
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 300;
       line-height: 1.7;
       text-align: center;
@@ -88,7 +89,7 @@
       background: var(--charcoal);
       color: white;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 15.5px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -103,7 +104,7 @@
       background: transparent;
       color: var(--text-mid);
       cursor: pointer;
-      font-size: 13px;
+      font-size: 15.5px;
       text-decoration: underline;
     }
 
@@ -113,7 +114,7 @@
       max-width: 650px;
       border-radius: 10px;
       padding: 0.75rem 1rem;
-      font-size: 14px;
+      font-size: 15.5px;
       line-height: 1.5;
       text-align: center;
     }
@@ -122,6 +123,15 @@
     .status.info { background: #f5f0e8; color: var(--text-mid); }
     .status.success { background: #e8f3ed; color: var(--success); }
     .status.error { background: #faece8; color: var(--error); }
+    .status.launch-notice {
+      background: #f5ede0;
+      color: var(--text-dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      padding: 1.25rem;
+    }
 
     .rsvp-form { display: none; }
     .rsvp-form.visible { display: block; }
@@ -137,7 +147,7 @@
     .household-subtitle {
       margin: 0 auto 1.5rem;
       color: var(--text-mid);
-      font-size: 14px;
+      font-size: 15.5px;
       line-height: 1.6;
       text-align: center;
     }
@@ -163,7 +173,7 @@
     .schedule-intro {
       margin: 0.35rem 0 1rem;
       color: var(--text-mid);
-      font-size: 13px;
+      font-size: 15.5px;
       line-height: 1.5;
       text-align: center;
     }
@@ -193,7 +203,7 @@
 
     .schedule-attendees {
       color: var(--orange);
-      font-size: 12px;
+      font-size: 15.5px;
       font-weight: 600;
     }
 
@@ -202,7 +212,7 @@
     .schedule-address {
       margin: 0.2rem 0 0;
       color: var(--text-mid);
-      font-size: 13px;
+      font-size: 15.5px;
       line-height: 1.4;
     }
 
@@ -214,7 +224,7 @@
     .matrix-intro {
       margin: 0 0 0.65rem;
       color: var(--text-mid);
-      font-size: 12px;
+      font-size: 15.5px;
       line-height: 1.5;
       text-align: center;
     }
@@ -261,7 +271,7 @@
       max-width: 220px;
       background: white;
       font-family: 'Outfit', sans-serif;
-      font-size: 14px;
+      font-size: 15.5px;
       font-weight: 600;
       text-align: left;
     }
@@ -273,14 +283,25 @@
 
     .matrix-event-title {
       display: block;
-      font-size: 12px;
+      font-size: 15.5px;
       line-height: 1.3;
     }
+
+    .matrix-event-detail {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--text-mid);
+      font-size: 15.5px;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .matrix-event-location { margin-top: 0.15rem; }
 
     .matrix-response-cell { text-align: center; }
     .matrix-not-invited { color: var(--text-mid); font-size: 18px; }
     .matrix-choices { min-width: 112px; }
-    .matrix-choices .choice span { padding: 0.5rem 0.3rem; font-size: 12px; }
+    .matrix-choices .choice span { padding: 0.5rem 0.3rem; font-size: 15.5px; }
 
     .sr-only {
       position: absolute;
@@ -305,7 +326,7 @@
       min-height: 3.4em;
       margin-bottom: 0.5rem;
       color: var(--text-dark);
-      font-size: 13px;
+      font-size: 15.5px;
       font-weight: 600;
       line-height: 1.35;
     }
@@ -313,7 +334,7 @@
     .event-date {
       display: block;
       color: var(--champagne-deep);
-      font-size: 10px;
+      font-size: 15.5px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -340,7 +361,7 @@
       display: block;
       padding: 0.6rem 0.4rem;
       color: var(--text-mid);
-      font-size: 13px;
+      font-size: 15.5px;
     }
 
     .choice input:checked + span {
@@ -370,7 +391,7 @@
     .weekend-intro {
       margin: 0.35rem 0 1rem;
       color: var(--text-mid);
-      font-size: 13px;
+      font-size: 15.5px;
       line-height: 1.55;
     }
 
@@ -384,7 +405,7 @@
       display: block;
       min-width: 0;
       color: var(--text-dark);
-      font-size: 13px;
+      font-size: 15.5px;
       font-weight: 600;
     }
 
@@ -404,7 +425,7 @@
 
     .optional {
       color: var(--text-mid);
-      font-size: 11px;
+      font-size: 15.5px;
       font-weight: 400;
     }
 
@@ -418,7 +439,7 @@
       min-height: 82px;
       padding: 0.75rem;
       resize: vertical;
-      font-size: 14px;
+      font-size: 15.5px;
       line-height: 1.5;
     }
 
@@ -434,7 +455,7 @@
     .saved-note {
       margin-top: 0.65rem;
       color: var(--text-mid);
-      font-size: 12px;
+      font-size: 15.5px;
       text-align: center;
     }
 
@@ -516,7 +537,7 @@
         date: 'Friday, October 23',
         schedule: {
           time: '5:30 PM to 6:30 PM',
-          venue: '',
+          venue: 'SS Washington (Chris and Shelby\u0027s House)',
           address: '1612 E Washington St, Orlando, FL 32803'
         }
       },
@@ -624,7 +645,7 @@
     function loadInvitation(code) {
       const normalizedCode = String(code || '').trim();
       if (!/^[A-Za-z0-9_-]{2,40}$/.test(normalizedCode)) {
-        showStatus('Please enter your personal RSVP password exactly as it appears.', 'error');
+        showStatus('RSVP system will go live Saturday August 8th', 'launch-notice');
         return;
       }
 
@@ -639,7 +660,7 @@
               result && result.message
                 ? result.message
                 : 'We could not find that invitation.',
-              'error'
+              result && result.launchNotice ? 'launch-notice' : 'error'
             );
             return;
           }
@@ -817,6 +838,23 @@
         title.className = 'matrix-event-title';
         title.textContent = eventDefinition.title;
         heading.appendChild(title);
+
+        const schedule = eventDefinition.schedule || {};
+        if (schedule.time) {
+          const time = document.createElement('span');
+          time.className = 'matrix-event-detail matrix-event-time';
+          time.textContent = schedule.time;
+          heading.appendChild(time);
+        }
+
+        const locationParts = [schedule.venue].filter(Boolean);
+        if (locationParts.length) {
+          const location = document.createElement('span');
+          location.className = 'matrix-event-detail matrix-event-location';
+          location.textContent = locationParts.join(' — ');
+          heading.appendChild(location);
+        }
+
         headRow.appendChild(heading);
       });
 
@@ -1147,6 +1185,7 @@
           renderPartySchedule(currentInvitation);
           savedNote.textContent = 'Your latest answers are shown above and may be edited at any time.';
           reportHeight();
+          requestScheduleScroll();
         })
         .withFailureHandler(function () {
           saveButton.disabled = false;
@@ -1226,6 +1265,14 @@
           )
         }, '*');
       }, 25);
+    }
+
+    function requestScheduleScroll() {
+      window.setTimeout(function () {
+        window.top.postMessage({
+          type: 'shelby-chris-rsvp-scroll-top'
+        }, '*');
+      }, 150);
     }
 
     if (window.ResizeObserver) {

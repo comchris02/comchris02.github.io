@@ -47,8 +47,9 @@
   nav a:hover { color: var(--champagne); }
 
   /* SECTIONS */
-  section { padding: 4rem 1.5rem; max-width: 860px; margin: 0 auto; }
+  section { padding: 4rem 1.5rem; max-width: 1290px; margin: 0 auto; }
   section + section { border-top: 1px solid var(--stone); }
+  #rsvp { scroll-margin-top: 4rem; }
 
   h1.hero-name {
     font-family: 'Outfit', sans-serif;
@@ -243,26 +244,6 @@
   .story-list li {
     margin-bottom: 0.35rem;
   }
-
-  /* SCHEDULE */
-  .timeline { list-style: none; position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
-    width: 2px; background: linear-gradient(180deg, var(--champagne), var(--taupe));
-    border-radius: 2px;
-  }
-  .timeline li {
-    position: relative; margin-bottom: 1.5rem;
-  }
-  .timeline li::before {
-    content: ''; position: absolute; left: -1.6rem; top: 6px;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--champagne-deep); border: 2px solid white;
-    box-shadow: 0 0 0 2px rgba(191,160,111,0.18);
-  }
-  .tl-time { font-size: 12px; letter-spacing: 0.1em; color: var(--champagne-deep); font-weight: 500; text-transform: uppercase; margin-bottom: 2px; }
-  .tl-event { font-weight: 500; color: var(--text-dark); font-size: 15px; }
-  .tl-note { font-size: 13.5px; color: var(--text-mid); font-weight: 300; }
 
   /* TRAVEL */
   .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
@@ -700,17 +681,6 @@
       line-height: 1.7;
     }
 
-    .timeline { padding-left: 1.6rem; }
-    .timeline::before { left: 6px; }
-    .timeline li::before {
-      left: -1.25rem;
-      width: 9px;
-      height: 9px;
-    }
-    .tl-time {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-    }
 
     .card-grid { grid-template-columns: 1fr; }
     .email-form {
@@ -752,7 +722,6 @@
 
 <nav>
   <a href="#rsvp">RSVP</a>
-  <a href="#schedule">Schedule</a>
   <a href="#travel">Travel</a>
   <a href="#updates">Updates</a>
   <a href="#attire">Attire</a>
@@ -819,33 +788,11 @@
   </div>
 </div>
 
-<section id="schedule">
-  <div class="section-title">Weekend Events</div>
-  <div style="font-family:'Outfit',sans-serif; font-size:clamp(1.4rem,3.5vw,2rem); font-weight:600; color:#ff6a00; margin-bottom:1rem;">More details coming soon...</div>
-  <div class="section-rule"></div>
-  <ul class="timeline">
-    <li>
-      <div class="tl-time">Friday, October 23, 2026 · Evening</div>
-      <div class="tl-event">Welcome Celebration</div>
-      <div class="tl-note">For out-of-town guests and wedding party</div>
-    </li>
-    <li>
-      <div class="tl-time">Saturday, October 24, 2026 · Evening</div>
-      <div class="tl-event">Ceremony & Reception</div>
-      <div class="tl-note">The Main Event!</div>
-    </li>
-    <li>
-      <div class="tl-time">Sunday, October 25, 2026 · Late morning into late afternoon</div>
-      <div class="tl-event">Send-off Party</div>
-      <div class="tl-note">A reimagined send-off party you won’t want to miss</div>
-    </li>
-  </ul>
-</section>
 
 <section id="rsvp">
-  <div class="section-title">RSVP</div>
+  <div class="section-title">RSVP &amp; Schedule</div>
   <div class="section-rule"></div>
-  <p>Enter your personal RSVP password to respond for each wedding weekend event. You can return with the same password at any time to review or update your responses.</p>
+  <p>Enter your personal RSVP password to respond for each wedding weekend event and have your customized weekend itinerary generated! You can return with the same password at any time to review or update your responses.</p>
 
   <div class="rsvp-embed-shell">
     <div class="rsvp-setup-message" id="rsvpSetupMessage">
@@ -1243,7 +1190,17 @@
       event.origin === 'https://script.google.com' ||
       /^https:\/\/([a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin);
     if (!isLocalRsvpMessage && !isGoogleRsvpMessage) return;
-    if (!event.data || event.data.type !== 'shelby-chris-rsvp-height') return;
+    if (!event.data) return;
+
+    if (event.data.type === 'shelby-chris-rsvp-scroll-top') {
+      const rsvpSection = document.getElementById('rsvp');
+      if (rsvpSection) {
+        rsvpSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+
+    if (event.data.type !== 'shelby-chris-rsvp-height') return;
 
     const requestedHeight = Number(event.data.height);
     if (!Number.isFinite(requestedHeight)) return;
