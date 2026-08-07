@@ -1259,9 +1259,8 @@
       window.setTimeout(function () {
         window.top.postMessage({
           type: 'shelby-chris-rsvp-height',
-          height: Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
+          height: Math.ceil(
+            document.querySelector('.panel').getBoundingClientRect().bottom + 2
           )
         }, '*');
       }, 25);

@@ -313,7 +313,7 @@
   .rsvp-frame {
     display: none;
     width: 100%;
-    min-height: 460px;
+    min-height: 240px;
     border: 0;
     background: transparent;
     overflow: hidden;
@@ -1204,7 +1204,7 @@
 
     const requestedHeight = Number(event.data.height);
     if (!Number.isFinite(requestedHeight)) return;
-    frame.style.height = Math.max(460, Math.ceil(requestedHeight + 16)) + 'px';
+    frame.style.height = Math.max(240, Math.ceil(requestedHeight + 16)) + 'px';
   });
 
   function toggleFAQ(el) {
