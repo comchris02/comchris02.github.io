@@ -335,6 +335,7 @@
     min-height: 460px;
     border: 0;
     background: transparent;
+    overflow: hidden;
   }
 
   /* REGISTRY */
@@ -844,7 +845,7 @@
 <section id="rsvp">
   <div class="section-title">RSVP</div>
   <div class="section-rule"></div>
-  <p>Use the private code included with your invitation to RSVP for each wedding weekend event. You can return with the same code at any time to review or update your responses.</p>
+  <p>Enter your personal RSVP password to respond for each wedding weekend event. You can return with the same password at any time to review or update your responses.</p>
 
   <div class="rsvp-embed-shell">
     <div class="rsvp-setup-message" id="rsvpSetupMessage">
@@ -855,6 +856,7 @@
       id="rsvpFrame"
       title="Wedding weekend RSVP form"
       referrerpolicy="no-referrer"
+      scrolling="no"
     ></iframe>
   </div>
 </section>
@@ -1238,7 +1240,7 @@
 
     const requestedHeight = Number(event.data.height);
     if (!Number.isFinite(requestedHeight)) return;
-    frame.style.height = Math.max(460, Math.min(requestedHeight + 8, 4000)) + 'px';
+    frame.style.height = Math.max(460, Math.ceil(requestedHeight + 16)) + 'px';
   });
 
   function toggleFAQ(el) {

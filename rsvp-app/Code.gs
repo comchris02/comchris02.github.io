@@ -188,7 +188,7 @@ function buildInvitationsFromSetup() {
     ) {
       throw new Error(
         'Rows for household_key "' + householdKey +
-        '" must use the same household name, invite code, and email.'
+        '" must use the same household name, RSVP password, and email.'
       );
     }
 
@@ -269,8 +269,8 @@ function buildInvitationsFromSetup() {
 function rotateInvitationCodeFromMenu() {
   const ui = SpreadsheetApp.getUi();
   const householdPrompt = ui.prompt(
-    'Change invitation code',
-    'Enter the household_key whose code should be replaced. The old code will stop working immediately.',
+    'Change RSVP password',
+    'Enter the household_key whose RSVP password should be replaced. The old password will stop working immediately.',
     ui.ButtonSet.OK_CANCEL
   );
   if (householdPrompt.getSelectedButton() !== ui.Button.OK) return;
@@ -282,8 +282,8 @@ function rotateInvitationCodeFromMenu() {
   }
 
   const codePrompt = ui.prompt(
-    'Choose the new invitation code',
-    'Enter a unique 2–40 character code using letters, numbers, hyphens, or underscores. Do not use spaces.',
+    'Choose the new RSVP password',
+    'Enter a unique 2–40 character password using letters, numbers, hyphens, or underscores. Do not use spaces.',
     ui.ButtonSet.OK_CANCEL
   );
   if (codePrompt.getSelectedButton() !== ui.Button.OK) return;
@@ -323,7 +323,7 @@ function rotateInvitationCodeFromMenu() {
   }
 
   if (String(householdRows[householdRowNumber - 1][3]) === newCodeHash) {
-    ui.alert('That is already the invitation code for this household.');
+    ui.alert('That is already the RSVP password for this household.');
     return;
   }
 
@@ -332,7 +332,7 @@ function rotateInvitationCodeFromMenu() {
       index + 1 !== householdRowNumber &&
       String(householdRows[index][3]) === newCodeHash
     ) {
-      ui.alert('That invitation code is already assigned to another household.');
+      ui.alert('That RSVP password is already assigned to another household.');
       return;
     }
   }
@@ -349,7 +349,7 @@ function rotateInvitationCodeFromMenu() {
     lock.releaseLock();
   }
 
-  ui.alert('The invitation code for ' + householdKey + ' was changed. Use the updated code or link in "Invite Links".');
+  ui.alert('The RSVP password for ' + householdKey + ' was changed. Use the updated password recorded in "Invite Links".');
 }
 
 function doGet() {
@@ -362,7 +362,7 @@ function getInvitation(inviteCode) {
   try {
     const household = findHouseholdByCode_(inviteCode);
     if (!household) {
-      return { ok: false, message: 'We could not find that invitation code. Please check it and try again.' };
+      return { ok: false, message: 'We could not find that personal RSVP password. Please check it and try again.' };
     }
 
     const spreadsheet = getSpreadsheet_();
@@ -408,7 +408,7 @@ function getInvitation(inviteCode) {
 function saveRsvp(inviteCode, submission) {
   const household = findHouseholdByCode_(inviteCode);
   if (!household) {
-    return { ok: false, message: 'We could not find that invitation code.' };
+    return { ok: false, message: 'We could not find that personal RSVP password.' };
   }
 
   if (

@@ -2,7 +2,7 @@
 
 The RSVP form is a private Google Apps Script web app embedded in the public
 wedding website. Guest names and responses stay in a private Google Sheet; do
-not add the guest list, invitation codes, or the Sheet to this repository.
+not add the guest list, personal RSVP passwords, or the Sheet to this repository.
 
 ## 1. Create the private Sheet and script
 
@@ -39,7 +39,7 @@ flags remain private for building each guest's personalized itinerary:
 | `pre_wedding_photos_invited` | Schedule-only flag for Pre-wedding Photos; not shown as an RSVP question |
 | `wedding_invited` | Show Ceremony and Reception |
 | `afterparty_invited` | Show Afterparty |
-| `cabana_bay_sendoff_invited` | Show Cabana Bay Floatoff |
+| `cabana_bay_sendoff_invited` | Show Cabana Bay Float-Off |
 
 Rows with the same `household_key` must use the same household name, invite
 code, and email. Codes may contain letters, numbers, hyphens, and underscores;
@@ -65,7 +65,7 @@ code** to choose a replacement if a code is exposed or sent to the wrong person.
 1. In Apps Script, choose **Deploy → New deployment**.
 2. Select **Web app**.
 3. Set **Execute as** to **Me**.
-4. Set **Who has access** to **Anyone**. The custom invitation code controls
+4. Set **Who has access** to **Anyone**. The personal RSVP password controls
    access to each household; guests should not need a Google account.
 5. Deploy and copy the URL ending in `/exec`.
 
@@ -80,7 +80,7 @@ is being prepared.”
 
 ## 6. Test before using real invitations
 
-Using the fake household's personalized link from **Invite Links**:
+Using the fake household's personal RSVP password from **Invite Links**:
 
 1. Give two fake attendees different combinations of RSVP and schedule-only event invitation flags.
 2. Confirm the RSVP displays guests down the left and answerable events across the top.

@@ -453,7 +453,7 @@
   <main class="panel">
     <div id="lookupPanel">
       <p class="intro">
-        Enter the private invitation code included with your invitation. A personalized link will fill it in automatically.
+        Enter your personal RSVP password.
       </p>
       <form id="lookupForm" class="lookup-form">
         <input
@@ -464,8 +464,8 @@
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
-          placeholder="Invitation code"
-          aria-label="Invitation code"
+          placeholder="Personal RSVP password"
+          aria-label="Personal RSVP password"
           minlength="2"
           maxlength="40"
           required
@@ -492,9 +492,12 @@
   </main>
 
   <script>
-    const initialInviteCodeJson = '<?!= JSON.stringify(initialCode) ?>';
-    const isLocalPreview = initialInviteCodeJson.startsWith('<?!=');
-    const initialInviteCode = isLocalPreview ? '' : JSON.parse(initialInviteCodeJson);
+    const isAppsScriptRuntime =
+      typeof google !== 'undefined' &&
+      google.script &&
+      google.script.run;
+    const isLocalPreview = !isAppsScriptRuntime;
+    const initialInviteCode = '';
     const eventDefinitions = [
       {
         key: 'rehearsal',
@@ -502,7 +505,7 @@
         date: 'Friday, October 23',
         collectResponse: false,
         schedule: {
-          time: '7:00 AM to 8:30 AM',
+          time: 'Friday AM TBD',
           venue: 'Cabana Bay',
           address: '6550 Adventure Way, Orlando, FL 32819'
         }
@@ -512,7 +515,7 @@
         title: 'Ranta Reception',
         date: 'Friday, October 23',
         schedule: {
-          time: '4:30 PM to 6:30 PM',
+          time: '5:30 PM to 6:30 PM',
           venue: '',
           address: '1612 E Washington St, Orlando, FL 32803'
         }
@@ -544,7 +547,7 @@
         date: 'Saturday, October 24',
         collectResponse: false,
         schedule: {
-          time: '3:00 PM to 4:30 PM',
+          time: '3:30 PM to 5:30 PM',
           venue: 'SS Washington (Chris and Shelby\u0027s House)',
           address: '1612 E Washington St, Orlando, FL 32803'
         }
@@ -571,11 +574,11 @@
       },
       {
         key: 'cabanaBaySendoff',
-        title: 'Cabana Bay Floatoff',
+        title: 'Cabana Bay Float-Off',
         date: 'Sunday, October 25',
         schedule: {
           time: '11:00 AM to 1:00 PM',
-          venue: 'Cabana Bay Dockside Pool and Bar',
+          venue: 'Cabana Bay Pool and Bar',
           address: '6550 Adventure Way, Orlando, FL 32819'
         }
       }
@@ -621,7 +624,7 @@
     function loadInvitation(code) {
       const normalizedCode = String(code || '').trim();
       if (!/^[A-Za-z0-9_-]{2,40}$/.test(normalizedCode)) {
-        showStatus('Please enter the invitation code exactly as it appears.', 'error');
+        showStatus('Please enter your personal RSVP password exactly as it appears.', 'error');
         return;
       }
 
@@ -1217,7 +1220,10 @@
       window.setTimeout(function () {
         window.parent.postMessage({
           type: 'shelby-chris-rsvp-height',
-          height: document.documentElement.scrollHeight
+          height: Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          )
         }, '*');
       }, 25);
     }
