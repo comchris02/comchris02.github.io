@@ -1218,7 +1218,7 @@
 
     function reportHeight() {
       window.setTimeout(function () {
-        window.parent.postMessage({
+        window.top.postMessage({
           type: 'shelby-chris-rsvp-height',
           height: Math.max(
             document.body.scrollHeight,

@@ -1235,7 +1235,14 @@
 
   window.addEventListener('message', function (event) {
     const frame = document.getElementById('rsvpFrame');
-    if (!frame || event.source !== frame.contentWindow) return;
+    if (!frame) return;
+
+    const isLocalRsvpMessage =
+      event.origin === 'null' && window.location.protocol === 'file:';
+    const isGoogleRsvpMessage =
+      event.origin === 'https://script.google.com' ||
+      /^https:\/\/([a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin);
+    if (!isLocalRsvpMessage && !isGoogleRsvpMessage) return;
     if (!event.data || event.data.type !== 'shelby-chris-rsvp-height') return;
 
     const requestedHeight = Number(event.data.height);
