@@ -299,6 +299,26 @@
       font-weight: 400;
     }
 
+    .schedule-detail {
+      margin: 0.55rem 0 0 1.25rem;
+      color: var(--text-mid);
+      font-size: 15.5px;
+      line-height: 1.5;
+    }
+
+    .schedule-detail-label {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .schedule-detail-list {
+      margin: 0.25rem 0 0 1.25rem;
+      padding-left: 1.35rem;
+      color: var(--text-mid);
+      font-size: 15.5px;
+      line-height: 1.5;
+    }
+
     .response-intro {
       max-width: 645px;
       margin: 0 auto 0.65rem;
@@ -617,9 +637,37 @@
         title: 'Welcome Celebration',
         date: 'Friday, October 23',
         schedule: {
-          time: '7:00 PM to 9:00 PM',
+          time: '7:00 PM \u2013 9:00 PM',
           venue: 'Primrose Lanes',
-          address: '400 N Primrose Dr, Orlando, FL 32803'
+          address: '400 N Primrose Dr, Orlando, FL 32803',
+          details: [
+            {
+              text: 'Bus transportation will be provided from Universal\u2019s Cabana Bay Beach Resort, please indicate if you wish to be included in the transportation on the RSVP page.'
+            },
+            {
+              text: 'Guests staying elsewhere are welcome to meet us directly at Primrose Lanes. There is ample and free parking.'
+            },
+            {
+              label: 'WHAT TO WEAR',
+              text: 'Casual - Come comfortable - we know many of you will have traveled earlier that day.'
+            },
+            {
+              text: 'Feel free to embrace the retro bowling atmosphere by wearing optional vintage-inspired bowling shirts or 1950s touches - the members of the wedding party will be!'
+            },
+            {
+              text: 'If you\u2019d like to bowl, please remember to bring socks. Bowling shoes will be provided.'
+            },
+            {
+              label: 'WHAT TO EXPECT',
+              items: [
+                'Dinner',
+                'Drinks',
+                'Bowling (completely optional!)',
+                'Karaoke',
+                'An evening in Shelby and Chris\u2019s neighborhood, nicknamed \u201cthe Milk District.\u201d'
+              ]
+            }
+          ]
         }
       },
       {
@@ -663,9 +711,40 @@
         title: 'Ceremony and Reception',
         date: 'Saturday, October 24',
         schedule: {
-          time: '6:30 PM to 11:30 PM',
-          venue: 'Cabana Bay',
-          address: '6550 Adventure Way, Orlando, FL 32819'
+          time: 'Ceremony begins promptly at 6:30 PM',
+          timeNote: 'Reception to follow, concluding at approximately 11:30 PM',
+          venue: 'Universal\u2019s Cabana Bay Beach Resort',
+          address: '6550 Adventure Way, Orlando, FL 32819',
+          details: [
+            {
+              text: 'If you\u2019re staying at Cabana Bay, you\u2019ll simply walk to the venue from your room.'
+            },
+            {
+              text: 'If you\u2019re staying elsewhere, parking will be available and validated for wedding guests.'
+            },
+            {
+              label: 'WHAT TO WEAR',
+              text: 'Tropical Funky Formal'
+            },
+            {
+              text: 'Funky formal is a playful dress code that blends classic, elegant silhouettes with bold colors, vibrant prints, unexpected textures, and statement accessories. This is the right wedding for sequins, feathers, and statement accessories. We have added \u201ctropical\u201d as an invitation to add some floral, fruity, or tiki touches. Tropical is also a reminder of the climate.'
+            },
+            {
+              linkText: 'See the Attire section for more details and inspiration.',
+              linkHref: 'https://shelbyandchrisgethitched.com/#attire'
+            },
+            {
+              label: 'WHAT TO EXPECT',
+              items: [
+                'The ceremony will be entirely outdoors.',
+                {
+                  label: 'Sand',
+                  text: 'The ceremony will take place on the sand near the resort pool. We feel strongly that this is an integral and unique part of our Florida wedding, so we encourage you to take advantage. There will also be an opportunity to get your feet wet, if you so choose. As a final nudge, Shelby plans to be barefoot for the entire reception.'
+                },
+                'Outside of the ceremony, there will be an opportunity to walk exclusively on concrete if you so choose.'
+              ]
+            }
+          ]
         }
       },
       {
@@ -683,9 +762,22 @@
         title: 'Cabana Bay Float-Off',
         date: 'Sunday, October 25',
         schedule: {
-          time: '11:00 AM to 1:00 PM',
-          venue: 'Cabana Bay Pool and Bar',
-          address: '6550 Adventure Way, Orlando, FL 32819'
+          time: '11:00 AM \u2013 1:00 PM',
+          venue: 'Cabana Bay Beach Resort Pool',
+          address: '6550 Adventure Way, Orlando, FL 32819',
+          details: [
+            {
+              text: 'Feel free to arrive and depart whenever you\u2019d like.'
+            },
+            {
+              label: 'WHAT TO WEAR',
+              text: 'Poolside Casual, swimsuits, cover-ups, resort wear, flip flops, your favorite airplane pants, or whatever helps you relax.'
+            },
+            {
+              label: 'WHAT TO EXPECT',
+              text: 'One of the best pieces of wedding advice we received was to leave Sunday unscheduled. There won\u2019t be speeches or formal activities. Simply stop by, float in the lazy river, enjoy the sunshine, grab a light brunch, and say goodbye before everyone heads home. Stay for five minutes or the entire afternoon\u2014the idea is simply to float in and float out.'
+            }
+          ]
         }
       }
     ];
@@ -734,7 +826,7 @@
     function loadInvitation(code) {
       const normalizedCode = String(code || '').replace(/\s+/g, '');
       if (!/^[A-Za-z0-9_-]{2,40}$/.test(normalizedCode)) {
-        showStatus('RSVP system will go live Saturday August 8th', 'launch-notice');
+        showStatus("We couldn\u2019t find that personal RSVP password. It's quite possible that Chris screwed something up (he put together this website himself!) Feel free to text him or Shelby for help.", 'launch-notice');
         return;
       }
 
@@ -885,6 +977,12 @@
           time.textContent = schedule.time;
           item.appendChild(time);
         }
+        if (schedule.timeNote) {
+          const timeNote = document.createElement('p');
+          timeNote.className = 'schedule-time';
+          timeNote.textContent = schedule.timeNote;
+          item.appendChild(timeNote);
+        }
         if (schedule.venue) {
           const venue = document.createElement('p');
           venue.className = 'schedule-venue';
@@ -900,6 +998,46 @@
           address.textContent = schedule.address;
           item.appendChild(address);
         }
+        (schedule.details || []).forEach(function (detail) {
+          const detailParagraph = document.createElement('p');
+          detailParagraph.className = 'schedule-detail';
+          if (detail.label) {
+            const detailLabel = document.createElement('span');
+            detailLabel.className = 'schedule-detail-label';
+            detailLabel.textContent = detail.label + ': ';
+            detailParagraph.appendChild(detailLabel);
+          }
+          if (detail.text) {
+            detailParagraph.appendChild(document.createTextNode(detail.text));
+          }
+          if (detail.linkText && detail.linkHref) {
+            const detailLink = document.createElement('a');
+            detailLink.href = detail.linkHref;
+            detailLink.target = '_top';
+            detailLink.textContent = detail.linkText;
+            detailParagraph.appendChild(detailLink);
+          }
+          item.appendChild(detailParagraph);
+
+          if (detail.items) {
+            const detailList = document.createElement('ul');
+            detailList.className = 'schedule-detail-list';
+            detail.items.forEach(function (detailItem) {
+              const listItem = document.createElement('li');
+              if (typeof detailItem === 'string') {
+                listItem.textContent = detailItem;
+              } else {
+                const itemLabel = document.createElement('span');
+                itemLabel.className = 'schedule-detail-label';
+                itemLabel.textContent = detailItem.label + ': ';
+                listItem.appendChild(itemLabel);
+                listItem.appendChild(document.createTextNode(detailItem.text));
+              }
+              detailList.appendChild(listItem);
+            });
+            item.appendChild(detailList);
+          }
+        });
 
         list.appendChild(item);
       });

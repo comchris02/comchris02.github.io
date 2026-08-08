@@ -153,6 +153,53 @@
   }
   .cd-sep { color: rgba(255,255,255,0.3); font-size: 2rem; line-height: 3.2rem; }
 
+  /* VENUE ANNOUNCEMENT */
+  .venue-announcement {
+    max-width: none;
+    margin: 0;
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #fff4e8 0%, var(--ivory) 55%, #efe5d5 100%);
+    border-top: 3px solid #ff6a00;
+    border-bottom: 1px solid var(--stone);
+  }
+  .venue-announcement-inner {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .venue-announcement-kicker {
+    margin-bottom: 0.75rem;
+    color: #d85400;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+  .venue-announcement h2 {
+    margin: 0 auto 1.25rem;
+    color: var(--charcoal);
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+  .venue-announcement-lead {
+    max-width: 880px;
+    margin: 0 auto 1rem;
+    color: var(--text-dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .venue-announcement-gratitude {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+
   /* STORY TEASER */
   .story-teaser {
     background: #000;
@@ -327,6 +374,11 @@
     color: var(--text-mid);
     font-weight: 300;
   }
+  .faq-a p { margin: 0 0 0.75rem; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { margin: 0.35rem 0 0.85rem; padding-left: 1.35rem; }
+  .faq-a li { margin-bottom: 0.3rem; }
+  .faq-item[id] { scroll-margin-top: 5rem; }
 
   /* FOOTER */
   footer {
@@ -413,6 +465,13 @@
     border-radius: 12px;
     padding: 1.25rem;
     margin-top: 1rem;
+  }
+  .travel-faq-note {
+    margin: 1.25rem 0 0;
+    padding: 1rem 1.1rem;
+    background: var(--ivory);
+    border: 1px solid var(--stone);
+    border-radius: 10px;
   }
 
   @media (max-width: 700px) {
@@ -628,6 +687,16 @@
       line-height: 2.2rem;
     }
 
+    .venue-announcement {
+      padding: 3.25rem 1rem;
+    }
+    .venue-announcement h2 {
+      font-size: clamp(2.25rem, 11vw, 3.35rem);
+    }
+    .venue-announcement-lead {
+      font-size: 1.25rem;
+    }
+
     .reel-track {
       gap: 0.5rem;
       animation-duration: 40s;
@@ -717,6 +786,15 @@
   <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seconds</span></div>
 </div>
 
+<section class="venue-announcement" aria-labelledby="venueAnnouncementTitle">
+  <div class="venue-announcement-inner">
+    <div class="venue-announcement-kicker">The secret&rsquo;s out</div>
+    <h2 id="venueAnnouncementTitle">Our wedding is coming to Cabana Bay Beach Resort!</h2>
+    <p class="venue-announcement-lead">We&rsquo;re beyond excited to share that we&rsquo;ll say &ldquo;I do&rdquo; on the sandy beach at Cabana Bay&mdash;with palms overhead, warm Florida air, and Krakatau calling in the distance...</p>
+    <p class="venue-announcement-gratitude">The outpouring of love you&rsquo;ve already shown us has meant more than we can say. We feel incredibly lucky to be surrounded by so many people who have cheered us on, and we cannot wait to celebrate this joyful, wonderfully us weekend with all of you.</p>
+  </div>
+</section>
+
 <div class="story-teaser">
   <div class="story-teaser-text">Two nerds had a chance encounter, and spent the next two years <span class="accent">circling the globe</span> to be together.</div>
 </div>
@@ -781,7 +859,7 @@
       <p style="margin-top:1rem;"><strong>Why we love this hotel:</strong></p>
       <ul>
         <li>Over 50% discount when booking with our event code!</li>
-        <li>Transportation to and from the wedding venue will be provided</li>
+        <li>Walk from your room to the ceremony and reception</li>
         <li>Family friendly, with "suites" available that sleep up to 6</li>
         <li>Only 1 night refundable deposit needed to book</li>
         <li><strong>Airport transportation:</strong> Universal&rsquo;s SuperStar Shuttle offers service between Orlando International Airport (MCO) and Cabana Bay (fees apply). Call <a href="tel:+18008234733">800-823-4733</a> prior to arrival to inquire or book.</li>
@@ -802,6 +880,8 @@
     <div class="card-title">Flying In</div>
     <p>Orlando International Airport (MCO) is the nearest major airport - and featured in our engagement photos!</p>
   </div>
+
+  <p class="travel-faq-note">Looking for more details about accommodations, transportation, parking, weather, or the wedding weekend? Visit our <a href="#faq">Frequently Asked Questions</a> below.</p>
 </section>
 
 <section id="attire"> <div class="section-title">Attire</div> <div class="section-rule"></div>
@@ -811,6 +891,8 @@
 <p style="margin-bottom:1.25rem;"> Think bold, colorful, tiki florals, retro glam, and 60s/70s touches. Have fun with it! </p>
 
 <p style="margin-bottom:1.25rem;"><strong>NOTE:</strong> Festivities will be outdoors with sand and optional ankle-deep water. Please consider footwear and dress length for that environment!</p>
+
+<p style="margin-bottom:1.25rem;">Have questions about colors, prints, Hawaiian shirts, shoes, or heels? Read our <a href="#ceremony-attire-faq">ceremony and reception attire FAQ</a>.</p>
 
 <div class="story-img-wrap" style="max-width:520px;"> <img src="AttireWeddingCeremony.jpg" alt="Tropical Funky Formal attire inspiration" class="story-img" onclick="openAttireLightbox()" style="cursor:pointer;" /> </div> </section>
   
@@ -1039,9 +1121,150 @@
 <section id="faq">
   <div class="section-title"><em>Questions?</em></div>
   <div class="section-rule"></div>
+
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFAQ(this)">What's the weather like in late October in Orlando? <span class="faq-chevron">▼</span></div>
-    <div class="faq-a">October is a beautiful time in Orlando — warm and sunny with temperatures around 80°F (27°C), low humidity compared to summer, and minimal rain. Perfect tropical wedding weather!</div>
+    <div class="faq-q" onclick="toggleFAQ(this)">Where should I stay? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>We&rsquo;ve reserved a room block at Universal&rsquo;s Cabana Bay Beach Resort, which is also where the wedding and Sunday&rsquo;s Float-Off will take place.</p>
+      <p>Staying at Cabana Bay means you&rsquo;ll be within walking distance of nearly everything during the weekend.</p>
+      <p>Cabana Bay also offers free resort transportation to Universal CityWalk, Islands of Adventure, Epic Universe, and Universal Studios. CityWalk is a free retail and entertainment area with a number of great restaurants and attractions.</p>
+      <p><strong>Note:</strong> We have a room block, but please make these arrangements as quickly as possible. October is also Halloween Horror Nights in Orlando, and rooms are expected to sell out.</p>
+      <p><strong>Helpful tip:</strong> Cabana Bay is one of Universal Orlando&rsquo;s largest resorts. Official check-in begins at 4:00 PM, which is also the busiest time of day. If possible, we recommend either:</p>
+      <ul>
+        <li>Taking advantage of the advance check-in option, or</li>
+        <li>Waiting until after 5:00 PM to visit the front desk.</li>
+      </ul>
+      <p>If your room isn&rsquo;t ready, or you arrive very early, Bell Services is happy to store your luggage.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">When should I arrive? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>If you&rsquo;re attending the full weekend, we&rsquo;d recommend arriving sometime Friday afternoon.</p>
+      <p>If you&rsquo;re only attending the wedding itself, arriving Saturday is perfectly fine.</p>
+      <p>Many of our guests are extending their stay to enjoy Orlando, so it&rsquo;s entirely up to you.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">How should I get to Cabana Bay from the airport? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>Most guests choose one of two options:</p>
+      <p><strong>Uber or Lyft</strong><br />Generally the easiest option. Expect approximately $50&ndash;70 each way depending on traffic and demand. For couples and families, this is often less expensive than shuttle transportation.</p>
+      <p><strong>Universal Superstar Shuttle</strong><br />Available for advance booking by calling 800-823-4733.</p>
+      <p><strong>Current pricing:</strong></p>
+      <ul>
+        <li>Adult &mdash; $39 round trip</li>
+        <li>Child (3&ndash;9) &mdash; $36 round trip</li>
+        <li>Children under 3 &mdash; Complimentary</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Do I need a rental car? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>Not necessarily. Universal provides complimentary transportation between Cabana Bay and the Universal theme parks.</p>
+      <p>If you plan to visit the Disney theme parks, parking will be approximately $35 a day.</p>
+      <p>If you plan to explore Central Florida during your stay, a rental car may be worthwhile.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Is parking available? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p><strong>Staying at Cabana Bay?</strong><br />Hotel parking is $26 per night.</p>
+      <p><strong>Driving to the wedding?</strong><br />Parking will be validated for Saturday evening. Please indicate on your RSVP if you plan to drive.</p>
+      <p>Because we&rsquo;ll be celebrating with cocktails and an afterparty, we encourage rideshare the night of the wedding.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">What is the weather like in late October? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>Late October is one of our favorite times of year in Orlando.</p>
+      <p><strong>Typical weather includes:</strong></p>
+      <ul>
+        <li>Daytime high: 80&ndash;84&deg;F</li>
+        <li>Evening: 72&ndash;77&deg;F</li>
+      </ul>
+      <p>Humidity is lower than during the summer months, making it one of the most comfortable times of year to be outdoors. Florida weather always has the possibility of a passing shower, but late October is generally much drier than the rest of the year.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Is everything outdoors? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Yes. Both the ceremony and reception will be outdoors.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Will we be walking on sand? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Yes. The ceremony takes place on Cabana Bay&rsquo;s sandy beach. There will be a short walk through the sand before the ceremony.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Is the venue wheelchair accessible? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Yes. If you or someone in your party requires accommodations, please let us know during RSVP so we can make appropriate arrangements.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">What food will be served? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Dinner will be served buffet-style with a variety of options. Vegetarian, vegan, and gluten-free meals will be available. Please indicate any dietary needs during RSVP.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Is there an open bar? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Yes. Cocktails, beer, and wine will be hosted during the first portion of the reception. Around 10:00 PM, the bar will transition to a cash bar.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Can I swim during the wedding reception? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>No. If you&rsquo;re hoping to enjoy the pool or lazy river, we&rsquo;d love to see you at Sunday&rsquo;s Float-Off.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Is the ceremony &ldquo;unplugged&rdquo;? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Sort of. There will be some instruction during the ceremony that will help you get the perfect picture before asking that phones be put away. Our photographer will capture the moment, and we&rsquo;ll gladly share photos afterward. Photos are welcome for the rest of the evening.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Can I post photos afterward? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Absolutely! We will also send a link to a shared Google Drive folder after the wedding.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Are children invited? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Your RSVP will indicate exactly who is included in your party. If you believe we&rsquo;ve overlooked someone, please reach out!</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">Can I bring a guest? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Your RSVP will show the number of seats reserved for your party. If you believe we&rsquo;ve overlooked someone, please reach out&mdash;we&rsquo;re happy to chat.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">When do I need to RSVP? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>Please RSVP by August 28.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFAQ(this)">What if my plans change? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a"><p>We understand things happen. You can update your RSVP using your password until August 28. After that, please contact Chris or Shelby as soon as possible so we can update our guest list and meal counts.</p></div>
+  </div>
+
+  <div class="faq-item" id="ceremony-attire-faq">
+    <div class="faq-q" onclick="toggleFAQ(this)">What should I wear to the ceremony and reception? <span class="faq-chevron">▼</span></div>
+    <div class="faq-a">
+      <p>Our dress code is <strong>Tropical Funky Formal</strong>. Funky formal blends classic, elegant silhouettes with bold colors, vibrant prints, unexpected textures, and statement accessories. This is the right wedding for sequins and feathers. We have added &ldquo;tropical&rdquo; as an invitation to include floral, fruity, or tiki touches&mdash;and as a reminder of the climate.</p>
+      <p><strong>Can I wear bright colors or floral prints?</strong><br />You should.</p>
+      <p><strong>Is black appropriate?</strong><br />Sure!</p>
+      <p><strong>Is white appropriate?</strong><br />For ladies, it&rsquo;s traditional that the bride be the only one in all white. You can definitely have white in your dress, such as a white background for flowers. Silver is also approved.</p>
+      <p><strong>Are Hawaiian shirts okay?</strong><br />Totally. We&rsquo;d recommend finding ways to dress it up with a jacket, bow tie, or ascot.</p>
+      <p><strong>What shoes do you recommend?</strong><br />If you have an interest in dipping your feet in the water, we recommend flats, jellies, or shoes that can be easily slipped off.</p>
+      <p><strong>Should I wear heels?</strong><br />Up to you! We want you to be comfortable. If you are happy to navigate in heels through some sand at the ceremony, you will be clear the rest of the night. We will also have no shame in going barefoot once we hit the sand.</p>
+      <p><strong>Need inspiration?</strong><br />There are many Pinterest boards with inspiration readily available, and searching &ldquo;Funky Formal&rdquo; on Google will yield plenty of results.</p>
+    </div>
   </div>
 </section>
 
@@ -1169,6 +1392,21 @@
     answer.style.display = isOpen ? 'none' : 'block';
     chevron.style.transform = isOpen ? 'rotate(0)' : 'rotate(180deg)';
   }
+
+  function openLinkedFAQ() {
+    if (!window.location.hash) return;
+    const item = document.querySelector(window.location.hash);
+    if (!item || !item.classList.contains('faq-item')) return;
+    const question = item.querySelector('.faq-q');
+    const answer = item.querySelector('.faq-a');
+    const chevron = item.querySelector('.faq-chevron');
+    if (!question || !answer || !chevron) return;
+    answer.style.display = 'block';
+    chevron.style.transform = 'rotate(180deg)';
+  }
+
+  window.addEventListener('DOMContentLoaded', openLinkedFAQ);
+  window.addEventListener('hashchange', openLinkedFAQ);
 
 
   function openLightbox(index, imageSet = galleryImages) {

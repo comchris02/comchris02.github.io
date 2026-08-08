@@ -4,6 +4,10 @@ const RSVP_CONFIG = Object.freeze({
   householdsSheet: 'Households',
   guestsSheet: 'Guests',
   inviteLinksSheet: 'Invite Links',
+  notificationRecipients: [
+    'chris.wessels@gmail.com',
+    'shelby.honea@gmail.com'
+  ],
   spreadsheetProperty: 'RSVP_SPREADSHEET_ID',
   maxShortTextLength: 200,
   maxLongTextLength: 500
@@ -83,7 +87,25 @@ function onOpen() {
     .addItem('2. Build invitations from Guest Setup', 'buildInvitationsFromSetup')
     .addSeparator()
     .addItem('Change one household code', 'rotateInvitationCodeFromMenu')
+    .addItem('Send test RSVP notification email', 'sendTestRsvpNotificationEmail')
     .addToUi();
+}
+
+function sendTestRsvpNotificationEmail() {
+  MailApp.sendEmail({
+    to: RSVP_CONFIG.notificationRecipients.join(','),
+    subject: 'Wedding RSVP email notifications are working',
+    body: [
+      'This is a test from the Shelby and Chris wedding RSVP system.',
+      '',
+      'Future RSVP submissions and updates will be emailed to both recipients.'
+    ].join('\n'),
+    name: 'Shelby and Chris Wedding RSVP'
+  });
+
+  SpreadsheetApp.getUi().alert(
+    'The test RSVP notification was sent to Chris and Shelby.'
+  );
 }
 
 function setupRsvpSystem() {
@@ -379,7 +401,7 @@ function getInvitation(inviteCode) {
       return {
         ok: false,
         launchNotice: true,
-        message: 'RSVP system will go live Saturday August 8th'
+        message: "We couldn\u2019t find that personal RSVP password. It's quite possible that Chris screwed something up (he put together this website himself!) Feel free to text him or Shelby for help."
       };
     }
 
@@ -485,6 +507,8 @@ function saveRsvp(inviteCode, submission) {
   const lock = LockService.getScriptLock();
   const responseOffset = 3 + RSVP_INVITED_HEADERS.length;
   const persistedValueCount = RSVP_EVENTS.length;
+  const wasUpdate = Boolean(household.updatedAt);
+  let notificationGuests = [];
 
   lock.waitLock(15000);
   try {
@@ -531,6 +555,13 @@ function saveRsvp(inviteCode, submission) {
       };
     }
 
+    notificationGuests = pendingUpdates.map(function (update) {
+      return {
+        name: String(guestValues[update.rowIndex][2]),
+        responses: update.values
+      };
+    });
+
     // Validate the complete party before changing any response cells. Then write
     // all guest event responses in one batch so validation failures cannot leave
     // the party partially updated.
@@ -573,10 +604,81 @@ function saveRsvp(inviteCode, submission) {
     lock.releaseLock();
   }
 
+  try {
+    sendRsvpNotification_(
+      household.name,
+      wasUpdate,
+      notificationGuests,
+      partyInfo
+    );
+  } catch (error) {
+    console.error('The RSVP was saved, but its notification email could not be sent.', error);
+  }
+
   return {
     ok: true,
     message: 'Your RSVP has been saved. You can return with the same personal RSVP password to make changes.'
   };
+}
+
+function sendRsvpNotification_(householdName, wasUpdate, guests, partyInfo) {
+  const eventLabels = {
+    rantaReception: 'Ranta Reception',
+    welcomeCelebration: 'Welcome Celebration',
+    wedding: 'Ceremony and Reception',
+    afterparty: 'Afterparty',
+    cabanaBaySendoff: 'Cabana Bay Float-Off',
+    welcomeTransportation: 'Bus Transportation for Welcome Celebration'
+  };
+  const orlandoLabels = {
+    all: 'All of us',
+    some: 'Some of us',
+    none: 'None of us'
+  };
+  const arrivalLabels = {
+    'cabana-bay': 'Staying at Cabana Bay',
+    rideshare: 'Uber / rideshare',
+    'drive-park': 'Drive and park'
+  };
+  const action = wasUpdate ? 'updated' : 'submitted';
+  const lines = [
+    householdName + ' has ' + action + ' their RSVP.',
+    '',
+    'Event responses'
+  ];
+
+  guests.forEach(function (guest) {
+    lines.push('', guest.name);
+    RSVP_EVENTS.forEach(function (eventDefinition, eventIndex) {
+      const response = guest.responses[eventIndex];
+      const label = eventLabels[eventDefinition.key];
+      if (!label || (response !== 'yes' && response !== 'no')) return;
+      lines.push('  ' + label + ': ' + (response === 'yes' ? 'Yes' : 'No'));
+    });
+  });
+
+  lines.push(
+    '',
+    'Household details',
+    'Email: ' + String(partyInfo.contactEmail || ''),
+    'Phone: ' + String(partyInfo.contactPhone || ''),
+    'Been to Orlando before: ' + (orlandoLabels[partyInfo.visitedOrlando] || ''),
+    'Dance-floor song: ' + String(partyInfo.danceFloorSong || ''),
+    'Karaoke song: ' + String(partyInfo.karaokeSong || ''),
+    'Anticipated hotel: ' + String(partyInfo.anticipatedHotel || ''),
+    'Saturday ceremony transportation: ' + (
+      arrivalLabels[partyInfo.cabanaBayArrival] || ''
+    ),
+    'Accessibility needs: ' + String(partyInfo.accessibilityNeeds || ''),
+    'Dietary restrictions: ' + String(partyInfo.dietaryRestrictions || '')
+  );
+
+  MailApp.sendEmail({
+    to: RSVP_CONFIG.notificationRecipients.join(','),
+    subject: 'Wedding RSVP ' + (wasUpdate ? 'updated: ' : 'received: ') + householdName,
+    body: lines.join('\n'),
+    name: 'Shelby and Chris Wedding RSVP'
+  });
 }
 
 function getSpreadsheet_() {
