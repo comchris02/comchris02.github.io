@@ -184,6 +184,13 @@
       text-align: center;
     }
 
+    .rsvp-deadline {
+      margin: -0.75rem auto 1.5rem;
+      color: var(--orange);
+      font-weight: 700;
+      text-align: center;
+    }
+
     .contact-info {
       margin: 0 0 1.5rem;
       border: 1px solid var(--stone);
@@ -552,6 +559,7 @@
       <p class="household-subtitle">
         Choose Yes or No for each invited guest and event, then provide one set of weekend details for your party. You can revisit this page with the same personal RSVP password to update your answers.
       </p>
+      <p class="rsvp-deadline">Please provide your RSVP responses by August 28, 2026.</p>
       <section class="contact-info" aria-labelledby="contactHeading">
         <h3 id="contactHeading" class="contact-heading">First off, we'd love to have up-to-date contact info for everyone!</h3>
         <p class="contact-intro">Could you start by providing a good email address and phone number for event updates?</p>
@@ -802,6 +810,13 @@
         return {
           definition: eventDefinition,
           guests: invitedGuests,
+          allInvitedGuestsDeclined:
+            eventDefinition.collectResponse !== false &&
+            !eventDefinition.scheduleRequiresYes &&
+            invitedGuests.length > 0 &&
+            invitedGuests.every(function (guest) {
+              return guest.events[eventDefinition.key].response === 'no';
+            }),
           order: typeof eventDefinition.scheduleOrder === 'number'
             ? eventDefinition.scheduleOrder
             : eventIndex
@@ -854,6 +869,12 @@
             event.guests.map(function (guest) { return guest.name; })
           ) + ' only)';
           title.appendChild(attendeeNote);
+        }
+        if (event.allInvitedGuestsDeclined) {
+          const declinedNote = document.createElement('span');
+          declinedNote.className = 'schedule-attendees';
+          declinedNote.textContent = ' (Regretfully, not attending)';
+          title.appendChild(declinedNote);
         }
         item.appendChild(title);
 
