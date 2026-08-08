@@ -123,6 +123,20 @@
     .status.info { background: #f5f0e8; color: var(--text-mid); }
     .status.success { background: #e8f3ed; color: var(--success); }
     .status.error { background: #faece8; color: var(--error); }
+
+    .inline-validation-error {
+      grid-column: 1 / -1;
+      margin: 0;
+      border: 2px solid var(--error);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      background: #faece8;
+      color: var(--error);
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.4;
+      text-align: center;
+    }
     .status.launch-notice {
       background: #f5ede0;
       color: var(--text-dark);
@@ -581,12 +595,12 @@
       },
       {
         key: 'welcomeTransportation',
-        title: 'Free Round Trip Bus Transportation',
+        title: 'Bus Transportation for Welcome Celebration',
         scheduleTitle: 'Bus Transportation to the Welcome Celebration',
         date: 'Friday, October 23',
         scheduleRequiresYes: true,
         scheduleOrder: 1.5,
-        rsvpDetails: ['Departs 6:10pm', 'From Cabana Bay to Primrose'],
+        rsvpDetails: ['Departs 6:10pm', 'Free! Round Trip from/to Cabana Bay'],
         schedule: {
           time: 'Departs 6:10pm from Cabana Bay Main Entrance',
           venue: 'Returns to Cabana Bay at approximately 9:45pm',
@@ -672,6 +686,8 @@
       event.preventDefault();
       saveInvitation();
     });
+
+    rsvpForm.addEventListener('change', clearInlineValidationError);
 
     document.getElementById('differentCodeButton').addEventListener('click', function () {
       currentCode = '';
@@ -1111,6 +1127,8 @@
     function saveInvitation() {
       if (!currentInvitation || !currentCode) return;
 
+      clearInlineValidationError();
+
       const submission = {
         guests: [],
         partyInfo: {}
@@ -1151,7 +1169,7 @@
           if (!checked && !validationError) {
             validationError = {
               element: guestList.querySelector('input[name="' + cssEscape(inputName) + '"]'),
-              message: 'Please select Yes or No for every invited guest and event.'
+              message: 'Please select Yes or No for ' + guest.name + ' for ' + eventDefinition.title + '.'
             };
           }
           guestSubmission.events[eventDefinition.key] = checked ? checked.value : '';
@@ -1191,8 +1209,8 @@
       };
 
       if (validationError) {
-        showStatus(validationError.message, 'error');
-        if (validationError.element) validationError.element.focus();
+        clearStatus();
+        showInlineValidationError(validationError);
         return;
       }
 
@@ -1318,6 +1336,47 @@
           )
         }, '*');
       }, 25);
+    }
+
+    function clearInlineValidationError() {
+      const existingError = document.getElementById('rsvp-inline-validation-error');
+      if (existingError) existingError.remove();
+      document.querySelectorAll('[aria-describedby="rsvp-inline-validation-error"]').forEach(function (element) {
+        element.removeAttribute('aria-describedby');
+      });
+    }
+
+    function showInlineValidationError(validationError) {
+      if (!validationError || !validationError.element) return;
+
+      const anchor = validationError.element.closest(
+        '.event-rsvp-card, .question, .contact-field'
+      ) || validationError.element;
+      const message = document.createElement('p');
+      message.id = 'rsvp-inline-validation-error';
+      message.className = 'inline-validation-error';
+      message.setAttribute('role', 'alert');
+      message.textContent = validationError.message;
+      anchor.parentNode.insertBefore(message, anchor);
+      validationError.element.setAttribute('aria-describedby', message.id);
+
+      reportHeight();
+      window.setTimeout(function () {
+        message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (window.top !== window) {
+          window.top.postMessage({
+            type: 'shelby-chris-rsvp-scroll-to',
+            offset: Math.max(0, Math.round(
+              message.getBoundingClientRect().top + window.scrollY - 24
+            ))
+          }, '*');
+        }
+        try {
+          validationError.element.focus({ preventScroll: true });
+        } catch (error) {
+          validationError.element.focus();
+        }
+      }, 75);
     }
 
     function requestScheduleScroll() {

@@ -1200,6 +1200,18 @@
       return;
     }
 
+    if (event.data.type === 'shelby-chris-rsvp-scroll-to') {
+      const offset = Number(event.data.offset);
+      if (Number.isFinite(offset)) {
+        const targetTop = window.scrollY + frame.getBoundingClientRect().top + offset;
+        window.scrollTo({
+          top: Math.max(0, targetTop - 24),
+          behavior: 'smooth'
+        });
+      }
+      return;
+    }
+
     if (event.data.type !== 'shelby-chris-rsvp-height') return;
 
     const requestedHeight = Number(event.data.height);
