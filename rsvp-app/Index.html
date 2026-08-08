@@ -152,6 +152,40 @@
       text-align: center;
     }
 
+    .contact-info {
+      margin: 0 0 1.5rem;
+      border: 1px solid var(--stone);
+      border-radius: 14px;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      background: #f5ede0;
+    }
+
+    .contact-heading {
+      margin: 0 0 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.35;
+    }
+
+    .contact-intro {
+      margin: 0 0 1rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .contact-field {
+      display: grid;
+      gap: 0.4rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
     .party-schedule {
       margin: 0 0 1.5rem;
       border: 1px solid var(--stone);
@@ -221,87 +255,70 @@
       font-weight: 600;
     }
 
-    .matrix-intro {
-      margin: 0 0 0.65rem;
+    .schedule-venue.schedule-venue-normal {
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+
+    .response-intro {
+      max-width: 645px;
+      margin: 0 auto 0.65rem;
       color: var(--text-mid);
       font-size: 15.5px;
       line-height: 1.5;
       text-align: center;
     }
 
-    .rsvp-matrix-wrap {
-      overflow-x: auto;
-      border: 1px solid var(--stone);
-      border-radius: 14px;
-      -webkit-overflow-scrolling: touch;
+    .event-response-choices { min-width: 130px; }
+    .event-response-choices .choice span { padding: 0.5rem 0.3rem; font-size: 15.5px; }
+
+    .event-rsvp-list {
+      display: grid;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      gap: 1rem;
     }
 
-    .rsvp-matrix {
-      width: 100%;
-      min-width: max-content;
-      border-collapse: separate;
-      border-spacing: 0;
+    .event-rsvp-card {
+      overflow: hidden;
+      border: 1px solid var(--stone);
+      border-radius: 14px;
       background: white;
     }
 
-    .rsvp-matrix th,
-    .rsvp-matrix td {
-      border-right: 1px solid var(--stone);
-      border-bottom: 1px solid var(--stone);
-      padding: 0.7rem;
-      vertical-align: middle;
-    }
-
-    .rsvp-matrix tr:last-child th,
-    .rsvp-matrix tr:last-child td { border-bottom: 0; }
-    .rsvp-matrix th:last-child,
-    .rsvp-matrix td:last-child { border-right: 0; }
-
-    .rsvp-matrix thead th {
-      min-width: 150px;
+    .event-rsvp-header {
+      padding: 1rem;
       background: #f5ede0;
       text-align: center;
     }
 
-    .rsvp-matrix .guest-column {
-      position: sticky;
-      left: 0;
-      z-index: 2;
-      min-width: 165px;
-      max-width: 220px;
-      background: white;
+    .event-rsvp-title {
+      margin: 0;
       font-family: 'Outfit', sans-serif;
-      font-size: 15.5px;
-      font-weight: 600;
-      text-align: left;
-    }
-
-    .rsvp-matrix thead .guest-column {
-      z-index: 3;
-      background: #f5ede0;
-    }
-
-    .matrix-event-title {
-      display: block;
-      font-size: 15.5px;
+      font-size: 1.15rem;
       line-height: 1.3;
     }
 
-    .matrix-event-detail {
-      display: block;
-      margin-top: 0.25rem;
+    .event-rsvp-detail {
+      margin: 0.3rem 0 0;
       color: var(--text-mid);
-      font-size: 15.5px;
-      font-weight: 400;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
-    .matrix-event-location { margin-top: 0.15rem; }
+    .event-rsvp-guest {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(130px, 170px);
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--stone);
+    }
 
-    .matrix-response-cell { text-align: center; }
-    .matrix-not-invited { color: var(--text-mid); font-size: 18px; }
-    .matrix-choices { min-width: 112px; }
-    .matrix-choices .choice span { padding: 0.5rem 0.3rem; font-size: 15.5px; }
+    .event-rsvp-guest-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+    }
 
     .sr-only {
       position: absolute;
@@ -462,10 +479,7 @@
     @media (max-width: 620px) {
       .lookup-form { flex-direction: column; }
       .lookup-form .button { width: 100%; }
-      .question-grid { grid-template-columns: 1fr; }
-      .rsvp-matrix .guest-column { min-width: 130px; max-width: 150px; }
-      .rsvp-matrix thead th { min-width: 132px; }
-      .matrix-choices { min-width: 100px; }
+      .question-grid, .contact-grid { grid-template-columns: 1fr; }
       legend { min-height: 0; }
     }
   </style>
@@ -498,11 +512,25 @@
     <div id="status" class="status" role="status" aria-live="polite"></div>
 
     <form id="rsvpForm" class="rsvp-form">
+      <section id="partySchedule" class="party-schedule" hidden></section>
       <h2 id="householdHeading" class="household-heading"></h2>
       <p class="household-subtitle">
-        Choose Yes or No for each invited guest and event, then provide one set of weekend details for your party. You can revisit this page with the same invitation link to update your answers.
+        Choose Yes or No for each invited guest and event, then provide one set of weekend details for your party. You can revisit this page with the same personal RSVP password to update your answers.
       </p>
-      <section id="partySchedule" class="party-schedule" hidden></section>
+      <section class="contact-info" aria-labelledby="contactHeading">
+        <h3 id="contactHeading" class="contact-heading">First off, we'd love to have up-to-date contact info for everyone!</h3>
+        <p class="contact-intro">Could you start by providing a good email address and phone number for event updates?</p>
+        <div class="contact-grid">
+          <label class="contact-field">
+            <span>Email address</span>
+            <input id="contactEmail" class="question-input" type="email" autocomplete="email" maxlength="200" required>
+          </label>
+          <label class="contact-field">
+            <span>Phone number</span>
+            <input id="contactPhone" class="question-input" type="tel" autocomplete="tel" maxlength="40" required>
+          </label>
+        </div>
+      </section>
       <div id="guestList"></div>
       <div class="form-actions">
         <button id="saveButton" class="button" type="submit">Save RSVP</button>
@@ -537,7 +565,7 @@
         date: 'Friday, October 23',
         schedule: {
           time: '5:30 PM to 6:30 PM',
-          venue: 'SS Washington (Chris and Shelby\u0027s House)',
+          venue: 'Chris and Shelby\u0027s House',
           address: '1612 E Washington St, Orlando, FL 32803'
         }
       },
@@ -549,6 +577,20 @@
           time: '7:00 PM to 9:00 PM',
           venue: 'Primrose Lanes',
           address: '400 N Primrose Dr, Orlando, FL 32803'
+        }
+      },
+      {
+        key: 'welcomeTransportation',
+        title: 'Free Round Trip Bus Transportation',
+        scheduleTitle: 'Bus Transportation to the Welcome Celebration',
+        date: 'Friday, October 23',
+        scheduleRequiresYes: true,
+        scheduleOrder: 1.5,
+        rsvpDetails: ['Departs 6:10pm', 'From Cabana Bay to Primrose'],
+        schedule: {
+          time: 'Departs 6:10pm from Cabana Bay Main Entrance',
+          venue: 'Returns to Cabana Bay at approximately 9:45pm',
+          emphasizeVenue: false
         }
       },
       {
@@ -618,6 +660,8 @@
     const partySchedule = document.getElementById('partySchedule');
     const saveButton = document.getElementById('saveButton');
     const savedNote = document.getElementById('savedNote');
+    const contactEmailInput = document.getElementById('contactEmail');
+    const contactPhoneInput = document.getElementById('contactPhone');
 
     lookupForm.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -678,15 +722,18 @@
 
     function renderInvitation(invitation) {
       document.getElementById('householdHeading').textContent = invitation.householdName;
+      const partyInfo = invitation.partyInfo || {};
+      contactEmailInput.value = partyInfo.contactEmail || '';
+      contactPhoneInput.value = partyInfo.contactPhone || '';
       guestList.replaceChildren();
       renderPartySchedule(invitation);
 
-      const matrixIntro = document.createElement('p');
-      matrixIntro.className = 'matrix-intro';
-      matrixIntro.textContent = 'Guests are listed down the left and events across the top. A dash means that guest is not invited to that event.';
-      guestList.appendChild(matrixIntro);
-      guestList.appendChild(createRsvpMatrix(invitation.guests));
-      guestList.appendChild(createWeekendQuestions(invitation.partyInfo || {}));
+      const responseIntro = document.createElement('p');
+      responseIntro.className = 'response-intro';
+      responseIntro.textContent = 'Each event is listed separately with its invited guests below.';
+      guestList.appendChild(responseIntro);
+      guestList.appendChild(createEventRsvpList(invitation.guests));
+      guestList.appendChild(createWeekendQuestions(partyInfo));
 
       savedNote.textContent = invitation.updatedAt
         ? 'These answers were previously saved. Saving again will replace them.'
@@ -706,17 +753,26 @@
         return;
       }
 
-      const invitedEvents = eventDefinitions.map(function (eventDefinition) {
+      const invitedEvents = eventDefinitions.filter(function (eventDefinition) {
+        return eventDefinition.includeInSchedule !== false;
+      }).map(function (eventDefinition, eventIndex) {
         const invitedGuests = invitation.guests.filter(function (guest) {
           const eventState = guest.events[eventDefinition.key];
-          return eventState && eventState.invited;
+          return eventState && eventState.invited && (
+            !eventDefinition.scheduleRequiresYes || eventState.response === 'yes'
+          );
         });
         return {
           definition: eventDefinition,
-          guests: invitedGuests
+          guests: invitedGuests,
+          order: typeof eventDefinition.scheduleOrder === 'number'
+            ? eventDefinition.scheduleOrder
+            : eventIndex
         };
       }).filter(function (event) {
         return event.guests.length > 0;
+      }).sort(function (left, right) {
+        return left.order - right.order;
       });
 
       if (invitedEvents.length === 0) {
@@ -750,7 +806,9 @@
 
         const title = document.createElement('h4');
         title.className = 'schedule-event-title';
-        title.appendChild(document.createTextNode(event.definition.title));
+        title.appendChild(document.createTextNode(
+          event.definition.scheduleTitle || event.definition.title
+        ));
 
         if (event.guests.length < invitation.guests.length) {
           const attendeeNote = document.createElement('span');
@@ -772,6 +830,9 @@
         if (schedule.venue) {
           const venue = document.createElement('p');
           venue.className = 'schedule-venue';
+          if (schedule.emphasizeVenue === false) {
+            venue.classList.add('schedule-venue-normal');
+          }
           venue.textContent = schedule.venue;
           item.appendChild(venue);
         }
@@ -795,7 +856,7 @@
       return names.slice(0, -1).join(', ') + ', and ' + names[names.length - 1];
     }
 
-    function createRsvpMatrix(guests) {
+    function createEventRsvpList(guests) {
       const visibleEvents = eventDefinitions.filter(function (eventDefinition) {
         if (eventDefinition.collectResponse === false) return false;
         return guests.some(function (guest) {
@@ -804,101 +865,61 @@
         });
       });
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'rsvp-matrix-wrap';
-
-      const table = document.createElement('table');
-      table.className = 'rsvp-matrix';
-
-      const caption = document.createElement('caption');
-      caption.className = 'sr-only';
-      caption.textContent = 'RSVP responses by guest and event';
-      table.appendChild(caption);
-
-      const head = document.createElement('thead');
-      const headRow = document.createElement('tr');
-      const guestHeading = document.createElement('th');
-      guestHeading.className = 'guest-column';
-      guestHeading.scope = 'col';
-      guestHeading.textContent = 'Guest';
-      headRow.appendChild(guestHeading);
+      const list = document.createElement('div');
+      list.className = 'event-rsvp-list';
 
       visibleEvents.forEach(function (eventDefinition) {
-        const heading = document.createElement('th');
-        heading.scope = 'col';
+        const card = document.createElement('section');
+        card.className = 'event-rsvp-card';
 
-        if (eventDefinition.date) {
-          const date = document.createElement('span');
-          date.className = 'event-date';
-          date.textContent = eventDefinition.date;
-          heading.appendChild(date);
-        }
+        const header = document.createElement('div');
+        header.className = 'event-rsvp-header';
 
-        const title = document.createElement('span');
-        title.className = 'matrix-event-title';
+        const date = document.createElement('span');
+        date.className = 'event-date';
+        date.textContent = eventDefinition.date;
+        header.appendChild(date);
+
+        const title = document.createElement('h4');
+        title.className = 'event-rsvp-title';
         title.textContent = eventDefinition.title;
-        heading.appendChild(title);
+        header.appendChild(title);
 
         const schedule = eventDefinition.schedule || {};
-        if (schedule.time) {
-          const time = document.createElement('span');
-          time.className = 'matrix-event-detail matrix-event-time';
-          time.textContent = schedule.time;
-          heading.appendChild(time);
-        }
+        const rsvpDetails = eventDefinition.rsvpDetails || [schedule.time, schedule.venue];
+        rsvpDetails.filter(Boolean).forEach(function (detail) {
+          const detailElement = document.createElement('p');
+          detailElement.className = 'event-rsvp-detail';
+          detailElement.textContent = detail;
+          header.appendChild(detailElement);
+        });
+        card.appendChild(header);
 
-        const locationParts = [schedule.venue].filter(Boolean);
-        if (locationParts.length) {
-          const location = document.createElement('span');
-          location.className = 'matrix-event-detail matrix-event-location';
-          location.textContent = locationParts.join(' — ');
-          heading.appendChild(location);
-        }
-
-        headRow.appendChild(heading);
-      });
-
-      head.appendChild(headRow);
-      table.appendChild(head);
-
-      const body = document.createElement('tbody');
-      guests.forEach(function (guest) {
-        const row = document.createElement('tr');
-        row.dataset.guestId = guest.id;
-
-        const name = document.createElement('th');
-        name.className = 'guest-column';
-        name.scope = 'row';
-        name.textContent = guest.name;
-        row.appendChild(name);
-
-        visibleEvents.forEach(function (eventDefinition) {
-          const cell = document.createElement('td');
-          cell.className = 'matrix-response-cell';
+        guests.forEach(function (guest) {
           const eventState = guest.events[eventDefinition.key];
+          if (!eventState || !eventState.invited) return;
 
-          if (eventState && eventState.invited) {
-            cell.appendChild(createMatrixChoices(guest, eventDefinition, eventState.response));
-          } else {
-            cell.classList.add('matrix-not-invited');
-            cell.textContent = '—';
-            cell.setAttribute('aria-label', guest.name + ' is not invited to ' + eventDefinition.title);
-          }
+          const row = document.createElement('div');
+          row.className = 'event-rsvp-guest';
+          row.dataset.guestId = guest.id;
 
-          row.appendChild(cell);
+          const name = document.createElement('span');
+          name.className = 'event-rsvp-guest-name';
+          name.textContent = guest.name;
+          row.appendChild(name);
+          row.appendChild(createResponseChoices(guest, eventDefinition, eventState.response));
+          card.appendChild(row);
         });
 
-        body.appendChild(row);
+        list.appendChild(card);
       });
 
-      table.appendChild(body);
-      wrapper.appendChild(table);
-      return wrapper;
+      return list;
     }
 
-    function createMatrixChoices(guest, eventDefinition, selectedResponse) {
+    function createResponseChoices(guest, eventDefinition, selectedResponse) {
       const choices = document.createElement('div');
-      choices.className = 'choices matrix-choices';
+      choices.className = 'choices event-response-choices';
 
       ['yes', 'no'].forEach(function (value) {
         const label = document.createElement('label');
@@ -1095,9 +1116,23 @@
         partyInfo: {}
       };
       let validationError = null;
+      const contactEmail = contactEmailInput.value.trim();
+      const contactPhone = contactPhoneInput.value.trim();
+      const contactPhoneDigits = (contactPhone.match(/\d/g) || []).length;
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
+        validationError = {
+          element: contactEmailInput,
+          message: 'Please enter a valid email address for event updates.'
+        };
+      } else if (contactPhone.length > 40 || contactPhoneDigits < 7) {
+        validationError = {
+          element: contactPhoneInput,
+          message: 'Please enter a valid phone number for event updates.'
+        };
+      }
 
       currentInvitation.guests.forEach(function (guest) {
-        const row = guestList.querySelector('[data-guest-id="' + cssEscape(guest.id) + '"]');
         const guestSubmission = {
           id: guest.id,
           events: {}
@@ -1109,13 +1144,13 @@
           if (!eventState || !eventState.invited) return;
 
           const inputName = guest.id + '-' + eventDefinition.key;
-          const checked = row.querySelector(
+          const checked = guestList.querySelector(
             'input[name="' + cssEscape(inputName) + '"]:checked'
           );
 
           if (!checked && !validationError) {
             validationError = {
-              element: row.querySelector('input[name="' + cssEscape(inputName) + '"]'),
+              element: guestList.querySelector('input[name="' + cssEscape(inputName) + '"]'),
               message: 'Please select Yes or No for every invited guest and event.'
             };
           }
@@ -1144,6 +1179,8 @@
       }
 
       submission.partyInfo = {
+        contactEmail: contactEmail,
+        contactPhone: contactPhone,
         visitedOrlando: visitedOrlando ? visitedOrlando.value : '',
         danceFloorSong: guestList.querySelector('[data-field="danceFloorSong"]').value,
         karaokeSong: guestList.querySelector('[data-field="karaokeSong"]').value,
@@ -1181,6 +1218,17 @@
           }
 
           showStatus(result.message, 'success');
+          submission.guests.forEach(function (submittedGuest) {
+            const currentGuest = currentInvitation.guests.find(function (guest) {
+              return guest.id === submittedGuest.id;
+            });
+            if (!currentGuest) return;
+            Object.keys(submittedGuest.events).forEach(function (eventKey) {
+              if (currentGuest.events[eventKey]) {
+                currentGuest.events[eventKey].response = submittedGuest.events[eventKey];
+              }
+            });
+          });
           currentInvitation.updatedAt = new Date().toISOString();
           renderPartySchedule(currentInvitation);
           savedNote.textContent = 'Your latest answers are shown above and may be edited at any time.';
@@ -1198,9 +1246,13 @@
       function createPreviewGuest(id, name, invitedEventKeys) {
         const events = {};
         eventDefinitions.forEach(function (eventDefinition) {
+          const invited = invitedEventKeys.indexOf(eventDefinition.key) !== -1 || (
+            eventDefinition.key === 'welcomeTransportation' &&
+            invitedEventKeys.indexOf('welcomeCelebration') !== -1
+          );
           events[eventDefinition.key] = {
-            invited: invitedEventKeys.indexOf(eventDefinition.key) !== -1,
-            response: ''
+            invited: invited,
+            response: eventDefinition.key === 'welcomeTransportation' && invited ? 'yes' : ''
           };
         });
         return { id: id, name: name, events: events };
@@ -1211,6 +1263,8 @@
         householdName: 'Local RSVP Preview',
         updatedAt: new Date().toISOString(),
         partyInfo: {
+          contactEmail: 'sample@example.com',
+          contactPhone: '(407) 555-0123',
           visitedOrlando: '',
           danceFloorSong: '',
           karaokeSong: '',

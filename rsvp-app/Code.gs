@@ -17,8 +17,16 @@ const RSVP_EVENTS = Object.freeze([
   { key: 'preWeddingPhotos', invitedHeader: 'pre_wedding_photos_invited', responseHeader: 'pre_wedding_photos_response', collectResponse: false },
   { key: 'wedding', invitedHeader: 'wedding_invited', responseHeader: 'wedding_response' },
   { key: 'afterparty', invitedHeader: 'afterparty_invited', responseHeader: 'afterparty_response' },
-  { key: 'cabanaBaySendoff', invitedHeader: 'cabana_bay_sendoff_invited', responseHeader: 'cabana_bay_sendoff_response' }
+  { key: 'cabanaBaySendoff', invitedHeader: 'cabana_bay_sendoff_invited', responseHeader: 'cabana_bay_sendoff_response' },
+  { key: 'welcomeTransportation', invitedHeader: 'welcome_celebration_invited', responseHeader: 'welcome_transportation_response' }
 ]);
+
+const RSVP_INVITED_HEADERS = Object.freeze(RSVP_EVENTS.reduce(function (headers, eventDefinition) {
+  if (headers.indexOf(eventDefinition.invitedHeader) === -1) {
+    headers.push(eventDefinition.invitedHeader);
+  }
+  return headers;
+}, []));
 
 const RSVP_HOUSEHOLD_FIELDS = Object.freeze([
   { key: 'visitedOrlando', header: 'visited_orlando' },
@@ -27,7 +35,8 @@ const RSVP_HOUSEHOLD_FIELDS = Object.freeze([
   { key: 'anticipatedHotel', header: 'anticipated_hotel' },
   { key: 'cabanaBayArrival', header: 'cabana_bay_arrival' },
   { key: 'accessibilityNeeds', header: 'accessibility_needs' },
-  { key: 'dietaryRestrictions', header: 'dietary_restrictions' }
+  { key: 'dietaryRestrictions', header: 'dietary_restrictions' },
+  { key: 'contactPhone', header: 'contact_phone' }
 ]);
 
 const RSVP_HEADERS = Object.freeze({
@@ -37,9 +46,7 @@ const RSVP_HEADERS = Object.freeze({
     'invite_code',
     'contact_email',
     'guest_name'
-  ].concat(RSVP_EVENTS.map(function (eventDefinition) {
-    return eventDefinition.invitedHeader;
-  })),
+  ].concat(RSVP_INVITED_HEADERS),
   households: [
     'household_key',
     'household_name',
@@ -55,9 +62,7 @@ const RSVP_HEADERS = Object.freeze({
     'household_id',
     'guest_name'
   ].concat(
-    RSVP_EVENTS.map(function (eventDefinition) {
-      return eventDefinition.invitedHeader;
-    }),
+    RSVP_INVITED_HEADERS,
     RSVP_EVENTS.map(function (eventDefinition) {
       return eventDefinition.responseHeader;
     })
@@ -192,7 +197,7 @@ function buildInvitationsFromSetup() {
       );
     }
 
-    const invitations = RSVP_EVENTS.map(function (eventDefinition, eventIndex) {
+    const invitations = RSVP_INVITED_HEADERS.map(function (invitedHeader, eventIndex) {
       return parseBoolean_(row[5 + eventIndex]);
     });
 
@@ -372,7 +377,7 @@ function getInvitation(inviteCode) {
     const spreadsheet = getSpreadsheet_();
     const guestsSheet = spreadsheet.getSheetByName(RSVP_CONFIG.guestsSheet);
     const guestRows = guestsSheet.getDataRange().getValues().slice(1);
-    const responseOffset = 3 + RSVP_EVENTS.length;
+    const responseOffset = 3 + RSVP_INVITED_HEADERS.length;
 
     const guests = guestRows
       .filter(function (row) { return String(row[1]) === household.id; })
@@ -380,7 +385,7 @@ function getInvitation(inviteCode) {
         const events = {};
         RSVP_EVENTS.forEach(function (eventDefinition, eventIndex) {
           events[eventDefinition.key] = {
-            invited: row[3 + eventIndex] === true,
+            invited: isGuestInvitedToEvent_(row, eventDefinition),
             response: normalizeStoredResponse_(row[responseOffset + eventIndex])
           };
         });
@@ -437,6 +442,8 @@ function saveRsvp(inviteCode, submission) {
   }
 
   const partyInfo = submission.partyInfo;
+  const contactEmail = validateContactEmail_(partyInfo.contactEmail);
+  const contactPhone = validateContactPhone_(partyInfo.contactPhone);
   const householdResponseValues = [
     validateOrlandoHistory_(partyInfo.visitedOrlando),
     safeForSheet_(sanitizeOptionalText_(
@@ -459,14 +466,15 @@ function saveRsvp(inviteCode, submission) {
     safeForSheet_(sanitizeOptionalText_(
       partyInfo.dietaryRestrictions,
       RSVP_CONFIG.maxLongTextLength
-    ))
+    )),
+    safeForSheet_(contactPhone)
   ];
 
   const spreadsheet = getSpreadsheet_();
   const guestsSheet = spreadsheet.getSheetByName(RSVP_CONFIG.guestsSheet);
   const householdsSheet = spreadsheet.getSheetByName(RSVP_CONFIG.householdsSheet);
   const lock = LockService.getScriptLock();
-  const responseOffset = 3 + RSVP_EVENTS.length;
+  const responseOffset = 3 + RSVP_INVITED_HEADERS.length;
   const persistedValueCount = RSVP_EVENTS.length;
 
   lock.waitLock(15000);
@@ -489,7 +497,7 @@ function saveRsvp(inviteCode, submission) {
       const submittedEvents = submittedGuest.events || {};
       const eventResponses = RSVP_EVENTS.map(function (eventDefinition, eventIndex) {
         return validateEventResponse_(
-          row[3 + eventIndex] === true && eventDefinition.collectResponse !== false,
+          isGuestInvitedToEvent_(row, eventDefinition) && eventDefinition.collectResponse !== false,
           submittedEvents[eventDefinition.key]
         );
       });
@@ -534,6 +542,10 @@ function saveRsvp(inviteCode, submission) {
       })
     );
 
+    householdsSheet.getRange(household.rowNumber, 5).setValue(
+      safeForSheet_(contactEmail)
+    );
+
     householdsSheet.getRange(
       household.rowNumber,
       6,
@@ -554,7 +566,7 @@ function saveRsvp(inviteCode, submission) {
 
   return {
     ok: true,
-    message: 'Your RSVP has been saved. You can return with the same invitation link to make changes.'
+    message: 'Your RSVP has been saved. You can return with the same personal RSVP password to make changes.'
   };
 }
 
@@ -566,7 +578,58 @@ function getSpreadsheet_() {
     throw new Error('The RSVP spreadsheet has not been configured. Run setupRsvpSystem first.');
   }
 
-  return SpreadsheetApp.openById(spreadsheetId);
+  const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  ensureHouseholdContactPhoneColumn_(spreadsheet);
+  ensureGuestTransportationResponseColumn_(spreadsheet);
+  return spreadsheet;
+}
+
+function isGuestInvitedToEvent_(row, eventDefinition) {
+  const invitationIndex = RSVP_INVITED_HEADERS.indexOf(eventDefinition.invitedHeader);
+  return invitationIndex !== -1 && row[3 + invitationIndex] === true;
+}
+
+function ensureGuestTransportationResponseColumn_(spreadsheet) {
+  const sheet = spreadsheet.getSheetByName(RSVP_CONFIG.guestsSheet);
+  if (!sheet || sheet.getLastRow() === 0) return;
+
+  const expectedHeader = 'welcome_transportation_response';
+  const lastColumn = sheet.getLastColumn();
+  const headers = sheet.getRange(1, 1, 1, lastColumn).getValues()[0]
+    .map(function (header) { return String(header); });
+  if (headers.indexOf(expectedHeader) !== -1) return;
+
+  const expectedColumn = RSVP_HEADERS.guests.indexOf(expectedHeader) + 1;
+  if (expectedColumn < 1 || lastColumn !== expectedColumn - 1) {
+    throw new Error('The Guests sheet could not be upgraded with welcome_transportation_response.');
+  }
+
+  sheet.getRange(1, expectedColumn)
+    .setValue(expectedHeader)
+    .setFontWeight('bold')
+    .setBackground('#f5ede0');
+}
+
+function ensureHouseholdContactPhoneColumn_(spreadsheet) {
+  const sheet = spreadsheet.getSheetByName(RSVP_CONFIG.householdsSheet);
+  if (!sheet || sheet.getLastRow() === 0) return;
+
+  const expectedHeader = 'contact_phone';
+  const lastColumn = sheet.getLastColumn();
+  const headers = sheet.getRange(1, 1, 1, lastColumn).getValues()[0]
+    .map(function (header) { return String(header); });
+  const existingIndex = headers.indexOf(expectedHeader);
+  if (existingIndex !== -1) return;
+
+  const expectedColumn = RSVP_HEADERS.households.indexOf(expectedHeader) + 1;
+  if (expectedColumn < 1 || lastColumn !== expectedColumn - 1) {
+    throw new Error('The Households sheet could not be upgraded with contact_phone.');
+  }
+
+  sheet.getRange(1, expectedColumn)
+    .setValue(expectedHeader)
+    .setFontWeight('bold')
+    .setBackground('#f5ede0');
 }
 
 function ensureSheet_(spreadsheet, name, headers) {
@@ -610,13 +673,15 @@ function findHouseholdByCode_(inviteCode) {
           ? new Date(rows[index][5]).toISOString()
           : '',
         partyInfo: {
+          contactEmail: String(rows[index][4] || ''),
           visitedOrlando: normalizeOrlandoHistory_(rows[index][6]),
           danceFloorSong: String(rows[index][7] || ''),
           karaokeSong: String(rows[index][8] || ''),
           anticipatedHotel: String(rows[index][9] || ''),
           cabanaBayArrival: normalizeArrivalMethod_(rows[index][10]),
           accessibilityNeeds: String(rows[index][11] || ''),
-          dietaryRestrictions: String(rows[index][12] || '')
+          dietaryRestrictions: String(rows[index][12] || ''),
+          contactPhone: String(rows[index][13] || '')
         }
       };
     }
@@ -702,6 +767,23 @@ function parseBoolean_(value) {
   if (value === true) return true;
   const normalized = String(value || '').trim().toLowerCase();
   return ['true', 'yes', 'y', '1'].indexOf(normalized) !== -1;
+}
+
+function validateContactEmail_(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) {
+    throw new Error('Please enter a valid email address for event updates.');
+  }
+  return normalized;
+}
+
+function validateContactPhone_(value) {
+  const normalized = String(value || '').trim();
+  const digitCount = (normalized.match(/\d/g) || []).length;
+  if (normalized.length > 40 || digitCount < 7) {
+    throw new Error('Please enter a valid phone number for event updates.');
+  }
+  return normalized;
 }
 
 function sanitizeIdentifier_(value, fieldName, rowNumber) {
