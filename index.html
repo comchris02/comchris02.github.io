@@ -254,47 +254,6 @@
   .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
   .card-title { font-weight: 500; font-size: 14px; color: var(--charcoal); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
 
-  /* EMAIL SIGNUP */
-  .email-signup {
-    background: white;
-    border: 1px solid var(--stone);
-    border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
-  }
-  .email-signup p {
-    max-width: 560px;
-    margin: 0 auto 1.25rem;
-  }
-  .email-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 0.75rem;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  .email-form input {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    border: 1px solid var(--stone);
-    border-radius: 999px;
-    font-family: 'Manrope', sans-serif;
-    font-size: 14px;
-    background: var(--ivory);
-    color: var(--text-dark);
-    outline: none;
-  }
-  .email-form input:focus {
-    border-color: var(--champagne-deep);
-    background: white;
-  }
-  .email-confirm {
-    display: none;
-    margin-top: 1rem;
-    font-size: 14px;
-    color: var(--text-mid);
-  }
-
   /* RSVP */
   .rsvp-embed-shell {
     width: 100%;
@@ -683,10 +642,6 @@
 
 
     .card-grid { grid-template-columns: 1fr; }
-    .email-form {
-      grid-template-columns: 1fr;
-    }
-
     .gallery-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 0.6rem;
@@ -723,7 +678,6 @@
 <nav>
   <a href="#rsvp">RSVP</a>
   <a href="#travel">Travel</a>
-  <a href="#updates">Updates</a>
   <a href="#attire">Attire</a>
   <a href="#story">Our Story</a>
   <a href="#registry">Registry</a>
@@ -841,20 +795,6 @@
     <div class="card-icon">✈️</div>
     <div class="card-title">Flying In</div>
     <p>Orlando International Airport (MCO) is the nearest major airport - and featured in our engagement photos!</p>
-  </div>
-</section>
-
-<section id="updates">
-  <div class="section-title">Stay in the Loop</div>
-  <div class="section-rule"></div>
-  <div class="email-signup">
-    <p>Want wedding weekend updates in your inbox? Add your name and email below and we’ll keep you posted.</p>
-    <form class="email-form" id="emailSignupForm" onsubmit="submitEmailSignup(event)">
-      <input type="text" id="signup-name" name="name" placeholder="Your name" required />
-      <input type="email" id="signup-email" name="email" placeholder="Your email" required />
-      <button class="rsvp-btn" type="submit">Sign Up</button>
-    </form>
-    <div class="email-confirm" id="emailSignupConfirm"></div>
   </div>
 </section>
 
@@ -1118,9 +1058,6 @@
   // Replace this after deploying the RSVP Apps Script project as a web app.
   const rsvpAppEndpoint = 'https://script.google.com/macros/s/AKfycbzlUydXrnU8q0AE5KS64VW1juKQs2peU7SEAKwHFGxyNc61gaHVRnLcn0xKmujZ9qZM/exec';
 
-  // Existing mailing-list signup endpoint.
-  const emailSignupEndpoint = 'https://script.google.com/macros/s/AKfycbz3cm2aZEKxkH5jPNajTTObkJG2NVE3KGSNMz0CFmszC9goM-v9mgFwRLGdjK3TP2M2KQ/exec';
-
   function countdown() {
     const wedding = new Date('2026-10-24T18:30:00-04:00');
     const now = new Date();
@@ -1227,48 +1164,6 @@
     chevron.style.transform = isOpen ? 'rotate(0)' : 'rotate(180deg)';
   }
 
-  function submitEmailSignup(event) {
-    event.preventDefault();
-    const name = document.getElementById('signup-name').value.trim();
-    const email = document.getElementById('signup-email').value.trim();
-    const confirm = document.getElementById('emailSignupConfirm');
-
-    if (!name || !email) {
-      confirm.style.display = 'block';
-      confirm.style.color = '#ff6a00';
-      confirm.textContent = 'Please enter your name and email.';
-      return;
-    }
-
-    if (emailSignupEndpoint.includes('PASTE_GOOGLE_APPS_SCRIPT')) {
-      confirm.style.display = 'block';
-      confirm.style.color = '#ff6a00';
-      confirm.textContent = 'Signup form is almost ready — check back soon!';
-      return;
-    }
-
-    const payload = new FormData();
-    payload.append('name', name);
-    payload.append('email', email);
-    payload.append('timestamp', new Date().toISOString());
-
-    fetch(emailSignupEndpoint, {
-      method: 'POST',
-      body: payload,
-      mode: 'no-cors'
-    })
-    .then(() => {
-      confirm.style.display = 'block';
-      confirm.style.color = '#2d6a4f';
-      confirm.textContent = 'You’re on the list — thank you!';
-      document.getElementById('emailSignupForm').reset();
-    })
-    .catch(() => {
-      confirm.style.display = 'block';
-      confirm.style.color = '#ff6a00';
-      confirm.textContent = 'Something went wrong. Please try again.';
-    });
-  }
 
   function openLightbox(index, imageSet = galleryImages) {
     activeLightboxImages = imageSet;

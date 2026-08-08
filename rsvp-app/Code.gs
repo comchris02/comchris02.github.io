@@ -188,13 +188,22 @@ function buildInvitationsFromSetup() {
     const household = householdsByKey[householdKey];
     if (
       household.name !== householdName ||
-      normalizeInviteCode_(household.code) !== normalizedInviteCode ||
-      household.email !== contactEmail
+      normalizeInviteCode_(household.code) !== normalizedInviteCode
     ) {
       throw new Error(
         'Rows for household_key "' + householdKey +
-        '" must use the same household name, RSVP password, and email.'
+        '" must use the same household name and RSVP password.'
       );
+    }
+
+    if (contactEmail) {
+      if (household.email && household.email !== contactEmail) {
+        throw new Error(
+          'Rows for household_key "' + householdKey +
+          '" contain more than one contact email.'
+        );
+      }
+      household.email = contactEmail;
     }
 
     const invitations = RSVP_INVITED_HEADERS.map(function (invitedHeader, eventIndex) {
@@ -733,15 +742,15 @@ function normalizeStoredResponse_(value) {
 }
 
 function normalizeInviteCode_(value) {
-  return String(value || '').trim().toLowerCase();
+  return stripInviteCodeWhitespace_(value).toLowerCase();
 }
 
 function isValidInviteCodeFormat_(value) {
-  return /^[A-Za-z0-9_-]{2,40}$/.test(String(value || '').trim());
+  return /^[A-Za-z0-9_-]{2,40}$/.test(stripInviteCodeWhitespace_(value));
 }
 
 function sanitizeInviteCode_(value, sheetRow) {
-  const code = String(value || '').trim();
+  const code = stripInviteCodeWhitespace_(value);
   if (!isValidInviteCodeFormat_(code)) {
     throw new Error(
       'invite_code on Guest Setup row ' + sheetRow +
@@ -749,6 +758,10 @@ function sanitizeInviteCode_(value, sheetRow) {
     );
   }
   return code;
+}
+
+function stripInviteCodeWhitespace_(value) {
+  return String(value || '').replace(/\s+/g, '');
 }
 
 function hashInviteCode_(inviteCode) {

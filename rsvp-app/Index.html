@@ -158,6 +158,24 @@
       text-align: center;
     }
 
+    .household-code-switch {
+      margin: 0 auto 0.65rem;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .household-code-link {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--orange);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
     .household-subtitle {
       margin: 0 auto 1.5rem;
       color: var(--text-mid);
@@ -525,9 +543,12 @@
 
     <div id="status" class="status" role="status" aria-live="polite"></div>
 
-    <form id="rsvpForm" class="rsvp-form">
+    <form id="rsvpForm" class="rsvp-form" novalidate>
       <section id="partySchedule" class="party-schedule" hidden></section>
       <h2 id="householdHeading" class="household-heading"></h2>
+      <p class="household-code-switch">
+        (Not you? <button id="differentCodeButton" class="household-code-link" type="button">Use a different code</button>)
+      </p>
       <p class="household-subtitle">
         Choose Yes or No for each invited guest and event, then provide one set of weekend details for your party. You can revisit this page with the same personal RSVP password to update your answers.
       </p>
@@ -548,7 +569,7 @@
       <div id="guestList"></div>
       <div class="form-actions">
         <button id="saveButton" class="button" type="submit">Save RSVP</button>
-        <button id="differentCodeButton" class="secondary-button" type="button">Use a different code</button>
+
       </div>
       <p id="savedNote" class="saved-note"></p>
     </form>
@@ -703,7 +724,7 @@
     });
 
     function loadInvitation(code) {
-      const normalizedCode = String(code || '').trim();
+      const normalizedCode = String(code || '').replace(/\s+/g, '');
       if (!/^[A-Za-z0-9_-]{2,40}$/.test(normalizedCode)) {
         showStatus('RSVP system will go live Saturday August 8th', 'launch-notice');
         return;
@@ -798,7 +819,7 @@
 
       const heading = document.createElement('h3');
       heading.className = 'schedule-heading';
-      heading.textContent = 'Your Weekend Schedule';
+      heading.textContent = invitation.householdName + ' Schedule';
       partySchedule.appendChild(heading);
 
       const intro = document.createElement('p');
@@ -1398,7 +1419,7 @@
         currentCode = 'local-preview';
         currentInvitation = createLocalPreviewInvitation();
         renderInvitation(currentInvitation);
-        document.getElementById('differentCodeButton').style.display = 'none';
+        document.getElementById('differentCodeButton').closest('.household-code-switch').style.display = 'none';
         showStatus('Local visual preview — responses will not be saved.', 'info');
         return;
       }
