@@ -577,12 +577,12 @@
         (Not you? <button id="differentCodeButton" class="household-code-link" type="button">Use a different code</button>)
       </p>
       <p class="household-subtitle">
-        Choose Yes or No for each invited guest and event, then provide one set of weekend details for your party. You can revisit this page with the same personal RSVP password to update your answers.
+        Your saved event responses and weekend details are shown below.
       </p>
-      <p class="rsvp-deadline">Please provide your RSVP responses by August 28, 2026.</p>
+      <p class="rsvp-deadline">The RSVP deadline has passed, so responses are now read-only. If you need to make a change, please contact Shelby or Chris directly.</p>
       <section class="contact-info" aria-labelledby="contactHeading">
-        <h3 id="contactHeading" class="contact-heading">First off, we'd love to have up-to-date contact info for everyone!</h3>
-        <p class="contact-intro">Could you start by providing a good email address and phone number for event updates?</p>
+        <h3 id="contactHeading" class="contact-heading">Contact information on file</h3>
+        <p class="contact-intro">This is the email address and phone number included with your RSVP.</p>
         <div class="contact-grid">
           <label class="contact-field">
             <span>Email address</span>
@@ -609,6 +609,7 @@
       google.script &&
       google.script.run;
     const isLocalPreview = !isAppsScriptRuntime;
+    const RSVP_CLOSED = true;
     const initialInviteCode = '';
     const eventDefinitions = [
       {
@@ -679,8 +680,8 @@
         scheduleOrder: 1.5,
         rsvpDetails: ['Departs 6:10pm', 'Free! Round Trip from/to Cabana Bay'],
         schedule: {
-          time: 'Departs 6:10pm from Cabana Bay Main Entrance',
-          venue: 'Returns to Cabana Bay at approximately 9:45pm',
+          time: 'Departs 6:10pm from Cabana Bay Main Entrance to arrive at Primrose Lanes around 7:00pm',
+          venue: 'Return Departure at 9:10pm from Primrose Lanes to arrive at Cabana Bay around 9:45pm',
           emphasizeVenue: false
         }
       },
@@ -872,14 +873,25 @@
       guestList.appendChild(createEventRsvpList(invitation.guests));
       guestList.appendChild(createWeekendQuestions(partyInfo));
 
+      setRsvpReadOnly();
       savedNote.textContent = invitation.updatedAt
-        ? 'These answers were previously saved. Saving again will replace them.'
-        : '';
+        ? 'These are your saved RSVP responses. Contact Shelby or Chris directly if you need to make a change.'
+        : 'No RSVP responses were saved before the deadline. Contact Shelby or Chris directly if you need assistance.';
 
       lookupPanel.style.display = 'none';
       rsvpForm.classList.add('visible');
       clearStatus();
       reportHeight();
+    }
+
+    function setRsvpReadOnly() {
+      if (!RSVP_CLOSED) return;
+
+      rsvpForm.classList.add('is-read-only');
+      rsvpForm.querySelectorAll('input, select, textarea').forEach(function (field) {
+        field.disabled = true;
+      });
+      saveButton.hidden = true;
     }
 
     function renderPartySchedule(invitation) {
@@ -1306,6 +1318,10 @@
 
     function saveInvitation() {
       if (!currentInvitation || !currentCode) return;
+      if (RSVP_CLOSED) {
+        showStatus('The RSVP deadline has passed. Please contact Shelby or Chris directly to make a change.', 'info');
+        return;
+      }
 
       clearInlineValidationError();
 
@@ -1429,7 +1445,7 @@
           });
           currentInvitation.updatedAt = new Date().toISOString();
           renderPartySchedule(currentInvitation);
-          savedNote.textContent = 'Your latest answers are shown above and may be edited at any time.';
+          savedNote.textContent = 'Your latest answers are shown above.';
           reportHeight();
           requestScheduleScroll();
         })

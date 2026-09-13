@@ -1,4 +1,5 @@
 const RSVP_CONFIG = Object.freeze({
+  closed: true,
   siteUrl: 'https://shelbyandchrisgethitched.com/',
   setupSheet: 'Guest Setup',
   householdsSheet: 'Households',
@@ -434,6 +435,7 @@ function getInvitation(inviteCode) {
 
     return {
       ok: true,
+      rsvpClosed: RSVP_CONFIG.closed,
       householdName: household.name,
       updatedAt: household.updatedAt || '',
       partyInfo: household.partyInfo,
@@ -446,6 +448,13 @@ function getInvitation(inviteCode) {
 }
 
 function saveRsvp(inviteCode, submission) {
+  if (RSVP_CONFIG.closed) {
+    return {
+      ok: false,
+      message: 'The RSVP deadline has passed. Please contact Shelby or Chris directly to make a change.'
+    };
+  }
+
   const household = findHouseholdByCode_(inviteCode);
   if (!household) {
     return { ok: false, message: 'We could not find that personal RSVP password.' };
