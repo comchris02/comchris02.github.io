@@ -280,6 +280,17 @@
       font-weight: 600;
     }
 
+    .schedule-notice {
+      margin: 0.55rem 0;
+      border-left: 4px solid var(--orange);
+      padding: 0.55rem 0.75rem;
+      background: #f5ede0;
+      color: var(--text-dark);
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
     .schedule-time,
     .schedule-venue,
     .schedule-address {
@@ -643,10 +654,10 @@
           address: '400 N Primrose Dr, Orlando, FL 32803',
           details: [
             {
-              text: 'Bus transportation will be provided from Universal\u2019s Cabana Bay Beach Resort, please indicate if you wish to be included in the transportation on the RSVP page.'
+              text: 'Bus transportation will be provided from Universal\u2019s Cabana Bay Beach Resort, departing at 6:30pm. You will be met by your Volunteer Bus Captains: Jordan, Dani, and Brittaine by the Cabana Bay shuttle bus area.'
             },
             {
-              text: 'Guests staying elsewhere are welcome to meet us directly at Primrose Lanes. There is ample and free parking.'
+              text: 'Guests staying elsewhere are welcome to meet us directly at Primrose Lanes at 7:00pm. There is ample and free parking.'
             },
             {
               label: 'WHAT TO WEAR',
@@ -665,7 +676,7 @@
                 'Drinks',
                 'Bowling (completely optional!)',
                 'Karaoke',
-                'An evening in Shelby and Chris\u2019s neighborhood, nicknamed \u201cthe Milk District.\u201d'
+                'An evening in Shelby and Chris\u2019s neighborhood, nicknamed \u201cThe Milk District.\u201d'
               ]
             }
           ]
@@ -678,9 +689,10 @@
         date: 'Friday, October 23',
         scheduleRequiresYes: true,
         scheduleOrder: 1.5,
-        rsvpDetails: ['Departs 6:10pm', 'Free! Round Trip from/to Cabana Bay'],
+        rsvpDetails: ['Departs 6:30pm', 'Free! Round Trip from/to Cabana Bay'],
         schedule: {
-          time: 'Departs 6:10pm from Cabana Bay Main Entrance to arrive at Primrose Lanes around 7:00pm',
+          notice: 'UPDATED DEPARTURE TIME AND MEETING LOCATION',
+          time: 'Departs 6:30pm from Cabana Bay shuttle bus area to arrive at Primrose Lanes around 7:00pm',
           venue: 'Return Departure at 9:10pm from Primrose Lanes to arrive at Cabana Bay around 9:45pm',
           emphasizeVenue: false
         }
@@ -702,26 +714,33 @@
         date: 'Saturday, October 24',
         collectResponse: false,
         schedule: {
-          time: '3:30 PM to 5:30 PM',
+          time: '3:00 PM to 4:30 PM',
           venue: 'SS Washington (Chris and Shelby\u0027s House)',
           address: '1612 E Washington St, Orlando, FL 32803'
         }
       },
       {
         key: 'wedding',
-        title: 'Ceremony and Reception',
+        title: 'Wedding Ceremony & Reception',
         date: 'Saturday, October 24',
         schedule: {
-          time: 'Ceremony begins promptly at 6:30 PM; please meet in the lobby',
+          time: 'Ceremony begins promptly at 6:30 PM',
           timeNote: 'Reception to follow, concluding at approximately 11:30 PM',
           venue: 'Universal\u2019s Cabana Bay Beach Resort',
           address: '6550 Adventure Way, Orlando, FL 32819',
           details: [
             {
+              text: 'The lobby will have signage directing you to the beach area in the Lazy River Courtyard, number 34 on the official Cabana Bay map.'
+            },
+            {
               text: 'If you\u2019re staying at Cabana Bay, you\u2019ll have a short trip down the elevator to join the festivities!'
             },
             {
-              text: 'If you\u2019re staying elsewhere, parking will be available and validated for wedding guests.'
+              text: 'If you\u2019re staying elsewhere, you can drive and park in the Cabana Bay garage. You\u2019ll receive a ticket as you enter and will use it with a validation sticker when you leave.'
+            },
+            {
+              label: 'PARKING VALIDATION',
+              text: 'Validation stickers will be at the reception welcome table next to the guest book and mailbox. If you are staying for the afterparty (and we hope you are!), ask any member of the wedding party for a sticker.'
             },
             {
               label: 'WHAT TO WEAR',
@@ -740,7 +759,7 @@
                 'The ceremony and reception will be entirely outdoors.',
                 {
                   label: 'Sand',
-                  text: 'The ceremony will take place on the sand. We feel strongly that this is an integral and unique part of our Florida wedding, so we encourage you to take advantage. There will also be an opportunity to get your feet wet, if you so choose. As a final nudge, Shelby plans to be barefoot for the entire reception.'
+                  text: 'The ceremony will take place on the sand. We feel strongly that this is an integral and unique part of our Florida wedding, so we encourage you to take advantage. There will also be an opportunity to get your feet wet, if you so choose. As a final nudge, Shelby plans to be barefoot for most of the reception.'
                 },
                 'Outside of the ceremony, there will be an opportunity to walk exclusively on concrete if you so choose.'
               ]
@@ -750,12 +769,18 @@
       },
       {
         key: 'afterparty',
-        title: 'Afterparty',
+        title: 'Afterparty (21+)',
         date: 'Saturday, October 24',
         schedule: {
           time: '11:30 PM to 1:00 AM',
           venue: 'Cabana Bay Galaxy Bowl',
-          address: '6550 Adventure Way, Orlando, FL 32819'
+          address: '6550 Adventure Way, Orlando, FL 32819',
+          details: [
+            {
+              label: 'WHAT TO EXPECT',
+              text: 'We do not plan to bowl, but plan for a bar and some fun, greasy American food.'
+            }
+          ]
         }
       },
       {
@@ -771,12 +796,19 @@
               text: 'Feel free to arrive and depart whenever you\u2019d like.'
             },
             {
+              text: 'Meet at The Hideaway Bar & Grill rooftop, number 24 on the official Cabana Bay map.'
+            },
+            {
+              label: 'PARKING',
+              text: 'If you\u2019re staying elsewhere, parking will be available and validated for wedding guests. The parking validations will be stickers. Shelby and Chris will have them, but it will cost you a selfie!'
+            },
+            {
               label: 'WHAT TO WEAR',
               text: 'Poolside Casual, swimsuits, cover-ups, resort wear, flip flops, your favorite airplane pants, or whatever helps you relax.'
             },
             {
               label: 'WHAT TO EXPECT',
-              text: 'One of the best pieces of wedding advice we received was to leave Sunday unscheduled. There won\u2019t be speeches or formal activities. Simply stop by, float in the lazy river, enjoy the sunshine, grab a light brunch, and say goodbye before everyone heads home. Stay for five minutes or the entire afternoon\u2014the idea is simply to float in and float out.'
+              text: 'Light continental breakfast will be served. One of the best pieces of wedding advice we received was to leave Sunday unscheduled. There won\u2019t be speeches or formal activities. Simply stop by, float in the lazy river, enjoy the sunshine, grab a light brunch, and say goodbye before everyone heads home. Stay for five minutes or the entire afternoon\u2014the idea is simply to float in and float out.'
             }
           ]
         }
@@ -983,6 +1015,12 @@
         item.appendChild(title);
 
         const schedule = event.definition.schedule || {};
+        if (schedule.notice) {
+          const notice = document.createElement('p');
+          notice.className = 'schedule-notice';
+          notice.textContent = schedule.notice;
+          item.appendChild(notice);
+        }
         if (schedule.time) {
           const time = document.createElement('p');
           time.className = 'schedule-time';
